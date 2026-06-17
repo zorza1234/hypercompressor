@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Hyper Compressor | Fast, Free Client-Side Image Compressor</title>
+    <meta name="description" content="Instantly compress, resize, and convert JPEG, PNG, and WebP images directly in your browser. Fast, free, secure, and zero-upload image optimization.">
+    <meta name="keywords" content="image compressor, reduce image size, compress jpeg, convert to webp, client-side compression, free image shrinker, image resizer, browser image tool">
+    <meta name="author" content="Hyper Compressor">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://hypercompressor.online/">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph / Facebook / Discord -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hypercompressor.online/">
+    <meta property="og:title" content="Hyper Compressor | Fast, Free Client-Side Image Compressor">
+    <meta property="og:description" content="Instantly compress, resize, and convert JPEG, PNG, and WebP images directly in your browser. Zero server uploads.">
+    <meta property="og:image" content="https://hypercompressor.online/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hypercompressor.online/">
+    <meta property="twitter:title" content="Hyper Compressor | Fast, Free Client-Side Image Compressor">
+    <meta property="twitter:description" content="Instantly compress, resize, and convert JPEG, PNG, and WebP images directly in your browser. Zero server uploads.">
+    <meta property="twitter:image" content="https://hypercompressor.online/og-image.jpg">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Structured Data / JSON-LD for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Hyper Compressor",
+      "url": "https://hypercompressor.online/",
+      "description": "A free, client-side web application to compress, resize, and convert images securely in your browser without uploading to a server.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Client-side image compression",
+        "Image resizing capabilities",
+        "Format conversion (JPEG, PNG, WebP)",
+        "100% Private, no server uploads"
+      ]
+    }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        hyper: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Custom scrollbar for a polished look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .drop-zone-active {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+        }
+        
+        input[type=range] {
+            accent-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-hyper-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl">
+                    <i class="ph ph-arrows-in line-height-0"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tight text-gray-900">Hyper<span class="text-hyper-600">Compressor</span></span>
+            </div>
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-gray-500">
+                <a href="#how-it-works" class="hover:text-hyper-600 transition-colors">How it Works</a>
+                <a href="#faq" class="hover:text-hyper-600 transition-colors">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center pt-12 pb-20 px-6">
+        
+        <!-- Hero Text (SEO Optimized H1) -->
+        <div class="text-center max-w-2xl mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900">
+                Shrink, Resize & Convert. <span class="text-transparent bg-clip-text bg-gradient-to-r from-hyper-500 to-indigo-600">Keep Quality.</span>
+            </h1>
+            <p class="text-lg text-gray-500 mb-2">
+                Fast, private, and 100% free client-side image optimization. 
+            </p>
+            <p class="text-sm font-medium text-gray-400 flex items-center justify-center gap-1">
+                <i class="ph-fill ph-lock-key"></i> Files never leave your device.
+            </p>
+        </div>
+
+        <div class="w-full max-w-3xl bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+            
+            <div class="p-8 md:p-12">
+                <!-- Upload Zone -->
+                <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-all duration-300 flex flex-col items-center justify-center py-16 px-4 cursor-pointer relative">
+                    <input type="file" id="fileInput" accept="image/jpeg, image/png, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    
+                    <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 text-hyper-500 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-upload-simple text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Drag & drop your image here</h3>
+                    <p class="text-sm text-gray-500 text-center max-w-xs">
+                        Supports JPG, PNG, and WebP up to 20MB.
+                    </p>
+                    <button class="mt-6 px-6 py-2.5 bg-hyper-600 hover:bg-hyper-700 text-white font-medium rounded-full transition-colors relative z-20 pointer-events-none">
+                        Browse Files
+                    </button>
+                </div>
+
+                <!-- Editor Zone (Hidden by default) -->
+                <div id="editorZone" class="hidden flex flex-col gap-8">
+                    
+                    <!-- Top bar: Back button & File name -->
+                    <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+                        <button id="btnBack" class="text-gray-500 hover:text-gray-800 flex items-center gap-1 text-sm font-medium transition-colors">
+                            <i class="ph ph-arrow-left"></i> Upload different image
+                        </button>
+                        <span id="fileName" class="text-sm text-gray-500 truncate max-w-[200px]">image.jpg</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Left: Preview -->
+                        <div class="flex flex-col items-center justify-center bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 min-h-[300px] relative">
+                            <img id="imagePreview" src="" alt="Image Preview" class="max-w-full max-h-[300px] object-contain p-2">
+                        </div>
+
+                        <!-- Right: Controls & Stats -->
+                        <div class="flex flex-col justify-center gap-6">
+                            
+                            <!-- Quality Slider -->
+                            <div>
+                                <label class="flex justify-between text-sm font-medium text-gray-700 mb-3">
+                                    <span>Compression Level</span>
+                                    <span id="qualityValue" class="text-hyper-600 font-bold">80%</span>
+                                </label>
+                                <input type="range" id="qualitySlider" min="10" max="100" value="80" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                                <div class="flex justify-between text-xs text-gray-400 mt-2">
+                                    <span>Smaller File</span>
+                                    <span>Better Quality</span>
+                                </div>
+                            </div>
+
+                            <!-- Format & Resize Controls -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Convert To</label>
+                                    <select id="formatSelect" class="w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-xl focus:ring-hyper-500 focus:border-hyper-500 block p-2.5 outline-none transition-colors cursor-pointer">
+                                        <option value="image/jpeg">JPEG</option>
+                                        <option value="image/webp">WebP</option>
+                                        <option value="image/png">PNG</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="flex justify-between text-sm font-medium text-gray-700 mb-2">
+                                        <span>Resize Scale</span>
+                                        <span id="scaleValue" class="text-hyper-600 font-bold">100%</span>
+                                    </label>
+                                    <input type="range" id="scaleSlider" min="10" max="100" value="100" step="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-3">
+                                </div>
+                            </div>
+
+                            <!-- Stats Cards -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Original Size</p>
+                                    <p id="originalSize" class="text-lg font-semibold text-gray-800">--</p>
+                                </div>
+                                <div class="bg-hyper-50 p-4 rounded-xl border border-hyper-100">
+                                    <p class="text-xs text-hyper-600 uppercase tracking-wider mb-1">New Size</p>
+                                    <p id="compressedSize" class="text-xl font-bold text-hyper-700">--</p>
+                                    <p id="savingsText" class="text-xs font-medium text-green-600 mt-1">Saved --%</p>
+                                </div>
+                            </div>
+
+                            <!-- Download Button -->
+                            <button id="btnDownload" class="w-full py-4 bg-gray-900 hover:bg-black text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
+                                <i class="ph ph-download-simple"></i>
+                                Download Compressed Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Error Message Banner (Hidden by default) -->
+            <div id="errorBanner" class="hidden bg-red-50 border-t border-red-100 p-4 text-center text-red-600 text-sm font-medium">
+                Error message goes here.
+            </div>
+        </div>
+
+        <!-- SEO Content Area (Below the fold) -->
+        <section id="how-it-works" class="w-full max-w-4xl mt-24 mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 text-center mb-10">Why use Hyper Compressor?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="ph ph-rocket-launch"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Everything happens in your browser. No waiting for uploads to a server or waiting in a queue. It's instant.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="ph ph-shield-check"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">100% Private</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">Your images never leave your computer. We don't store, see, or transmit your files. Total privacy guaranteed.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                        <i class="ph ph-money"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Completely Free</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">No daily limits, no watermarks, and no premium subscriptions required. Use it as much as you need.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semantic FAQ for long-tail SEO -->
+        <section id="faq" class="w-full max-w-3xl mt-12 mb-20 text-left">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <details class="group bg-white p-6 rounded-2xl border border-gray-100 cursor-pointer">
+                    <summary class="font-medium text-gray-900 flex justify-between items-center outline-none">
+                        How does client-side compression work?
+                        <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                        Hyper Compressor utilizes the modern HTML5 Canvas API built directly into your web browser. When you drop an image, your browser analyzes and redraws the image at a smaller file size locally, without ever needing to communicate with an external server.
+                    </p>
+                </details>
+
+                <details class="group bg-white p-6 rounded-2xl border border-gray-100 cursor-pointer">
+                    <summary class="font-medium text-gray-900 flex justify-between items-center outline-none">
+                        Which image formats are supported?
+                        <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                        Currently, we support the most common web formats: JPG (JPEG), PNG, and WebP. Compressing a PNG usually converts it to a high-efficiency JPEG or WebP internally to achieve maximum space savings.
+                    </p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-8 text-center text-sm text-gray-500">
+        <p>&copy; 2026 Hyper Compressor. Built for the web.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // UI Elements
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const editorZone = document.getElementById('editorZone');
+            const btnBack = document.getElementById('btnBack');
+            const fileNameDisplay = document.getElementById('fileName');
+            const imagePreview = document.getElementById('imagePreview');
+            const qualitySlider = document.getElementById('qualitySlider');
+            const qualityValue = document.getElementById('qualityValue');
+            const originalSizeDisplay = document.getElementById('originalSize');
+            const compressedSizeDisplay = document.getElementById('compressedSize');
+            const savingsTextDisplay = document.getElementById('savingsText');
+            const btnDownload = document.getElementById('btnDownload');
+            const errorBanner = document.getElementById('errorBanner');
+            
+            const formatSelect = document.getElementById('formatSelect');
+            const scaleSlider = document.getElementById('scaleSlider');
+            const scaleValue = document.getElementById('scaleValue');
+
+            // State
+            let currentFile = null;
+            let originalImageObject = new Image();
+            let compressedDataUrl = '';
+
+            // --- Drag & Drop Handlers ---
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.add('drop-zone-active'), false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, () => dropZone.classList.remove('drop-zone-active'), false);
+            });
+
+            dropZone.addEventListener('drop', handleDrop, false);
+            fileInput.addEventListener('change', handleFileSelect, false);
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if(files.length) processFile(files[0]);
+            }
+
+            function handleFileSelect(e) {
+                if(e.target.files.length) processFile(e.target.files[0]);
+            }
+
+            // --- Core Logic ---
+            function showError(msg) {
+                errorBanner.textContent = msg;
+                errorBanner.classList.remove('hidden');
+                setTimeout(() => errorBanner.classList.add('hidden'), 5000);
+            }
+
+            function formatBytes(bytes, decimals = 2) {
+                if (!+bytes) return '0 Bytes';
+                const k = 1024;
+                const dm = decimals < 0 ? 0 : decimals;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+            }
+
+            function processFile(file) {
+                if (!file.type.match('image.*')) {
+                    showError("Please upload an image file (JPG, PNG, WebP).");
+                    return;
+                }
+
+                currentFile = file;
+                fileNameDisplay.textContent = file.name;
+                originalSizeDisplay.textContent = formatBytes(file.size);
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    originalImageObject.src = e.target.result;
+                    originalImageObject.onload = () => {
+                        // Switch UI
+                        dropZone.classList.add('hidden');
+                        editorZone.classList.remove('hidden');
+                        
+                        if (file.type === 'image/png') formatSelect.value = 'image/png';
+                        else if (file.type === 'image/webp') formatSelect.value = 'image/webp';
+                        else formatSelect.value = 'image/jpeg';
+
+                        // Run initial compression
+                        compressImage();
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // --- Canvas Compression Logic ---
+            function compressImage() {
+                const quality = qualitySlider.value / 100;
+                const scale = scaleSlider.value / 100;
+                
+                // Create canvas
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = originalImageObject.width * scale;
+                canvas.height = originalImageObject.height * scale;
+                
+                const outputFormat = formatSelect.value;
+                
+                // Fill background with white if converting to JPEG to prevent transparent areas from turning black
+                if (outputFormat === 'image/jpeg') {
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                
+                // Draw image on canvas
+                ctx.drawImage(originalImageObject, 0, 0, canvas.width, canvas.height);
+                
+                // Get compressed data URL
+                compressedDataUrl = canvas.toDataURL(outputFormat, quality);
+                
+                // Update Preview
+                imagePreview.src = compressedDataUrl;
+                
+                // Calculate new size (rough estimation from Base64 string length)
+                const base64str = compressedDataUrl.substring(compressedDataUrl.indexOf(',') + 1);
+                const decoded = atob(base64str);
+                const newSizeInBytes = decoded.length;
+                
+                compressedSizeDisplay.textContent = formatBytes(newSizeInBytes);
+                
+                // Calculate Savings
+                const savedBytes = currentFile.size - newSizeInBytes;
+                if(savedBytes > 0) {
+                    const percentage = ((savedBytes / currentFile.size) * 100).toFixed(0);
+                    savingsTextDisplay.textContent = `Saved ${percentage}%`;
+                    savingsTextDisplay.className = "text-xs font-medium text-green-600 mt-1";
+                } else {
+                    savingsTextDisplay.textContent = "File increased in size (Try lowering quality)";
+                    savingsTextDisplay.className = "text-xs font-medium text-amber-600 mt-1";
+                }
+            }
+
+            // --- Event Listeners for Editor ---
+            qualitySlider.addEventListener('input', (e) => {
+                qualityValue.textContent = `${e.target.value}%`;
+                // Debounce compression slightly to prevent lag while sliding
+                clearTimeout(window.compressTimeout);
+                window.compressTimeout = setTimeout(compressImage, 100);
+            });
+
+            scaleSlider.addEventListener('input', (e) => {
+                scaleValue.textContent = `${e.target.value}%`;
+                clearTimeout(window.compressTimeout);
+                window.compressTimeout = setTimeout(compressImage, 100);
+            });
+
+            formatSelect.addEventListener('change', () => {
+                compressImage();
+            });
+
+            btnBack.addEventListener('click', () => {
+                editorZone.classList.add('hidden');
+                dropZone.classList.remove('hidden');
+                fileInput.value = ''; // reset file input
+                currentFile = null;
+            });
+
+            btnDownload.addEventListener('click', () => {
+                if(!compressedDataUrl) return;
+                
+                // Create a temporary link element
+                const link = document.createElement('a');
+                
+                // Generate a new filename based on selected format
+                let ext = 'jpg';
+                if (formatSelect.value === 'image/png') ext = 'png';
+                if (formatSelect.value === 'image/webp') ext = 'webp';
+                
+                // Extract original name without extension
+                const lastDotIndex = currentFile.name.lastIndexOf('.');
+                const originalName = lastDotIndex !== -1 ? currentFile.name.substring(0, lastDotIndex) : currentFile.name;
+                
+                link.download = `${originalName}-hyper.${ext}`;
+                link.href = compressedDataUrl;
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+    </script>
+</body>
+</html>
