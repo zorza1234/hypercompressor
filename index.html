@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="google-site-verification" content="yswC-E3GcPUpu1y9fNiLdzMwr4WK5usVCPIXgtw7zIk" />
     
     <title>Hyper Compressor | Fast, Free Client-Side Image Compressor</title>
@@ -93,11 +92,19 @@
         body { 
             -webkit-font-smoothing: antialiased; 
             -moz-osx-font-smoothing: grayscale;
-            background-color: #f8fafc;
             background-image: 
                 radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.04) 0, transparent 50%), 
                 radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.04) 0, transparent 50%), 
                 radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.04) 0, transparent 50%);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Dark Mode Ambient Mesh Update */
+        body.dark {
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.15) 0, transparent 50%);
         }
         
         /* Custom scrollbar for a polished look */
@@ -114,10 +121,16 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+        .dark ::-webkit-scrollbar-track { background: #1f2937; }
+        .dark ::-webkit-scrollbar-thumb { background: #4b5563; }
 
         .drop-zone-active {
             border-color: #3b82f6 !important;
             background-color: #eff6ff !important;
+        }
+        .dark .drop-zone-active {
+            border-color: #3b82f6 !important;
+            background-color: #1e3a8a !important;
         }
         
         input[type=range] {
@@ -133,188 +146,195 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             border-color: #dbeafe;
         }
+        .dark .shadow-sm:hover, .dark #dropZone:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #3b82f6;
+        }
+
+        /* Desktop First Styles */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            font-family: sans-serif;
+            transition: all 0.3s ease;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        .logo-img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 0.95rem;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #4b5563;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: #2563eb; }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            color: #4b5563;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 0;
+            transition: color 0.2s;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 8px;
+            z-index: 1000;
+            margin-top: 8px;
+        }
+        .dropdown-item {
+            display: block;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #1f2937;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block !important;
+            animation: fadeIn 0.15s ease-out;
+        }
+
+        /* Custom Dark Mode Overrides */
+        body.dark .site-header { background: #111827; border-bottom: 1px solid #374151; }
+        body.dark .header-logo { color: #60a5fa; }
+        body.dark .nav-link, body.dark .dropdown-btn { color: #d1d5db; }
+        body.dark .nav-link:hover, body.dark .dropdown-btn:hover { color: #60a5fa; }
+        body.dark .dropdown-content { background-color: #1f2937; border-color: #374151; box-shadow: 0px 8px 24px rgba(0,0,0,0.5); }
+        body.dark .dropdown-item { color: #f3f4f6; }
+        body.dark .dropdown-item:hover { background-color: #374151 !important; }
+        body.dark #themeToggle { background-color: #374151; color: #f3f4f6; }
+        body.dark #themeToggle svg { color: #f3f4f6; }
+
+        /* 📱 Mobile Optimization Engine (Triggered on screens smaller than 768px) */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px 20px;
+                text-align: center;
+            }
+            .header-nav {
+                gap: 15px;
+                font-size: 0.85rem;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap; /* Prevents text from clipping if the phone screen is very small */
+            }
+            .dropdown-content {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%); /* Centers the dropdown on mobile screens */
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+<body class="bg-gray-50 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col">
 
-   <!-- Mobile-Optimized Professional Header -->
-<header class="site-header">
+   <header class="site-header">
     
-    <!-- Logo Left -->
     <a href="/" class="header-logo">
         <img src="favicon-32x32.png" alt="Logo" class="logo-img">
         <span>Hyper<span style="color: #2563eb;">Compressor</span></span>
     </a>
 
-    <!-- Navigation Right -->
     <nav class="header-nav">
         <a href="#how-it-works" class="nav-link">How it Works</a>
         <a href="#faq" class="nav-link">FAQ</a>
         
-        <!-- Interactive "More Tools" Dropdown -->
         <div class="dropdown">
-            <button class="dropdown-btn" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#4b5563'">
+            <button class="dropdown-btn">
                 More Tools 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
-            <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-            <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
             
-            <!-- Dropdown Menu Content -->
             <div class="dropdown-content">
-                <a href="/" class="dropdown-item" onmouseover="this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
+                <a href="/" class="dropdown-item" onmouseover="if(!document.body.classList.contains('dark')) this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
                     <div style="font-weight: 600; font-size: 0.9rem;">Image Compressor</div>
                     <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Fast, client-side WebP/PNG/JPG shrinker</div>
                 </a>
-                <a href="/nta-document-compressor.html" class="dropdown-item" onmouseover="this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
+                <a href="/nta-document-compressor.html" class="dropdown-item" onmouseover="if(!document.body.classList.contains('dark')) this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
                     <div style="font-weight: 600; font-size: 0.9rem; color: #059669;">NTA Document Compressor</div>
                     <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Auto-target rules for NEET, JEE, & CUET</div>
                 </a>
             </div>
         </div>
+
+        <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
+            <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
     </nav>
 </header>
-
-<!-- Modern Layout Engine (Handles Desktop vs Mobile automatically) -->
-<style>
-    /* Desktop First Styles */
-    .site-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 5%;
-        background: #ffffff;
-        border-bottom: 1px solid #f0f0f0;
-        font-family: sans-serif;
-    }
-    .header-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: #1e3a8a;
-        font-weight: 700;
-        font-size: 1.25rem;
-    }
-    .logo-img {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-    }
-    .header-nav {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        font-size: 0.95rem;
-    }
-    .nav-link {
-        text-decoration: none;
-        color: #4b5563;
-        transition: color 0.2s;
-    }
-    .nav-link:hover {
-        color: #2563eb;
-    }
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown-btn {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        background: none;
-        border: none;
-        color: #4b5563;
-        font-size: 0.95rem;
-        font-weight: 500;
-        cursor: pointer;
-        padding: 5px 0;
-        transition: color 0.2s;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background-color: #ffffff;
-        min-width: 240px;
-        box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
-        border: 1px solid #f0f0f0;
-        border-radius: 12px;
-        padding: 8px;
-        z-index: 1000;
-        margin-top: 8px;
-    }
-    .dropdown-item {
-        display: block;
-        padding: 10px 14px;
-        text-decoration: none;
-        color: #1f2937;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-    .dropdown:hover .dropdown-content {
-        display: block !important;
-        animation: fadeIn 0.15s ease-out;
-    }
-
-    /* 📱 Mobile Optimization Engine (Triggered on screens smaller than 768px) */
-    @media (max-width: 768px) {
-        .site-header {
-            flex-direction: column;
-            gap: 12px;
-            padding: 15px 20px;
-            text-align: center;
-        }
-        .header-nav {
-            gap: 15px;
-            font-size: 0.85rem;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap; /* Prevents text from clipping if the phone screen is very small */
-        }
-        .dropdown-content {
-            right: auto;
-            left: 50%;
-            transform: translateX(-50%); /* Centers the dropdown on mobile screens */
-        }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(4px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
 
     <main class="flex-grow flex flex-col items-center pt-12 pb-20 px-6">
         
         <div class="text-center max-w-2xl mb-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white">
                 Shrink, Resize & Convert. <span class="text-transparent bg-clip-text bg-gradient-to-r from-hyper-500 to-indigo-600">Keep Quality.</span>
             </h1>
-            <p class="text-lg text-gray-500 mb-2">
+            <p class="text-lg text-gray-500 dark:text-gray-400 mb-2">
                 Fast, private, and 100% free client-side image optimization. 
             </p>
-            <p class="text-sm font-medium text-gray-400 flex items-center justify-center gap-1">
+            <p class="text-sm font-medium text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1">
                 <i class="ph-fill ph-lock-key"></i> Files never leave your device.
             </p>
         </div>
 
-        <div class="w-full max-w-3xl bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+        <div class="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden transition-colors">
             
             <div class="p-8 md:p-12">
-                <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-all duration-300 flex flex-col items-center justify-center py-16 px-4 cursor-pointer relative">
+                <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex flex-col items-center justify-center py-16 px-4 cursor-pointer relative">
                     <input type="file" id="fileInput" accept="image/jpeg, image/png, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     
-                    <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 text-hyper-500 group-hover:scale-110 transition-transform">
+                    <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-sm flex items-center justify-center mb-4 text-hyper-500 group-hover:scale-110 transition-transform">
                         <i class="ph ph-upload-simple text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Drag & drop your image here</h3>
-                    <p class="text-sm text-gray-500 text-center max-w-xs">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">Drag & drop your image here</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 text-center max-w-xs">
                         Supports JPG, PNG, and WebP up to 20MB.
                     </p>
                     <button class="mt-6 px-6 py-2.5 bg-hyper-600 hover:bg-hyper-700 text-white font-medium rounded-full transition-colors relative z-20 pointer-events-none">
@@ -324,27 +344,27 @@
 
                 <div id="editorZone" class="hidden flex flex-col gap-8">
                     
-                    <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-                        <button id="btnBack" class="text-gray-500 hover:text-gray-800 flex items-center gap-1 text-sm font-medium transition-colors">
+                    <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-700 pb-4 transition-colors">
+                        <button id="btnBack" class="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
                             <i class="ph ph-arrow-left"></i> Upload different image
                         </button>
-                        <span id="fileName" class="text-sm text-gray-500 truncate max-w-[200px]">image.jpg</span>
+                        <span id="fileName" class="text-sm text-gray-500 dark:text-gray-400 truncate max-w-[200px]">image.jpg</span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="flex flex-col items-center justify-center bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 min-h-[300px] relative">
+                        <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 min-h-[300px] relative transition-colors">
                             <img id="imagePreview" src="" alt="Image Preview" class="max-w-full max-h-[300px] object-contain p-2">
                         </div>
 
                         <div class="flex flex-col justify-center gap-6">
                             
                             <div>
-                                <label class="flex justify-between text-sm font-medium text-gray-700 mb-3">
+                                <label class="flex justify-between text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                                     <span>Compression Level</span>
-                                    <span id="qualityValue" class="text-hyper-600 font-bold">80%</span>
+                                    <span id="qualityValue" class="text-hyper-600 dark:text-hyper-400 font-bold">80%</span>
                                 </label>
-                                <input type="range" id="qualitySlider" min="10" max="100" value="80" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                                <div class="flex justify-between text-xs text-gray-400 mt-2">
+                                <input type="range" id="qualitySlider" min="10" max="100" value="80" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                                <div class="flex justify-between text-xs text-gray-400 dark:text-gray-500 mt-2">
                                     <span>Smaller File</span>
                                     <span>Better Quality</span>
                                 </div>
@@ -352,35 +372,35 @@
 
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Convert To</label>
-                                    <select id="formatSelect" class="w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-xl focus:ring-hyper-500 focus:border-hyper-500 block p-2.5 outline-none transition-colors cursor-pointer">
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Convert To</label>
+                                    <select id="formatSelect" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 text-sm rounded-xl focus:ring-hyper-500 focus:border-hyper-500 block p-2.5 outline-none transition-colors cursor-pointer">
                                         <option value="image/jpeg">JPEG</option>
                                         <option value="image/webp">WebP</option>
                                         <option value="image/png">PNG</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="flex justify-between text-sm font-medium text-gray-700 mb-2">
+                                    <label class="flex justify-between text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                         <span>Resize Scale</span>
-                                        <span id="scaleValue" class="text-hyper-600 font-bold">100%</span>
+                                        <span id="scaleValue" class="text-hyper-600 dark:text-hyper-400 font-bold">100%</span>
                                     </label>
-                                    <input type="range" id="scaleSlider" min="10" max="100" value="100" step="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-3">
+                                    <input type="range" id="scaleSlider" min="10" max="100" value="100" step="10" class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer mt-3">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                                    <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Original Size</p>
-                                    <p id="originalSize" class="text-lg font-semibold text-gray-800">--</p>
+                                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl border border-gray-100 dark:border-gray-600 transition-colors">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Original Size</p>
+                                    <p id="originalSize" class="text-lg font-semibold text-gray-800 dark:text-white">--</p>
                                 </div>
-                                <div class="bg-hyper-50 p-4 rounded-xl border border-hyper-100">
-                                    <p class="text-xs text-hyper-600 uppercase tracking-wider mb-1">New Size</p>
-                                    <p id="compressedSize" class="text-xl font-bold text-hyper-700">--</p>
-                                    <p id="savingsText" class="text-xs font-medium text-green-600 mt-1">Saved --%</p>
+                                <div class="bg-hyper-50 dark:bg-hyper-900/30 p-4 rounded-xl border border-hyper-100 dark:border-hyper-800 transition-colors">
+                                    <p class="text-xs text-hyper-600 dark:text-hyper-400 uppercase tracking-wider mb-1">New Size</p>
+                                    <p id="compressedSize" class="text-xl font-bold text-hyper-700 dark:text-hyper-300">--</p>
+                                    <p id="savingsText" class="text-xs font-medium text-green-600 dark:text-green-400 mt-1">Saved --%</p>
                                 </div>
                             </div>
 
-                            <button id="btnDownload" class="w-full py-4 bg-gray-900 hover:bg-black text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
+                            <button id="btnDownload" class="w-full py-4 bg-gray-900 dark:bg-hyper-600 hover:bg-black dark:hover:bg-hyper-500 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
                                 <i class="ph ph-download-simple"></i>
                                 Download Compressed Image
                             </button>
@@ -389,74 +409,113 @@
                 </div>
             </div>
             
-            <div id="errorBanner" class="hidden bg-red-50 border-t border-red-100 p-4 text-center text-red-600 text-sm font-medium">
+            <div id="errorBanner" class="hidden bg-red-50 dark:bg-red-900/50 border-t border-red-100 dark:border-red-800 p-4 text-center text-red-600 dark:text-red-400 text-sm font-medium transition-colors">
                 Error message goes here.
             </div>
         </div>
 
         <section id="how-it-works" class="w-full max-w-4xl mt-24 mb-12">
-            <h2 class="text-2xl font-bold text-gray-900 text-center mb-10">Why use Hyper Compressor?</h2>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-10">Why use Hyper Compressor?</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-4">
                         <i class="ph ph-rocket-launch"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-2">Lightning Fast</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">Everything happens in your browser. No waiting for uploads to a server or waiting in a queue. It's instant.</p>
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Lightning Fast</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Everything happens in your browser. No waiting for uploads to a server or waiting in a queue. It's instant.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 bg-green-50 dark:bg-gray-700 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center text-2xl mb-4">
                         <i class="ph ph-shield-check"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-2">100% Private</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">Your images never leave your computer. We don't store, see, or transmit your files. Total privacy guaranteed.</p>
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-2">100% Private</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Your images never leave your computer. We don't store, see, or transmit your files. Total privacy guaranteed.</p>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
+                    <div class="w-12 h-12 bg-purple-50 dark:bg-gray-700 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-4">
                         <i class="ph ph-money"></i>
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-2">Completely Free</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">No daily limits, no watermarks, and no premium subscriptions required. Use it as much as you need.</p>
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Completely Free</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">No daily limits, no watermarks, and no premium subscriptions required. Use it as much as you need.</p>
                 </div>
             </div>
         </section>
 
         <section id="faq" class="w-full max-w-3xl mt-12 mb-20 text-left">
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
             
             <div class="space-y-4">
-                <details class="group bg-white p-6 rounded-2xl border border-gray-100 cursor-pointer">
-                    <summary class="font-medium text-gray-900 flex justify-between items-center outline-none">
+                <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer transition-colors">
+                    <summary class="font-medium text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         How does client-side compression work?
                         <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
                     </summary>
-                    <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                         Hyper Compressor utilizes the modern HTML5 Canvas API built directly into your web browser. When you drop an image, your browser analyzes and redraws the image at a smaller file size locally, without ever needing to communicate with an external server.
                     </p>
                 </details>
 
-                <details class="group bg-white p-6 rounded-2xl border border-gray-100 cursor-pointer">
-                    <summary class="font-medium text-gray-900 flex justify-between items-center outline-none">
+                <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer transition-colors">
+                    <summary class="font-medium text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         Which image formats are supported?
                         <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
                     </summary>
-                    <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                         Currently, we support the most common web formats: JPG (JPEG), PNG, and WebP. Compressing a PNG usually converts it to a high-efficiency JPEG or WebP internally to achieve maximum space savings.
                     </p>
                 </details>
             </div>
         </section>
+
+        <section class="max-w-[800px] mt-12 mb-12 text-left font-sans leading-relaxed text-gray-800 dark:text-gray-200 transition-colors">
+            <h2 class="text-[1.8rem] mb-[15px] font-bold">Fast, Private, Client-Side Image Compression</h2>
+            <p class="mb-4">Hyper Compressor is a next-generation image optimizer that works entirely within your web browser. Unlike traditional online tools that force you to upload your files to a remote server, our tool processes your JPEG, PNG, and WebP images locally on your own device. This guarantees lightning-fast compression with zero wait times for uploading or downloading.</p>
+
+            <h2 class="text-[1.8rem] mt-[40px] mb-[15px] font-bold">Frequently Asked Questions</h2>
+            
+            <h3 class="text-[1.3rem] mb-[10px] font-semibold">Is this image compressor actually private?</h3>
+            <p class="mb-4">Yes, your privacy is 100% guaranteed. Because Hyper Compressor uses advanced client-side technology, your images never leave your computer or phone. We do not have servers that store, view, or process your files. Everything happens directly on your screen.</p>
+
+            <h3 class="text-[1.3rem] mt-[25px] mb-[10px] font-semibold">Will my images lose quality?</h3>
+            <p class="mb-4">Our tool uses smart reduction algorithms to significantly shrink file sizes—compressing heavy MB files down to lightweight KB sizes—while maintaining crisp, high-quality visuals perfect for websites, apps, and sharing.</p>
+
+            <h3 class="text-[1.3rem] mt-[25px] mb-[10px] font-semibold">Is there a file size limit?</h3>
+            <p class="mb-4">Because there are no server uploads involved, you are not restricted by artificial server limits. Your browser does all the heavy lifting, making the optimization process completely free and unlimited.</p>
+        </section>
+
     </main>
 
-    <footer class="bg-white border-t border-gray-100 py-8 text-center text-sm text-gray-500">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 py-8 text-center text-sm text-gray-500 dark:text-gray-400 transition-colors">
         <p>&copy; 2026 Hyper Compressor. Built for the web.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Dark Mode Toggle Logic
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const body = document.body;
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                
+                if (body.classList.contains('dark')) {
+                    // Switch to Sun icon
+                    themeIcon.innerHTML = '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l-1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>';
+                    body.classList.add('bg-gray-900');
+                    body.classList.remove('bg-gray-50');
+                } else {
+                    // Switch back to Moon icon
+                    themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+                    body.classList.add('bg-gray-50');
+                    body.classList.remove('bg-gray-900');
+                }
+            });
+
             // UI Elements
             const dropZone = document.getElementById('dropZone');
             const fileInput = document.getElementById('fileInput');
@@ -598,10 +657,10 @@
                 if(savedBytes > 0) {
                     const percentage = ((savedBytes / currentFile.size) * 100).toFixed(0);
                     savingsTextDisplay.textContent = `Saved ${percentage}%`;
-                    savingsTextDisplay.className = "text-xs font-medium text-green-600 mt-1";
+                    savingsTextDisplay.className = "text-xs font-medium text-green-600 dark:text-green-400 mt-1";
                 } else {
                     savingsTextDisplay.textContent = "File increased in size (Try lowering quality)";
-                    savingsTextDisplay.className = "text-xs font-medium text-amber-600 mt-1";
+                    savingsTextDisplay.className = "text-xs font-medium text-amber-600 dark:text-amber-400 mt-1";
                 }
             }
 
@@ -655,22 +714,5 @@
             });
         });
     </script>
-    <section style="max-width: 800px; margin: 50px auto; padding: 20px; text-align: left; font-family: sans-serif; line-height: 1.6; color: #333;">
-        
-        <h2 style="font-size: 1.8rem; margin-bottom: 15px;">Fast, Private, Client-Side Image Compression</h2>
-        <p>Hyper Compressor is a next-generation image optimizer that works entirely within your web browser. Unlike traditional online tools that force you to upload your files to a remote server, our tool processes your JPEG, PNG, and WebP images locally on your own device. This guarantees lightning-fast compression with zero wait times for uploading or downloading.</p>
-
-        <h2 style="font-size: 1.8rem; margin-top: 40px; margin-bottom: 15px;">Frequently Asked Questions</h2>
-        
-        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">Is this image compressor actually private?</h3>
-        <p>Yes, your privacy is 100% guaranteed. Because Hyper Compressor uses advanced client-side technology, your images never leave your computer or phone. We do not have servers that store, view, or process your files. Everything happens directly on your screen.</p>
-
-        <h3 style="font-size: 1.3rem; margin-top: 25px; margin-bottom: 10px;">Will my images lose quality?</h3>
-        <p>Our tool uses smart reduction algorithms to significantly shrink file sizes—compressing heavy MB files down to lightweight KB sizes—while maintaining crisp, high-quality visuals perfect for websites, apps, and sharing.</p>
-
-        <h3 style="font-size: 1.3rem; margin-top: 25px; margin-bottom: 10px;">Is there a file size limit?</h3>
-        <p>Because there are no server uploads involved, you are not restricted by artificial server limits. Your browser does all the heavy lifting, making the optimization process completely free and unlimited.</p>
-
-    </section>
 </body>
 </html>
