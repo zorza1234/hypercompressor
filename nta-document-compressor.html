@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags for NTA / Exam Niche -->
     <title>NTA Document Compressor | NEET & JEE Photo, Signature Resizer</title>
     <meta name="description" content="Free, secure, client-side NTA document compressor. Instantly resize your passport photo (10-200KB) and signature (4-30KB) for NEET, JEE, CUET, and UGC NET.">
     <meta name="keywords" content="NTA document compressor, NEET photo compressor, JEE signature resizer, 200kb photo compressor, 30kb signature resizer, NTA photo size reducer, compress signature for exams, client-side document compressor">
@@ -13,19 +12,16 @@
     <link rel="canonical" href="https://hypercompressor.online/nta-document-compressor">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hypercompressor.online/nta-document-compressor">
     <meta property="og:title" content="NTA Document Compressor | NEET & JEE Photo Resizer">
     <meta property="og:description" content="Instantly compress passport photos and signatures to exact NTA kilobyte limits. 100% private, no server uploads.">
     
-    <!-- Favicons (Reusing your setup) -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-    <!-- Structured Data for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -43,18 +39,16 @@
     }
     </script>
     
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
    <script>
         tailwind.config = {
-            darkMode: 'class', // <--- Add this line here
+            darkMode: 'class', // <--- Dark mode enabled here
             theme: {
                 extend: {
                     fontFamily: {
@@ -68,6 +62,15 @@
                             600: '#2563eb',
                             700: '#1d4ed8',
                             900: '#1e3a8a',
+                        },
+                        nta: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
                         }
                     },
                     animation: {
@@ -78,23 +81,39 @@
         }
     </script>
     <style>
-       /* 🌌 Phase 3: Ambient Mesh Background 🌌 */
-body { 
-    -webkit-font-smoothing: antialiased; 
-    background-color: #f8fafc;
-    background-image: 
-        radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.04) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.04) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.04) 0, transparent 50%);
-}
+        /* 🌌 Phase 3: Ambient Mesh Background 🌌 */
+        body { 
+            -webkit-font-smoothing: antialiased; 
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.04) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.04) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.04) 0, transparent 50%);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark Mode Ambient Mesh Update */
+        body.dark {
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.15) 0, transparent 50%);
+        }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-track { background: #1f2937; }
+        .dark ::-webkit-scrollbar-thumb { background: #4b5563; }
         
         .drop-zone-active {
             border-color: #22c55e !important;
             background-color: #f0fdf4 !important;
+        }
+        .dark .drop-zone-active {
+            border-color: #22c55e !important;
+            background-color: rgba(34, 197, 94, 0.15) !important;
         }
 
         /* Radio button custom styling */
@@ -103,10 +122,16 @@ body {
             background-color: #f0fdf4;
             box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.1);
         }
+        .dark .doc-type-radio:checked + div {
+            border-color: #22c55e;
+            background-color: rgba(34, 197, 94, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2);
+        }
         .doc-type-radio:checked + div .radio-circle {
             border-color: #22c55e;
             border-width: 5px;
         }
+
         /* 🚀 Phase 2: Floating Hover Effects 🚀 */
         .shadow-sm, #dropZone {
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -117,326 +142,325 @@ body {
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             border-color: #dbeafe;
         }
+        .dark .shadow-sm:hover, .dark #dropZone:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: #22c55e;
+        }
+
+        /* Desktop First Styles */
+        .site-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            font-family: sans-serif;
+            transition: all 0.3s ease;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        .logo-img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            font-size: 0.95rem;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #4b5563;
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            color: #4b5563;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 5px 0;
+            transition: color 0.2s;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 8px;
+            z-index: 1000;
+            margin-top: 8px;
+        }
+        .dropdown-item {
+            display: block;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: #1f2937;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block !important;
+            animation: fadeIn 0.15s ease-out;
+        }
+
+        /* Custom Dark Mode Overrides */
+        body.dark .site-header { background: #111827; border-bottom: 1px solid #374151; }
+        body.dark .header-logo { color: #60a5fa; }
+        body.dark .nav-link, body.dark .dropdown-btn { color: #d1d5db; }
+        body.dark .nav-link:hover, body.dark .dropdown-btn:hover { color: #60a5fa; }
+        body.dark .dropdown-content { background-color: #1f2937; border-color: #374151; box-shadow: 0px 8px 24px rgba(0,0,0,0.5); }
+        body.dark .dropdown-item { color: #f3f4f6; }
+        body.dark .dropdown-item:hover { background-color: #374151 !important; }
+        body.dark #themeToggle { background-color: #374151; color: #f3f4f6; }
+        body.dark #themeToggle svg { color: #f3f4f6; }
+
+        /* 📱 Mobile Optimization Engine (Triggered on screens smaller than 768px) */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px 20px;
+                text-align: center;
+            }
+            .header-nav {
+                gap: 15px;
+                font-size: 0.85rem;
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap; /* Prevents text from clipping if the phone screen is very small */
+            }
+            .dropdown-content {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%); /* Centers the dropdown on mobile screens */
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+<body class="bg-gray-50 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col">
 
-    <!-- Professional Header Navigation -->
-<!-- Mobile-Optimized Professional Header -->
 <header class="site-header">
     
-    <!-- Logo Left -->
     <a href="/" class="header-logo">
         <img src="favicon-32x32.png" alt="Logo" class="logo-img">
         <span>Hyper<span style="color: #2563eb;">Compressor</span></span>
     </a>
 
-    <!-- Navigation Right -->
     <nav class="header-nav">
         <a href="#how-it-works" class="nav-link">How it Works</a>
         <a href="#faq" class="nav-link">FAQ</a>
         
-        <!-- Interactive "More Tools" Dropdown -->
         <div class="dropdown">
-            <button class="dropdown-btn" onmouseover="this.style.color='#2563eb'" onmouseout="this.style.color='#4b5563'">
+            <button class="dropdown-btn">
                 More Tools 
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
-            <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-            <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
             
-            <!-- Dropdown Menu Content -->
             <div class="dropdown-content">
-                <a href="/" class="dropdown-item" onmouseover="this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
+                <a href="/" class="dropdown-item" onmouseover="if(!document.body.classList.contains('dark')) this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
                     <div style="font-weight: 600; font-size: 0.9rem;">Image Compressor</div>
                     <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Fast, client-side WebP/PNG/JPG shrinker</div>
                 </a>
-                <a href="/nta-document-compressor.html" class="dropdown-item" onmouseover="this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
+                <a href="/nta-document-compressor.html" class="dropdown-item" onmouseover="if(!document.body.classList.contains('dark')) this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
                     <div style="font-weight: 600; font-size: 0.9rem; color: #059669;">NTA Document Compressor</div>
                     <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Auto-target rules for NEET, JEE, & CUET</div>
                 </a>
             </div>
         </div>
+
+        <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
+            <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
     </nav>
 </header>
-
-<!-- Modern Layout Engine (Handles Desktop vs Mobile automatically) -->
-<style>
-    /* Desktop First Styles */
-    .site-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 5%;
-        background: #ffffff;
-        border-bottom: 1px solid #f0f0f0;
-        font-family: sans-serif;
-    }
-    .header-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: #1e3a8a;
-        font-weight: 700;
-        font-size: 1.25rem;
-    }
-    .logo-img {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-    }
-    .header-nav {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        font-size: 0.95rem;
-    }
-    .nav-link {
-        text-decoration: none;
-        color: #4b5563;
-        transition: color 0.2s;
-    }
-    .nav-link:hover {
-        color: #2563eb;
-    }
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown-btn {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        background: none;
-        border: none;
-        color: #4b5563;
-        font-size: 0.95rem;
-        font-weight: 500;
-        cursor: pointer;
-        padding: 5px 0;
-        transition: color 0.2s;
-    }
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background-color: #ffffff;
-        min-width: 240px;
-        box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
-        border: 1px solid #f0f0f0;
-        border-radius: 12px;
-        padding: 8px;
-        z-index: 1000;
-        margin-top: 8px;
-    }
-    .dropdown-item {
-        display: block;
-        padding: 10px 14px;
-        text-decoration: none;
-        color: #1f2937;
-        border-radius: 8px;
-        transition: background 0.2s;
-    }
-    .dropdown:hover .dropdown-content {
-        display: block !important;
-        animation: fadeIn 0.15s ease-out;
-    }
-
-    /* 📱 Mobile Optimization Engine (Triggered on screens smaller than 768px) */
-    @media (max-width: 768px) {
-        .site-header {
-            flex-direction: column;
-            gap: 12px;
-            padding: 15px 20px;
-            text-align: center;
-        }
-        .header-nav {
-            gap: 15px;
-            font-size: 0.85rem;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap; /* Prevents text from clipping if the phone screen is very small */
-        }
-        .dropdown-content {
-            right: auto;
-            left: 50%;
-            transform: translateX(-50%); /* Centers the dropdown on mobile screens */
-        }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(4px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
 
     <main class="flex-grow flex flex-col items-center pt-10 pb-20 px-6">
         
         <div class="text-center max-w-2xl mb-8">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 text-orange-600 text-xs font-bold uppercase tracking-wider mb-4 border border-orange-100">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-xs font-bold uppercase tracking-wider mb-4 border border-orange-100 dark:border-orange-800 transition-colors">
                 <i class="ph-fill ph-warning-circle"></i> NTA 2026 Ready
             </div>
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white transition-colors">
                 NTA Document <span class="text-transparent bg-clip-text bg-gradient-to-r from-nta-500 to-teal-600">Compressor.</span>
             </h1>
-            <p class="text-base text-gray-500 mb-2">
+            <p class="text-base text-gray-500 dark:text-gray-400 mb-2 transition-colors">
                 Auto-resize your photos and signatures to perfectly match NEET, JEE, and CUET portal limits.
             </p>
-            <p class="text-sm font-medium text-gray-400 flex items-center justify-center gap-1">
+            <p class="text-sm font-medium text-gray-400 flex items-center justify-center gap-1 transition-colors">
                 <i class="ph-fill ph-lock-key"></i> 100% Private. IDs and Signatures never leave your device.
             </p>
         </div>
 
-        <div class="w-full max-w-3xl bg-white rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+        <div class="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden transition-colors">
             <div class="p-6 md:p-10">
                 
-                <!-- Step 1: Document Selection -->
                 <div id="selectionZone" class="mb-8">
-                    <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Step 1: Select Document Type</h2>
+                    <h2 class="text-sm font-bold text-gray-900 dark:text-gray-300 uppercase tracking-wider mb-4">Step 1: Select Document Type</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         
-                        <!-- Photo Option -->
                         <label class="cursor-pointer relative">
                             <input type="radio" name="docType" value="photo" class="doc-type-radio absolute opacity-0 w-0 h-0" checked>
-                            <div class="border-2 border-gray-100 rounded-2xl p-4 transition-all hover:border-gray-200 flex items-start gap-4">
-                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 radio-circle mt-0.5 transition-all"></div>
+                            <div class="border-2 border-gray-100 dark:border-gray-700 rounded-2xl p-4 transition-all hover:border-gray-200 dark:hover:border-gray-600 flex items-start gap-4">
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-600 radio-circle mt-0.5 transition-all"></div>
                                 <div>
-                                    <h3 class="font-bold text-gray-900 flex items-center gap-2">
+                                    <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
                                         <i class="ph ph-user text-xl"></i> Passport Photo
                                     </h3>
-                                    <p class="text-sm text-gray-500 mt-1">NTA Limit: <span class="font-semibold text-gray-700">10KB - 200KB</span></p>
-                                    <p class="text-xs text-gray-400 mt-1">Auto-targets ~80KB</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">NTA Limit: <span class="font-semibold text-gray-700 dark:text-gray-300">10KB - 200KB</span></p>
+                                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Auto-targets ~80KB</p>
                                 </div>
                             </div>
                         </label>
 
-                        <!-- Signature Option -->
                         <label class="cursor-pointer relative">
                             <input type="radio" name="docType" value="signature" class="doc-type-radio absolute opacity-0 w-0 h-0">
-                            <div class="border-2 border-gray-100 rounded-2xl p-4 transition-all hover:border-gray-200 flex items-start gap-4">
-                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 radio-circle mt-0.5 transition-all"></div>
+                            <div class="border-2 border-gray-100 dark:border-gray-700 rounded-2xl p-4 transition-all hover:border-gray-200 dark:hover:border-gray-600 flex items-start gap-4">
+                                <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-600 radio-circle mt-0.5 transition-all"></div>
                                 <div>
-                                    <h3 class="font-bold text-gray-900 flex items-center gap-2">
+                                    <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
                                         <i class="ph ph-signature text-xl"></i> Signature
                                     </h3>
-                                    <p class="text-sm text-gray-500 mt-1">NTA Limit: <span class="font-semibold text-gray-700">4KB - 30KB</span></p>
-                                    <p class="text-xs text-gray-400 mt-1">Auto-targets ~20KB</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">NTA Limit: <span class="font-semibold text-gray-700 dark:text-gray-300">4KB - 30KB</span></p>
+                                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Auto-targets ~20KB</p>
                                 </div>
                             </div>
                         </label>
                     </div>
                 </div>
 
-                <!-- Step 2: Upload Zone -->
-                <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-2xl bg-gray-50 hover:bg-gray-100 transition-all duration-300 flex flex-col items-center justify-center py-12 px-4 cursor-pointer relative">
+                <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex flex-col items-center justify-center py-12 px-4 cursor-pointer relative">
                     <input type="file" id="fileInput" accept="image/jpeg, image/jpg" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                    <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 text-nta-500">
+                    <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-sm flex items-center justify-center mb-4 text-nta-500">
                         <i class="ph ph-upload-simple text-3xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Step 2: Drop your JPG here</h3>
-                    <p class="text-sm text-gray-500 text-center max-w-xs">Our tool will automatically compress it to fit the requirement.</p>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-1">Step 2: Drop your JPG here</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 text-center max-w-xs">Our tool will automatically compress it to fit the requirement.</p>
                 </div>
 
-                <!-- Step 3: Result Zone (Hidden by default) -->
                 <div id="resultZone" class="hidden flex flex-col items-center">
-                    <div class="w-full flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
-                        <button id="btnBack" class="text-gray-500 hover:text-gray-800 flex items-center gap-1 text-sm font-medium transition-colors">
+                    <div class="w-full flex items-center justify-between border-b border-gray-100 dark:border-gray-700 pb-4 mb-6 transition-colors">
+                        <button id="btnBack" class="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
                             <i class="ph ph-arrow-left"></i> Start Over
                         </button>
-                        <div class="flex items-center gap-2 text-nta-600 font-bold text-sm bg-nta-50 px-3 py-1 rounded-full">
+                        <div class="flex items-center gap-2 text-nta-600 dark:text-nta-400 font-bold text-sm bg-nta-50 dark:bg-nta-900/40 px-3 py-1 rounded-full border border-nta-100 dark:border-nta-800">
                             <i class="ph-fill ph-check-circle"></i> Ready for Upload
                         </div>
                     </div>
 
-                    <div class="w-full flex flex-col md:flex-row gap-8 items-center bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                        <!-- Image Preview -->
-                        <div class="w-40 h-40 flex items-center justify-center bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm shrink-0">
+                    <div class="w-full flex flex-col md:flex-row gap-8 items-center bg-gray-50 dark:bg-gray-900 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 transition-colors">
+                        <div class="w-40 h-40 flex items-center justify-center bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-600 overflow-hidden shadow-sm shrink-0">
                             <img id="imagePreview" src="" alt="Compressed Preview" class="max-w-full max-h-full object-contain">
                         </div>
 
-                        <!-- Stats & Download -->
                         <div class="flex-grow w-full">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4" id="resultTitle">Passport Photo</h3>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4" id="resultTitle">Passport Photo</h3>
                             
                             <div class="grid grid-cols-2 gap-4 mb-6">
-                                <div class="bg-white p-3 rounded-lg border border-gray-200">
-                                    <p class="text-xs text-gray-500 uppercase">Original Size</p>
-                                    <p id="originalSize" class="text-lg font-semibold text-gray-400 line-through decoration-red-400">--</p>
+                                <div class="bg-white dark:bg-gray-800 p-3 rounded-lg border border-gray-200 dark:border-gray-600 transition-colors">
+                                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase">Original Size</p>
+                                    <p id="originalSize" class="text-lg font-semibold text-gray-400 dark:text-gray-500 line-through decoration-red-400 dark:decoration-red-600">--</p>
                                 </div>
-                                <div class="bg-nta-50 p-3 rounded-lg border border-nta-200 shadow-inner">
-                                    <p class="text-xs text-nta-700 uppercase font-bold">New NTA Valid Size</p>
-                                    <p id="compressedSize" class="text-2xl font-black text-nta-600">--</p>
+                                <div class="bg-nta-50 dark:bg-nta-900/30 p-3 rounded-lg border border-nta-200 dark:border-nta-800 shadow-inner transition-colors">
+                                    <p class="text-xs text-nta-700 dark:text-nta-400 uppercase font-bold">New NTA Valid Size</p>
+                                    <p id="compressedSize" class="text-2xl font-black text-nta-600 dark:text-nta-500">--</p>
                                 </div>
                             </div>
 
-                            <button id="btnDownload" class="w-full py-4 bg-gray-900 hover:bg-black text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
+                            <button id="btnDownload" class="w-full py-4 bg-gray-900 dark:bg-nta-600 hover:bg-black dark:hover:bg-nta-500 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
                                 <i class="ph ph-download-simple"></i> Download Valid File
                             </button>
-                            <p class="text-xs text-center text-gray-400 mt-3">Format strictly saved as .JPG per NTA guidelines.</p>
+                            <p class="text-xs text-center text-gray-400 dark:text-gray-500 mt-3">Format strictly saved as .JPG per NTA guidelines.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Processing Overlay (Hidden by default) -->
                 <div id="processingOverlay" class="hidden py-12 flex flex-col items-center justify-center">
                     <i class="ph ph-spinner-gap text-4xl text-nta-500 animate-spin mb-4"></i>
-                    <p class="font-medium text-gray-600">Auto-compressing to exact NTA limits...</p>
+                    <p class="font-medium text-gray-600 dark:text-gray-300">Auto-compressing to exact NTA limits...</p>
                 </div>
             </div>
             
-            <div id="errorBanner" class="hidden bg-red-50 border-t border-red-100 p-4 text-center text-red-600 text-sm font-medium"></div>
+            <div id="errorBanner" class="hidden bg-red-50 dark:bg-red-900/50 border-t border-red-100 dark:border-red-800 p-4 text-center text-red-600 dark:text-red-400 text-sm font-medium transition-colors"></div>
         </div>
 
-        <!-- SEO Content Section for NTA Keywords -->
         <section class="w-full max-w-4xl mt-24 mb-12 text-left">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-6">How to Compress Photos for NEET & JEE Mains</h2>
-            <p class="text-gray-600 mb-8 leading-relaxed">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">How to Compress Photos for NEET & JEE Mains</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed transition-colors">
                 The National Testing Agency (NTA) has extremely strict guidelines for document uploads on portals like NEET UG, JEE Main, CUET, and UGC NET. If your file is a single kilobyte over the limit, the system will reject it. Our <strong>NTA Document Compressor</strong> is specifically hardcoded to hit the exact safe zones for these portals so you don't have to guess.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-bold text-gray-900 text-lg mb-2 border-b pb-2">NEET Photo Size Limits</h3>
-                    <ul class="text-sm text-gray-600 space-y-2 mt-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
+                    <h3 class="font-bold text-gray-900 dark:text-white text-lg mb-2 border-b dark:border-gray-600 pb-2">NEET Photo Size Limits</h3>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2 mt-4">
                         <li><strong>Format:</strong> Strictly JPG / JPEG</li>
                         <li><strong>Passport Photo Size:</strong> 10 KB to 200 KB</li>
                         <li><strong>Postcard Photo Size:</strong> 10 KB to 200 KB</li>
-                        <li><em>Our tool automatically targets ~80KB to guarantee crisp quality while avoiding rejection.</em></li>
+                        <li class="text-gray-500 dark:text-gray-400"><em>Our tool automatically targets ~80KB to guarantee crisp quality while avoiding rejection.</em></li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-bold text-gray-900 text-lg mb-2 border-b pb-2">JEE Signature Size Limits</h3>
-                    <ul class="text-sm text-gray-600 space-y-2 mt-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
+                    <h3 class="font-bold text-gray-900 dark:text-white text-lg mb-2 border-b dark:border-gray-600 pb-2">JEE Signature Size Limits</h3>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2 mt-4">
                         <li><strong>Format:</strong> Strictly JPG / JPEG</li>
                         <li><strong>Signature Size:</strong> 4 KB to 30 KB</li>
                         <li><strong>Thumb Impression:</strong> 10 KB to 200 KB</li>
-                        <li><em>Our tool automatically targets ~20KB for signatures to ensure the upload goes through instantly.</em></li>
+                        <li class="text-gray-500 dark:text-gray-400"><em>Our tool automatically targets ~20KB for signatures to ensure the upload goes through instantly.</em></li>
                     </ul>
                 </div>
             </div>
 
-            <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <details class="group bg-white p-6 rounded-2xl border border-gray-100 cursor-pointer shadow-sm">
-                    <summary class="font-semibold text-gray-900 flex justify-between items-center outline-none">
+                <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer shadow-sm transition-colors">
+                    <summary class="font-semibold text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         Is it safe to upload my signature and ID here?
                         <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
                     </summary>
-                    <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                         <strong>Yes. It is 100% private.</strong> Unlike other online compressors, we do not have a server. We use HTML5 client-side technology, which means your sensitive passport photos and scanned signatures are compressed directly inside your own web browser. They never leave your device.
                     </p>
                 </details>
-                <details class="group bg-white p-6 rounded-2xl border border-gray-100 cursor-pointer shadow-sm">
-                    <summary class="font-semibold text-gray-900 flex justify-between items-center outline-none">
+                <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer shadow-sm transition-colors">
+                    <summary class="font-semibold text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         Why does the NTA portal reject my photo?
                         <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
                     </summary>
-                    <p class="text-gray-600 text-sm mt-4 leading-relaxed">
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                         The portal rejects photos for two main reasons: either the file is too large (over 200KB), or the file is too small (under 10KB). Our tool fixes this by automatically calculating a "safe zone" size in the middle of those limits, ensuring first-time success.
                     </p>
                 </details>
@@ -444,12 +468,34 @@ body {
         </section>
     </main>
 
-    <footer class="bg-white border-t border-gray-100 py-8 text-center text-sm text-gray-500">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 py-8 text-center text-sm text-gray-500 dark:text-gray-400 transition-colors">
         <p>&copy; 2026 Hyper Compressor. Built for students. 100% Private.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            // Dark Mode Toggle Logic
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const body = document.body;
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                
+                if (body.classList.contains('dark')) {
+                    // Switch to Sun icon
+                    themeIcon.innerHTML = '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l-1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>';
+                    body.classList.add('bg-gray-900');
+                    body.classList.remove('bg-gray-50');
+                } else {
+                    // Switch back to Moon icon
+                    themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+                    body.classList.add('bg-gray-50');
+                    body.classList.remove('bg-gray-900');
+                }
+            });
+
             // UI Elements
             const dropZone = document.getElementById('dropZone');
             const fileInput = document.getElementById('fileInput');
