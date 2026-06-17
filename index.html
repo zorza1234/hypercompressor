@@ -116,6 +116,16 @@
         input[type=range] {
             accent-color: #2563eb;
         }
+        /* 🚀 Phase 2: Floating Hover Effects 🚀 */
+        .shadow-sm, #dropZone {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .shadow-sm:hover, #dropZone:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: #dbeafe;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
