@@ -47,42 +47,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="dist/output.css">
 
-   <script>
-        tailwind.config = {
-            darkMode: 'class', // <--- Dark mode enabled here
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        hyper: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a',
-                        },
-                        nta: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         /* 🌌 Phase 3: Ambient Mesh Background 🌌 */
         body { 
@@ -244,7 +210,7 @@
         body.dark #themeToggle { background-color: #374151; color: #f3f4f6; }
         body.dark #themeToggle svg { color: #f3f4f6; }
 
-        /* 📱 Mobile Optimization Engine (Triggered on screens smaller than 768px) */
+        /* 📱 Mobile Optimization Engine */
         @media (max-width: 768px) {
             .site-header {
                 flex-direction: column;
@@ -257,12 +223,12 @@
                 font-size: 0.85rem;
                 width: 100%;
                 justify-content: center;
-                flex-wrap: wrap; /* Prevents text from clipping if the phone screen is very small */
+                flex-wrap: wrap; 
             }
             .dropdown-content {
                 right: auto;
                 left: 50%;
-                transform: translateX(-50%); /* Centers the dropdown on mobile screens */
+                transform: translateX(-50%); 
             }
         }
 
@@ -286,9 +252,9 @@
         <a href="#faq" class="nav-link">FAQ</a>
         
         <div class="dropdown">
-            <button class="dropdown-btn">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
                 More Tools 
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
             
             <div class="dropdown-content">
@@ -304,8 +270,8 @@
             </div>
         </div>
 
-        <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
-            <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
+        <button id="themeToggle" aria-label="Toggle Dark Mode" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
+            <svg id="themeIcon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
         </button>
@@ -316,7 +282,7 @@
         
         <div class="text-center max-w-2xl mb-8">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-xs font-bold uppercase tracking-wider mb-4 border border-orange-100 dark:border-orange-800 transition-colors">
-                <i class="ph-fill ph-warning-circle"></i> NTA 2026 Ready
+                <i class="ph-fill ph-warning-circle" aria-hidden="true"></i> NTA 2026 Ready
             </div>
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white transition-colors">
                 NTA Document <span class="text-transparent bg-clip-text bg-gradient-to-r from-nta-500 to-teal-600">Compressor.</span>
@@ -325,7 +291,7 @@
                 Auto-resize your photos and signatures to perfectly match NEET, JEE, and CUET portal limits.
             </p>
             <p class="text-sm font-medium text-gray-400 flex items-center justify-center gap-1 transition-colors">
-                <i class="ph-fill ph-lock-key"></i> 100% Private. IDs and Signatures never leave your device.
+                <i class="ph-fill ph-lock-key" aria-hidden="true"></i> 100% Private. IDs and Signatures never leave your device.
             </p>
         </div>
 
@@ -342,7 +308,7 @@
                                 <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-600 radio-circle mt-0.5 transition-all"></div>
                                 <div>
                                     <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                                        <i class="ph ph-user text-xl"></i> Passport Photo
+                                        <i class="ph ph-user text-xl" aria-hidden="true"></i> Passport Photo
                                     </h3>
                                     <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">NTA Limit: <span class="font-semibold text-gray-700 dark:text-gray-300">10KB - 200KB</span></p>
                                     <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Auto-targets ~80KB</p>
@@ -356,7 +322,7 @@
                                 <div class="w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-600 radio-circle mt-0.5 transition-all"></div>
                                 <div>
                                     <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                                        <i class="ph ph-signature text-xl"></i> Signature
+                                        <i class="ph ph-signature text-xl" aria-hidden="true"></i> Signature
                                     </h3>
                                     <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">NTA Limit: <span class="font-semibold text-gray-700 dark:text-gray-300">4KB - 30KB</span></p>
                                     <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Auto-targets ~20KB</p>
@@ -367,9 +333,9 @@
                 </div>
 
                 <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex flex-col items-center justify-center py-12 px-4 cursor-pointer relative">
-                    <input type="file" id="fileInput" accept="image/jpeg, image/jpg" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <input type="file" id="fileInput" aria-label="Upload Image File" accept="image/jpeg, image/jpg" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-sm flex items-center justify-center mb-4 text-nta-500">
-                        <i class="ph ph-upload-simple text-3xl"></i>
+                        <i class="ph ph-upload-simple text-3xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-1">Step 2: Drop your JPG here</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400 text-center max-w-xs">Our tool will automatically compress it to fit the requirement.</p>
@@ -377,11 +343,11 @@
 
                 <div id="resultZone" class="hidden flex flex-col items-center">
                     <div class="w-full flex items-center justify-between border-b border-gray-100 dark:border-gray-700 pb-4 mb-6 transition-colors">
-                        <button id="btnBack" class="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
-                            <i class="ph ph-arrow-left"></i> Start Over
+                        <button id="btnBack" aria-label="Go Back and Start Over" class="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white flex items-center gap-1 text-sm font-medium transition-colors">
+                            <i class="ph ph-arrow-left" aria-hidden="true"></i> Start Over
                         </button>
                         <div class="flex items-center gap-2 text-nta-600 dark:text-nta-400 font-bold text-sm bg-nta-50 dark:bg-nta-900/40 px-3 py-1 rounded-full border border-nta-100 dark:border-nta-800">
-                            <i class="ph-fill ph-check-circle"></i> Ready for Upload
+                            <i class="ph-fill ph-check-circle" aria-hidden="true"></i> Ready for Upload
                         </div>
                     </div>
 
@@ -404,8 +370,8 @@
                                 </div>
                             </div>
 
-                            <button id="btnDownload" class="w-full py-4 bg-gray-900 dark:bg-nta-600 hover:bg-black dark:hover:bg-nta-500 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
-                                <i class="ph ph-download-simple"></i> Download Valid File
+                            <button id="btnDownload" aria-label="Download Valid File" class="w-full py-4 bg-gray-900 dark:bg-nta-600 hover:bg-black dark:hover:bg-nta-500 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-lg">
+                                <i class="ph ph-download-simple" aria-hidden="true"></i> Download Valid File
                             </button>
                             <p class="text-xs text-center text-gray-400 dark:text-gray-500 mt-3">Format strictly saved as .JPG per NTA guidelines.</p>
                         </div>
@@ -413,12 +379,12 @@
                 </div>
 
                 <div id="processingOverlay" class="hidden py-12 flex flex-col items-center justify-center">
-                    <i class="ph ph-spinner-gap text-4xl text-nta-500 animate-spin mb-4"></i>
+                    <i class="ph ph-spinner-gap text-4xl text-nta-500 animate-spin mb-4" aria-hidden="true"></i>
                     <p class="font-medium text-gray-600 dark:text-gray-300">Auto-compressing to exact NTA limits...</p>
                 </div>
             </div>
             
-            <div id="errorBanner" class="hidden bg-red-50 dark:bg-red-900/50 border-t border-red-100 dark:border-red-800 p-4 text-center text-red-600 dark:text-red-400 text-sm font-medium transition-colors"></div>
+            <div id="errorBanner" class="hidden bg-red-50 dark:bg-red-900/50 border-t border-red-100 dark:border-red-800 p-4 text-center text-red-600 dark:text-red-400 text-sm font-medium transition-colors" role="alert"></div>
         </div>
 
         <section class="w-full max-w-4xl mt-24 mb-12 text-left">
@@ -430,22 +396,23 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
                     <h3 class="font-bold text-gray-900 dark:text-white text-lg mb-2 border-b dark:border-gray-600 pb-2">NEET Photo Size Limits</h3>
-                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2 mt-4">
-                        <li><strong>Format:</strong> Strictly JPG / JPEG</li>
-                        <li><strong>Passport Photo Size:</strong> 10 KB to 200 KB</li>
-                        <li><strong>Postcard Photo Size:</strong> 10 KB to 200 KB</li>
-                        <li class="text-gray-500 dark:text-gray-400"><em>Our tool automatically targets ~80KB to guarantee crisp quality while avoiding rejection.</em></li>
-                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+                        For the NEET portal, both your <strong class="font-semibold text-gray-900 dark:text-gray-200">passport size photo for neet</strong> and <strong class="font-semibold text-gray-900 dark:text-gray-200">postcard size photo for neet</strong> must strictly be in JPG or JPEG format. The file sizes are required to fall securely between 10 KB and 200 KB. Our dedicated <strong class="font-semibold text-gray-900 dark:text-gray-200">neet photo resizer</strong> automatically targets approximately 80KB to guarantee crisp visual quality while actively avoiding automated rejection. Ensuring these dimensions are perfect is crucial for meeting upcoming application deadlines, such as the NEET UG 2026 registration closing on March 8, 2026, or managing your WBJEE 2026 application requirements successfully.
+                    </p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
                     <h3 class="font-bold text-gray-900 dark:text-white text-lg mb-2 border-b dark:border-gray-600 pb-2">JEE Signature Size Limits</h3>
-                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2 mt-4">
-                        <li><strong>Format:</strong> Strictly JPG / JPEG</li>
-                        <li><strong>Signature Size:</strong> 4 KB to 30 KB</li>
-                        <li><strong>Thumb Impression:</strong> 10 KB to 200 KB</li>
-                        <li class="text-gray-500 dark:text-gray-400"><em>Our tool automatically targets ~20KB for signatures to ensure the upload goes through instantly.</em></li>
-                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+                        Similarly, JEE signature size limits mandate that all scanned signatures must be between 4 KB and 30 KB, remaining strictly in the JPG format. By acting as an automated document and <strong class="font-semibold text-gray-900 dark:text-gray-200">neet photo editor</strong>, our compression algorithm targets a highly optimized ~20KB file size for your signature, ensuring the digital upload goes through instantly without generating any portal errors.
+                    </p>
                 </div>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-800/50 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 mb-12 transition-colors">
+                <h3 class="font-bold text-gray-900 dark:text-white text-lg mb-3">Official Portals Reference & Archive</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    When checking historical examination data—such as reviewing the <strong class="font-semibold text-gray-900 dark:text-gray-200">neet result 2022 date and time official website</strong> updates, or locating critical downloads like the <strong class="font-semibold text-gray-900 dark:text-gray-200">neet admit card 2024 official website</strong> and <strong class="font-semibold text-gray-900 dark:text-gray-200">neet exam city slip 2023 nta official website</strong>—you will consistently notice that the NTA's digital infrastructure requires strict compliance. Utilizing a reliable, client-side processor ensures your identifying documents remain valid and error-free across all their examination platforms year after year.
+                </p>
             </div>
 
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
@@ -453,7 +420,7 @@
                 <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer shadow-sm transition-colors">
                     <summary class="font-semibold text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         Is it safe to upload my signature and ID here?
-                        <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
+                        <i class="ph ph-caret-down group-open:rotate-180 transition-transform" aria-hidden="true"></i>
                     </summary>
                     <p class="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                         <strong>Yes. It is 100% private.</strong> Unlike other online compressors, we do not have a server. We use HTML5 client-side technology, which means your sensitive passport photos and scanned signatures are compressed directly inside your own web browser. They never leave your device.
@@ -462,7 +429,7 @@
                 <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer shadow-sm transition-colors">
                     <summary class="font-semibold text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         Why does the NTA portal reject my photo?
-                        <i class="ph ph-caret-down group-open:rotate-180 transition-transform"></i>
+                        <i class="ph ph-caret-down group-open:rotate-180 transition-transform" aria-hidden="true"></i>
                     </summary>
                     <p class="text-gray-600 dark:text-gray-300 text-sm mt-4 leading-relaxed">
                         The portal rejects photos for two main reasons: either the file is too large (over 200KB), or the file is too small (under 10KB). Our tool fixes this by automatically calculating a "safe zone" size in the middle of those limits, ensuring first-time success.
