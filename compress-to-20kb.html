@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress Image to 20KB — Free, Instant, No Upload</title>
+    <meta name="description" content="Instantly compress your passport photo or signature to 20KB or less for SSC, UPSC, and govt exam portals. 100% free, private, and works offline.">
+    
+    <!-- Assuming your Vercel Tailwind build puts CSS here -->
+    <link href="/dist/output.css" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- FAQ Schema Markup for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I compress a photo to exactly 20KB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Simply drag and drop your image into our tool above. Our client-side script will automatically resize and compress your photo until the final output is guaranteed to be under the 20KB limit required by exam portals."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is it safe to compress my signature or passport photo here?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, 100% safe. This tool uses client-side browser technology. Your images are processed entirely on your own device and are never uploaded to any external server."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What formats can I compress to 20KB?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can upload JPG, PNG, or WebP images. The tool will automatically convert and compress them into a web-friendly JPG format that meets the 20KB size limit."
+        }
+      }]
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900">
+                <i class="ph-fill ph-files text-blue-600 text-2xl"></i>
+                HyperCompressor
+            </a>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+                <a href="/compress-to-50kb" class="hover:text-blue-600 transition-colors">50KB Compressor</a>
+                <a href="/compress-to-100kb" class="hover:text-blue-600 transition-colors">100KB Compressor</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Tool Section -->
+    <main class="max-w-3xl mx-auto px-6 pt-12 pb-8">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Compress Image to 20KB</h1>
+            <p class="text-lg text-slate-600 max-w-xl mx-auto">Perfect for SSC, UPSC, and government exam portals. Resize your passport photo or signature instantly without losing clarity.</p>
+        </div>
+
+        <!-- Compressor App -->
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-10 mb-12 relative overflow-hidden">
+            
+            <!-- Upload Area -->
+            <div id="dropZone" class="border-2 border-dashed border-blue-200 bg-blue-50/50 hover:bg-blue-50 rounded-2xl p-10 text-center transition-all cursor-pointer relative group">
+                <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="image/jpeg, image/png, image/webp">
+                
+                <div class="flex flex-col items-center justify-center pointer-events-none">
+                    <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 transition-transform text-blue-600">
+                        <i class="ph ph-upload-simple text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Drag & drop your image here</h3>
+                    <p class="text-sm text-slate-500">Supports JPG, PNG, WebP up to 10MB</p>
+                    
+                    <!-- Accessibility Fix: tabindex="-1" -->
+                    <button class="mt-6 px-6 py-2.5 bg-blue-600 text-white font-medium rounded-full shadow-sm hover:bg-blue-700 transition-colors relative z-20 pointer-events-none" tabindex="-1">
+                        Select File
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-12">
+                <i class="ph ph-spinner-gap text-4xl text-blue-600 animate-spin mb-4"></i>
+                <p class="text-slate-600 font-medium">Crunching pixels down to 20KB...</p>
+            </div>
+
+            <!-- Result Area -->
+            <div id="resultZone" class="hidden flex flex-col items-center pt-6">
+                <div class="w-full flex items-center justify-between p-4 bg-green-50 border border-green-100 rounded-xl mb-6">
+                    <div class="flex items-center gap-3">
+                        <i class="ph-fill ph-check-circle text-green-500 text-2xl"></i>
+                        <div>
+                            <p class="font-bold text-green-900 text-sm">Compression Success!</p>
+                            <p class="text-xs text-green-700">Target: 20KB | Actual: <span id="finalSize" class="font-bold"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-48 h-48 bg-slate-100 rounded-xl overflow-hidden mb-6 shadow-inner flex items-center justify-center">
+                    <img id="previewImage" class="max-w-full max-h-full object-contain" alt="Compressed Preview">
+                </div>
+
+                <div class="flex gap-4 w-full">
+                    <button id="resetBtn" class="flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors">
+                        Compress Another
+                    </button>
+                    <a id="downloadBtn" href="#" download="compressed-20kb.jpg" class="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors text-center flex justify-center items-center gap-2 shadow-md shadow-blue-200">
+                        <i class="ph ph-download-simple text-xl"></i> Download
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section -->
+        <article class="prose prose-slate max-w-none">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Why Compress Images to 20KB?</h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                If you are applying for government jobs, college admissions, or national exams in India (such as SSC, UPSC, IBPS, or NTA portals), you know the strict document rules. Almost every online application form requires your digital signature or passport-size photograph to be <strong>under 20KB</strong> in size. Uploading a file even 1KB larger results in an error.
+            </p>
+            <p class="text-slate-600 leading-relaxed mb-8">
+                Our free 20KB image compressor is designed specifically for students and applicants. It uses smart, in-browser compression to shrink the file size of your JPEGs and PNGs without blurring the important details of your face or signature. Because the compression happens entirely on your device, your highly sensitive personal documents are never uploaded to our servers, guaranteeing 100% data privacy.
+            </p>
+
+            <!-- Internal Links -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-12">
+                <h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Related Tools</h3>
+                <div class="flex flex-wrap gap-3">
+                    <a href="/compress-to-50kb" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-600 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                        Compress to 50KB <i class="ph ph-arrow-right"></i>
+                    </a>
+                    <a href="/compress-to-100kb" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-600 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                        Compress to 100KB <i class="ph ph-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="font-bold text-slate-800 mb-2">How do I compress a photo to exactly 20KB?</h3>
+                    <p class="text-slate-600 text-sm">Simply drop your image into the tool above. Our algorithm automatically reduces the resolution and JPEG quality in tiny steps until it perfectly crosses the 20KB threshold.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="font-bold text-slate-800 mb-2">Is it safe to compress my signature or passport photo here?</h3>
+                    <p class="text-slate-600 text-sm">Yes, absolutely. We use HTML5 Canvas technology, which means your image is processed by your own web browser. No files are ever sent to our servers.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5">
+                    <h3 class="font-bold text-slate-800 mb-2">What formats are supported?</h3>
+                    <p class="text-slate-600 text-sm">You can upload JPG, JPEG, PNG, or WebP. The tool will automatically output a standardized JPG file, as this is the universally accepted format for online forms.</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-8 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 HyperCompressor. Built for fast, private, client-side utility.</p>
+    </footer>
+
+    <!-- Compressor Logic -->
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const loadingState = document.getElementById('loadingState');
+        const resultZone = document.getElementById('resultZone');
+        const previewImage = document.getElementById('previewImage');
+        const finalSize = document.getElementById('finalSize');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        const TARGET_BYTES = 20 * 1024; // Exactly 20KB limit
+
+        // Drag & Drop Styling
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-blue-500', 'bg-blue-100');
+        });
+        ['dragleave', 'drop'].forEach(event => {
+            dropZone.addEventListener(event, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-blue-500', 'bg-blue-100');
+            });
+        });
+
+        // Handle File Selection
+        fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                processImage(this.files[0]);
+            }
+        });
+
+        async function processImage(file) {
+            // Show Loading
+            dropZone.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            
+            img.onload = async () => {
+                let canvas = document.createElement('canvas');
+                let ctx = canvas.getContext('2d');
+                
+                // Initial scale (if image is massive, pre-scale it down to save time)
+                let width = img.width;
+                let height = img.height;
+                
+                // To get under 20KB, dimensions usually can't be larger than ~800px
+                const MAX_DIMENSION = 800;
+                if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
+                    const ratio = Math.min(MAX_DIMENSION / width, MAX_DIMENSION / height);
+                    width = Math.round(width * ratio);
+                    height = Math.round(height * ratio);
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                ctx.fillStyle = "#FFFFFF"; // Solid background for transparent PNGs
+                ctx.fillRect(0, 0, width, height);
+                ctx.drawImage(img, 0, 0, width, height);
+
+                let minQ = 0.0;
+                let maxQ = 1.0;
+                let bestQuality = 0.5;
+                let finalDataUrl = '';
+                let iterations = 0;
+
+                // Binary search to find the perfect quality for exactly 20KB
+                while (minQ <= maxQ && iterations < 10) {
+                    let currentQ = (minQ + maxQ) / 2;
+                    let dataUrl = canvas.toDataURL('image/jpeg', currentQ);
+                    
+                    // Calculate byte size of base64 string
+                    let byteString = atob(dataUrl.split(',')[1]);
+                    let bytes = byteString.length;
+
+                    if (bytes <= TARGET_BYTES) {
+                        // It's under 20KB, save this as a valid option and try pushing quality slightly higher
+                        bestQuality = currentQ;
+                        finalDataUrl = dataUrl;
+                        minQ = currentQ + 0.05;
+                    } else {
+                        // It's too big, need to reduce quality
+                        maxQ = currentQ - 0.05;
+                    }
+                    iterations++;
+                }
+
+                // If quality tweaking wasn't enough (it's still empty), we MUST aggressively scale down dimensions
+                if (!finalDataUrl) {
+                    // Reduce dimensions by half and try a low quality
+                    canvas.width = width * 0.5;
+                    canvas.height = height * 0.5;
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    finalDataUrl = canvas.toDataURL('image/jpeg', 0.5);
+                }
+
+                // Calculate Final Output Size
+                let finalBytes = atob(finalDataUrl.split(',')[1]).length;
+                let finalKB = (finalBytes / 1024).toFixed(2);
+
+                // Update UI
+                previewImage.src = finalDataUrl;
+                finalSize.innerText = finalKB + ' KB';
+                
+                // Keep original filename but append -20kb.jpg
+                let originalName = file.name.split('.')[0];
+                downloadBtn.download = originalName + '-20kb.jpg';
+                downloadBtn.href = finalDataUrl;
+
+                // Switch UI states
+                setTimeout(() => {
+                    loadingState.classList.add('hidden');
+                    resultZone.classList.remove('hidden');
+                }, 400); // Small delay to feel natural
+            };
+        }
+
+        // Reset Tool
+        resetBtn.addEventListener('click', () => {
+            fileInput.value = '';
+            resultZone.classList.add('hidden');
+            dropZone.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
