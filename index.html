@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="yswC-E3GcPUpu1y9fNiLdzMwr4WK5usVCPIXgtw7zIk" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQHRL04M0S"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SQHRL04M0S"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -39,7 +38,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Combined WebApplication & FAQ Rich Snippet Schema for Perfect On-Page SEO -->
     <script type="application/ld+json">
     [
       {
@@ -94,7 +92,6 @@
     <link rel="stylesheet" href="dist/output.css">
 
     <style>
-        /* 🌌 Phase 3: Ambient Mesh Background 🌌 */
         body { 
             -webkit-font-smoothing: antialiased; 
             -moz-osx-font-smoothing: grayscale;
@@ -105,7 +102,6 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        /* Dark Mode Ambient Mesh Update */
         body.dark {
             background-image: 
                 radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%), 
@@ -113,20 +109,10 @@
                 radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.15) 0, transparent 50%);
         }
         
-        /* Custom scrollbar for a polished look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         .dark ::-webkit-scrollbar-track { background: #1f2937; }
         .dark ::-webkit-scrollbar-thumb { background: #4b5563; }
 
@@ -139,14 +125,9 @@
             background-color: #1e3a8a !important;
         }
         
-        input[type=range] {
-            accent-color: #2563eb;
-        }
-        /* 🚀 Phase 2: Floating Hover Effects 🚀 */
-        .shadow-sm, #dropZone {
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+        input[type=range] { accent-color: #2563eb; }
         
+        .shadow-sm, #dropZone { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .shadow-sm:hover, #dropZone:hover {
             transform: translateY(-6px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
@@ -157,45 +138,20 @@
             border-color: #3b82f6;
         }
 
-        /* Desktop First Styles */
         .site-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: #ffffff;
-            border-bottom: 1px solid #f0f0f0;
-            font-family: sans-serif;
-            transition: all 0.3s ease;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; background: #ffffff; border-bottom: 1px solid #f0f0f0;
+            font-family: sans-serif; transition: all 0.3s ease;
         }
         .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #1e3a8a;
-            font-weight: 700;
-            font-size: 1.25rem;
+            display: flex; align-items: center; gap: 10px; text-decoration: none;
+            color: #1e3a8a; font-weight: 700; font-size: 1.25rem;
         }
-        .logo-img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-        }
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            font-size: 0.95rem;
-        }
-        .nav-link {
-            text-decoration: none;
-            color: #4b5563;
-            transition: color 0.2s;
-        }
+        .logo-img { width: 28px; height: 28px; object-fit: contain; }
+        .header-nav { display: flex; align-items: center; gap: 30px; font-size: 0.95rem; }
+        .nav-link { text-decoration: none; color: #4b5563; transition: color 0.2s; }
         .nav-link:hover { color: #2563eb; }
 
-        /* Custom Dark Mode Overrides */
         body.dark .site-header { background: #111827; border-bottom: 1px solid #374151; }
         body.dark .header-logo { color: #60a5fa; }
         body.dark .nav-link { color: #d1d5db; }
@@ -203,39 +159,23 @@
         body.dark #themeToggle { background-color: #374151; color: #f3f4f6; }
         body.dark #themeToggle svg { color: #f3f4f6; }
 
-        /* 📱 Mobile Optimization Engine (Triggered on screens smaller than 768px) */
         @media (max-width: 768px) {
-            .site-header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 15px 20px;
-                text-align: center;
-            }
-            .header-nav {
-                gap: 15px;
-                font-size: 0.85rem;
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap; 
-            }
+            .site-header { flex-direction: column; gap: 12px; padding: 15px 20px; text-align: center; }
+            .header-nav { gap: 15px; font-size: 0.85rem; width: 100%; justify-content: center; flex-wrap: wrap; }
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col">
 
   <header class="site-header sticky top-0 z-50">
-    
     <a href="/" class="header-logo">
-        <!-- FIXED: Added descriptive alt text for search engine accessibility -->
         <img src="favicon-32x32.png" alt="HyperCompressor logo" class="logo-img">
         <span>Hyper<span style="color: #2563eb;">Compressor</span></span>
     </a>
-
     <nav class="header-nav">
         <a href="#how-it-works" class="nav-link">How it Works</a>
         <a href="#faq" class="nav-link">FAQ</a>
         <a href="#tools-grid" class="nav-link font-bold text-blue-600 dark:text-blue-400">More Tools</a>
-
         <button id="themeToggle" aria-label="Toggle Dark Mode" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
             <svg id="themeIcon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -247,7 +187,6 @@
     <main class="flex-grow flex flex-col items-center pt-12 pb-20 px-6">
         
         <div class="text-center max-w-3xl mb-10">
-            <!-- FIXED: Optimized H1 to feature dominant, hyper-targeted structural keywords -->
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white">
                 Free Image Compressor — <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Compress JPEG, PNG & WebP Online</span>
             </h1>
@@ -353,7 +292,6 @@
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Popular Image Compressors</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                <!-- 20KB Tool Card -->
                 <a href="/compress-to-20kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-file-image text-2xl"></i>
@@ -365,7 +303,6 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
                 </a>
 
-                <!-- 50KB Tool Card -->
                 <a href="/compress-to-50kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-file-image text-2xl"></i>
@@ -377,7 +314,6 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
                 </a>
 
-                <!-- 100KB Tool Card -->
                 <a href="/compress-to-100kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-file-image text-2xl"></i>
@@ -389,7 +325,6 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
                 </a>
 
-                <!-- 200KB Tool Card -->
                 <a href="/compress-to-200kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-file-image text-2xl"></i>
@@ -401,7 +336,6 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
                 </a>
 
-                <!-- Compress JPEG Card -->
                 <a href="/compress-jpeg" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-file-jpg text-2xl"></i>
@@ -413,7 +347,6 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
                 </a>
 
-                <!-- PNG to JPG Card -->
                 <a href="/png-to-jpg" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-file-arrow-up text-2xl"></i>
@@ -425,7 +358,6 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
                 </a>
                 
-                <!-- NTA Document Tool Card -->
                 <a href="/nta-document-compressor" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
                     <div class="w-12 h-12 bg-emerald-50 dark:bg-gray-700 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                         <i class="ph-fill ph-student text-2xl"></i>
@@ -437,12 +369,22 @@
                     <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-emerald-500"></i>
                 </a>
 
+                <a href="/exact-pixel-resizer" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-purple-50 dark:bg-gray-700 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-bounding-box text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100">Exact Pixel Resizer</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Resize to specific dimensions</p>
+                    </div>
+                    <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-purple-500"></i>
+                </a>
+
             </div>
         </section>
 
         <section id="how-it-works" class="w-full max-w-4xl mt-12 mb-12">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-10">Why use Hyper Compressor?</h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
                     <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-4">
@@ -451,7 +393,6 @@
                     <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Lightning Fast</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Everything happens in your browser. No waiting for uploads to a server or waiting in a queue. It's instant.</p>
                 </div>
-                
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
                     <div class="w-12 h-12 bg-green-50 dark:bg-gray-700 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center text-2xl mb-4">
                         <i class="ph ph-shield-check" aria-hidden="true"></i>
@@ -459,7 +400,6 @@
                     <h3 class="font-semibold text-gray-900 dark:text-white mb-2">100% Private</h3>
                     <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">Your images never leave your computer. We don't store, see, or transmit your files. Total privacy guaranteed.</p>
                 </div>
-
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 transition-colors">
                     <div class="w-12 h-12 bg-purple-50 dark:bg-gray-700 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-4">
                         <i class="ph ph-money" aria-hidden="true"></i>
@@ -472,7 +412,6 @@
 
         <section id="faq" class="w-full max-w-3xl mt-12 mb-12 text-left">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-            
             <div class="space-y-4">
                 <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer transition-colors">
                     <summary class="font-medium text-gray-900 dark:text-white flex justify-between items-center outline-none">
@@ -483,7 +422,6 @@
                         Hyper Compressor utilizes the modern HTML5 Canvas API built directly into your web browser. When you drop an image, your browser analyzes and redraws the image at a smaller file size locally, without ever needing to communicate with an external server.
                     </p>
                 </details>
-
                 <details class="group bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 cursor-pointer transition-colors">
                     <summary class="font-medium text-gray-900 dark:text-white flex justify-between items-center outline-none">
                         Which image formats are supported?
@@ -498,12 +436,9 @@
 
         <section class="w-full max-w-3xl bg-gray-50 dark:bg-gray-800/50 p-8 rounded-2xl border border-gray-100 dark:border-gray-700 mt-6 mb-12 text-left font-sans leading-relaxed text-gray-700 dark:text-gray-300 transition-colors">
             <h2 class="text-[1.4rem] mb-[15px] font-bold text-gray-900 dark:text-white">Advanced Use Cases & Examination Guidelines</h2>
-            
             <p class="mb-4 text-sm">Hyper Compressor is built to handle highly specific file size requirements. Whether you are prepping files for a blog and need an <strong class="font-semibold text-gray-900 dark:text-gray-200">image compressor to 20kb</strong>, or handling high-resolution uploads that require a <strong class="font-semibold text-gray-900 dark:text-gray-200">photo compressor to 100kb</strong>, our slider allows for granular control over your final file output.</p>
-
             <h3 class="text-[1.1rem] mt-[20px] mb-[8px] font-semibold text-gray-900 dark:text-white">State Level Portals & TNPSC Compliance</h3>
             <p class="mb-4 text-sm">If you are a student or professional applying for state-level examinations, portal uploads are notoriously strict. You can utilize Hyper Compressor as a dedicated <strong class="font-semibold text-gray-900 dark:text-gray-200">TNPSC photo compressor</strong> to ensure your passport images fit seamlessly into their systems without quality degradation. Additionally, use it as a <strong class="font-semibold text-gray-900 dark:text-gray-200">TNPSC signature compressor</strong> to accurately shrink your scanned signatures down to the mandated micro-KB sizes.</p>
-
             <h3 class="text-[1.1rem] mt-[20px] mb-[8px] font-semibold text-gray-900 dark:text-white">Larger File Reductions</h3>
             <p class="mb-0 text-sm">Need to shrink massive smartphone photos without destroying the clarity? Adjust our quality and scale sliders to use the tool as a reliable <strong class="font-semibold text-gray-900 dark:text-gray-200">photo compressor to 200kb</strong> or a general <strong class="font-semibold text-gray-900 dark:text-gray-200">image compressor to 200kb</strong>. Unlike external hardware compressors, our software focuses exclusively on lightning-fast, secure digital media rendering directly within your current web browser.</p>
         </section>
@@ -524,14 +459,11 @@
 
             themeToggle.addEventListener('click', () => {
                 body.classList.toggle('dark');
-                
                 if (body.classList.contains('dark')) {
-                    // Switch to Sun icon
                     themeIcon.innerHTML = '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l-1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>';
                     body.classList.add('bg-gray-900');
                     body.classList.remove('bg-gray-50');
                 } else {
-                    // Switch back to Moon icon
                     themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
                     body.classList.add('bg-gray-50');
                     body.classList.remove('bg-gray-900');
@@ -557,43 +489,22 @@
             const scaleSlider = document.getElementById('scaleSlider');
             const scaleValue = document.getElementById('scaleValue');
 
-            // State
             let currentFile = null;
             let originalImageObject = new Image();
             let compressedDataUrl = '';
 
-            // --- Drag & Drop Handlers ---
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
                 dropZone.addEventListener(eventName, preventDefaults, false);
             });
 
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+            function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
 
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropZone.addEventListener(eventName, () => dropZone.classList.add('drop-zone-active'), false);
-            });
+            ['dragenter', 'dragover'].forEach(eventName => { dropZone.addEventListener(eventName, () => dropZone.classList.add('drop-zone-active'), false); });
+            ['dragleave', 'drop'].forEach(eventName => { dropZone.addEventListener(eventName, () => dropZone.classList.remove('drop-zone-active'), false); });
 
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropZone.addEventListener(eventName, () => dropZone.classList.remove('drop-zone-active'), false);
-            });
+            dropZone.addEventListener('drop', (e) => { if(e.dataTransfer.files.length) processFile(e.dataTransfer.files[0]); }, false);
+            fileInput.addEventListener('change', (e) => { if(e.target.files.length) processFile(e.target.files[0]); }, false);
 
-            dropZone.addEventListener('drop', handleDrop, false);
-            fileInput.addEventListener('change', handleFileSelect, false);
-
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const files = dt.files;
-                if(files.length) processFile(files[0]);
-            }
-
-            function handleFileSelect(e) {
-                if(e.target.files.length) processFile(e.target.files[0]);
-            }
-
-            // --- Core Logic ---
             function showError(msg) {
                 errorBanner.textContent = msg;
                 errorBanner.classList.remove('hidden');
@@ -610,129 +521,60 @@
             }
 
             function processFile(file) {
-                if (!file.type.match('image.*')) {
-                    showError("Please upload an image file (JPG, PNG, WebP).");
-                    return;
-                }
-
-                currentFile = file;
-                fileNameDisplay.textContent = file.name;
-                originalSizeDisplay.textContent = formatBytes(file.size);
-                
+                if (!file.type.match('image.*')) { showError("Please upload an image file (JPG, PNG, WebP)."); return; }
+                currentFile = file; fileNameDisplay.textContent = file.name; originalSizeDisplay.textContent = formatBytes(file.size);
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     originalImageObject.src = e.target.result;
                     originalImageObject.onload = () => {
-                        // Switch UI
-                        dropZone.classList.add('hidden');
-                        editorZone.classList.remove('hidden');
-                        
+                        dropZone.classList.add('hidden'); editorZone.classList.remove('hidden');
                         if (file.type === 'image/png') formatSelect.value = 'image/png';
                         else if (file.type === 'image/webp') formatSelect.value = 'image/webp';
                         else formatSelect.value = 'image/jpeg';
-
-                        // Run initial compression
                         compressImage();
                     }
                 };
                 reader.readAsDataURL(file);
             }
 
-            // --- Canvas Compression Logic ---
             function compressImage() {
                 const quality = qualitySlider.value / 100;
                 const scale = scaleSlider.value / 100;
-                
-                // Create canvas
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
-                
                 canvas.width = originalImageObject.width * scale;
                 canvas.height = originalImageObject.height * scale;
-                
                 const outputFormat = formatSelect.value;
-                
-                // Fill background with white if converting to JPEG to prevent transparent areas from turning black
-                if (outputFormat === 'image/jpeg') {
-                    ctx.fillStyle = '#FFFFFF';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                }
-                
-                // Draw image on canvas
+                if (outputFormat === 'image/jpeg') { ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
                 ctx.drawImage(originalImageObject, 0, 0, canvas.width, canvas.height);
-                
-                // Get compressed data URL
                 compressedDataUrl = canvas.toDataURL(outputFormat, quality);
-                
-                // Update Preview
                 imagePreview.src = compressedDataUrl;
-                
-                // Calculate new size (rough estimation from Base64 string length)
                 const base64str = compressedDataUrl.substring(compressedDataUrl.indexOf(',') + 1);
-                const decoded = atob(base64str);
-                const newSizeInBytes = decoded.length;
-                
+                const newSizeInBytes = atob(base64str).length;
                 compressedSizeDisplay.textContent = formatBytes(newSizeInBytes);
-                
-                // Calculate Savings
                 const savedBytes = currentFile.size - newSizeInBytes;
                 if(savedBytes > 0) {
-                    const percentage = ((savedBytes / currentFile.size) * 100).toFixed(0);
-                    savingsTextDisplay.textContent = `Saved ${percentage}%`;
+                    savingsTextDisplay.textContent = `Saved ${((savedBytes / currentFile.size) * 100).toFixed(0)}%`;
                     savingsTextDisplay.className = "text-xs font-medium text-green-600 dark:text-green-400 mt-1";
                 } else {
-                    savingsTextDisplay.textContent = "File increased in size (Try lowering quality)";
+                    savingsTextDisplay.textContent = "File increased in size";
                     savingsTextDisplay.className = "text-xs font-medium text-amber-600 dark:text-amber-400 mt-1";
                 }
             }
 
-            // --- Event Listeners for Editor ---
-            qualitySlider.addEventListener('input', (e) => {
-                qualityValue.textContent = `${e.target.value}%`;
-                // Debounce compression slightly to prevent lag while sliding
-                clearTimeout(window.compressTimeout);
-                window.compressTimeout = setTimeout(compressImage, 100);
-            });
-
-            scaleSlider.addEventListener('input', (e) => {
-                scaleValue.textContent = `${e.target.value}%`;
-                clearTimeout(window.compressTimeout);
-                window.compressTimeout = setTimeout(compressImage, 100);
-            });
-
-            formatSelect.addEventListener('change', () => {
-                compressImage();
-            });
-
-            btnBack.addEventListener('click', () => {
-                editorZone.classList.add('hidden');
-                dropZone.classList.remove('hidden');
-                fileInput.value = ''; // reset file input
-                currentFile = null;
-            });
-
+            qualitySlider.addEventListener('input', (e) => { qualityValue.textContent = `${e.target.value}%`; clearTimeout(window.compressTimeout); window.compressTimeout = setTimeout(compressImage, 100); });
+            scaleSlider.addEventListener('input', (e) => { scaleValue.textContent = `${e.target.value}%`; clearTimeout(window.compressTimeout); window.compressTimeout = setTimeout(compressImage, 100); });
+            formatSelect.addEventListener('change', () => compressImage());
+            btnBack.addEventListener('click', () => { editorZone.classList.add('hidden'); dropZone.classList.remove('hidden'); fileInput.value = ''; currentFile = null; });
             btnDownload.addEventListener('click', () => {
                 if(!compressedDataUrl) return;
-                
-                // Create a temporary link element
                 const link = document.createElement('a');
-                
-                // Generate a new filename based on selected format
-                let ext = 'jpg';
-                if (formatSelect.value === 'image/png') ext = 'png';
-                if (formatSelect.value === 'image/webp') ext = 'webp';
-                
-                // Extract original name without extension
+                let ext = formatSelect.value === 'image/png' ? 'png' : (formatSelect.value === 'image/webp' ? 'webp' : 'jpg');
                 const lastDotIndex = currentFile.name.lastIndexOf('.');
                 const originalName = lastDotIndex !== -1 ? currentFile.name.substring(0, lastDotIndex) : currentFile.name;
-                
                 link.download = `${originalName}-hyper.${ext}`;
                 link.href = compressedDataUrl;
-                
-                // Trigger download
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                document.body.appendChild(link); link.click(); document.body.removeChild(link);
             });
         });
     </script>
