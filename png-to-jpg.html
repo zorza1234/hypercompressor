@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG to JPG Converter — Free, Fast, Client-Side</title>
+    <meta name="description" content="Convert PNG images to JPG format instantly. Reduce file sizes, remove transparent backgrounds, and make your images web-ready. 100% free and offline.">
+    
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I convert a PNG to JPG online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Drag your PNG file into our converter block. The tool automatically replaces any transparent areas with a solid white background and exports the file as a lightweight, universally compatible JPG."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What happens to the transparent background in my PNG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because JPEGs do not support transparency, our converter safely replaces all transparent pixels with a clean white background to prevent visual errors."
+        }
+      }]
+    }
+    </script>
+    <style>
+        body { 
+            -webkit-font-smoothing: antialiased; 
+            background-image: radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.04) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.04) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.04) 0, transparent 50%);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.dark {
+            background-image: radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.15) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.15) 0, transparent 50%);
+        }
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #ffffff; border-bottom: 1px solid #f0f0f0; transition: all 0.3s ease; }
+        .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1e3a8a; font-weight: 700; font-size: 1.25rem; }
+        .header-nav { display: flex; align-items: center; gap: 30px; font-size: 0.95rem; }
+        .nav-link { text-decoration: none; color: #4b5563; transition: color 0.2s; }
+        .nav-link:hover { color: #2563eb; }
+        body.dark .site-header { background: #111827; border-bottom: 1px solid #374151; }
+        body.dark .header-logo { color: #60a5fa; }
+        body.dark .nav-link { color: #d1d5db; }
+        body.dark .nav-link:hover { color: #60a5fa; }
+        @media (max-width: 768px) {
+            .site-header { flex-direction: column; gap: 12px; padding: 15px 20px; }
+            .header-nav { gap: 15px; width: 100%; justify-content: center; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col">
+
+    <header class="site-header sticky top-0 z-50">
+        <a href="/" class="header-logo">
+            <img src="favicon-32x32.png" alt="Logo" style="width: 28px; height: 28px;">
+            <span>Hyper<span style="color: #2563eb;">Compressor</span></span>
+        </a>
+        <nav class="header-nav">
+            <a href="/#how-it-works" class="nav-link">How it Works</a>
+            <a href="/#faq" class="nav-link">FAQ</a>
+            <a href="/#tools-grid" class="nav-link font-bold text-blue-600 dark:text-blue-400">More Tools</a>
+            <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
+                <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </nav>
+    </header>
+
+    <main class="flex-grow max-w-3xl mx-auto px-6 pt-12 pb-20 w-full">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">PNG to JPG Converter</h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Convert heavy PNG graphics into standard JPGs instantly for faster uploading and broader compatibility.</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 p-6 md:p-10 mb-12 relative overflow-hidden transition-colors">
+            
+            <div id="dropZone" class="border-2 border-dashed border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/20 hover:bg-blue-50 dark:hover:bg-blue-900/40 rounded-2xl p-10 text-center transition-all cursor-pointer relative group">
+                <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="image/png">
+                <div class="flex flex-col items-center justify-center pointer-events-none">
+                    <div class="w-16 h-16 bg-white dark:bg-gray-700 rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 transition-transform text-blue-600 dark:text-blue-400">
+                        <i class="ph ph-upload-simple text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Drag & drop your PNG here</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Instantly converts transparent backgrounds to white</p>
+                    <button class="mt-6 px-6 py-2.5 bg-blue-600 text-white font-medium rounded-full shadow-sm hover:bg-blue-700 transition-colors relative z-20 pointer-events-none" tabindex="-1">Select File</button>
+                </div>
+            </div>
+
+            <div id="loadingState" class="hidden text-center py-12">
+                <i class="ph ph-spinner-gap text-4xl text-blue-600 dark:text-blue-400 animate-spin mb-4"></i>
+                <p class="font-medium">Converting to JPG...</p>
+            </div>
+
+            <div id="resultZone" class="hidden flex flex-col items-center pt-6">
+                <div class="w-full flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/30 border border-green-100 dark:border-green-800 rounded-xl mb-6">
+                    <div class="flex items-center gap-3">
+                        <i class="ph-fill ph-check-circle text-green-500 text-2xl"></i>
+                        <div>
+                            <p class="font-bold text-green-900 dark:text-green-400 text-sm">Conversion Success!</p>
+                            <p class="text-xs text-green-700 dark:text-green-500">New File Size: <span id="finalSize" class="font-bold"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-48 h-48 bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden mb-6 shadow-inner flex items-center justify-center p-2">
+                    <img id="previewImage" class="max-w-full max-h-full object-contain rounded-lg">
+                </div>
+
+                <div class="flex gap-4 w-full">
+                    <button id="resetBtn" class="flex-1 py-3 px-4 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 font-bold rounded-xl transition-colors">Convert Another</button>
+                    <a id="downloadBtn" href="#" class="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors text-center flex justify-center items-center gap-2 shadow-md"><i class="ph ph-download-simple text-xl"></i> Download</a>
+                </div>
+            </div>
+        </div>
+
+        <article class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl font-bold mb-4">Why Convert PNG to JPG?</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">PNG files are incredible for preserving exact, lossless graphics and maintaining transparent backgrounds. However, this high quality comes at the cost of massive file sizes. If you are trying to upload a heavy PNG to a strict government portal, an HR system, or a fast-loading blog, you will often face rejection or severely impact your page load times.</p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">Converting your PNGs to standard JPEGs is the fastest way to shrink the file size and guarantee universal compatibility. Our tool automatically processes the conversion directly in your browser. Because JPEGs do not support transparency, our algorithm seamlessly replaces any transparent areas with a clean, solid white background so your final image looks perfectly natural.</p>
+
+            <h2 class="text-2xl font-bold mb-6 mt-8">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2">What happens to the transparent background?</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Because the JPEG format does not support transparency, any transparent areas in your original PNG file will automatically be converted to a solid white background.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2">Is this tool free to use?</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Yes, entirely free. The conversion code executes locally on your own computer, meaning we do not require expensive cloud servers to process your files.</p>
+                </div>
+            </div>
+        </article>
+        
+        <section id="tools-grid" class="w-full mt-24 mb-6 scroll-mt-24 text-left">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Popular Image Compressors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="/compress-jpeg" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"><i class="ph-fill ph-file-image text-2xl"></i></div>
+                    <div><h3 class="font-bold text-gray-800 dark:text-gray-100">Compress JPEG Online</h3><p class="text-sm text-gray-500 dark:text-gray-400">Reduce sizes up to 80%</p></div>
+                </a>
+                <a href="/compress-to-100kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"><i class="ph-fill ph-file-image text-2xl"></i></div>
+                    <div><h3 class="font-bold text-gray-800 dark:text-gray-100">Compress to 100KB</h3><p class="text-sm text-gray-500 dark:text-gray-400">For passports & HR portals</p></div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const body = document.body, themeToggle = document.getElementById('themeToggle'), themeIcon = document.getElementById('themeIcon');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) themeIcon.innerHTML = '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l-1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>';
+            else themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        });
+
+        const dropZone = document.getElementById('dropZone'), fileInput = document.getElementById('fileInput'), loadingState = document.getElementById('loadingState'), resultZone = document.getElementById('resultZone'), previewImage = document.getElementById('previewImage'), finalSize = document.getElementById('finalSize'), downloadBtn = document.getElementById('downloadBtn'), resetBtn = document.getElementById('resetBtn');
+
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); });
+        ['dragleave', 'drop'].forEach(evt => dropZone.addEventListener(evt, (e) => e.preventDefault()));
+        fileInput.addEventListener('change', function() { if (this.files[0]) processImage(this.files[0]); });
+
+        async function processImage(file) {
+            dropZone.classList.add('hidden'); loadingState.classList.remove('hidden');
+            const img = new Image(); img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                let canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
+                canvas.width = img.width; canvas.height = img.height;
+                
+                ctx.fillStyle = "#FFFFFF"; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height); 
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                
+                let finalDataUrl = canvas.toDataURL('image/jpeg', 0.90); 
+                let finalBytes = atob(finalDataUrl.split(',')[1]).length;
+                
+                previewImage.src = finalDataUrl;
+                finalSize.innerText = (finalBytes / 1024).toFixed(2) + ' KB';
+                downloadBtn.download = file.name.split('.')[0] + '-converted.jpg';
+                downloadBtn.href = finalDataUrl;
+                setTimeout(() => { loadingState.classList.add('hidden'); resultZone.classList.remove('hidden'); }, 400);
+            };
+        }
+        resetBtn.addEventListener('click', () => { fileInput.value = ''; resultZone.classList.add('hidden'); dropZone.classList.remove('hidden'); });
+    </script>
+</body>
+</html>
