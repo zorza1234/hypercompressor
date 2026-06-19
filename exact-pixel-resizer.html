@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Pixel Resizer — Resize Images to Specific Dimensions Online</title>
+    <meta name="description" content="Instantly resize your photos and signatures to exact pixel dimensions (width & height) for exam portals, applications, and web use. 100% free and private.">
+    
+    <link rel="stylesheet" href="dist/output.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I resize an image to exact pixels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Upload your image, unlock the aspect ratio, and type in the exact width and height (in pixels) required by your form. Our tool instantly redraws your image to those specific dimensions."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does resizing an image stretch it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you force an image into a dimension that doesn't match its original shape, it may look stretched. For exam portals, a slight stretch is usually accepted as long as the pixel dimensions exactly match their strict requirements."
+        }
+      }]
+    }
+    </script>
+    <style>
+        body { 
+            -webkit-font-smoothing: antialiased; 
+            background-image: radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.04) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.04) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.04) 0, transparent 50%);
+        }
+        body.dark {
+            background-image: radial-gradient(at 0% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(253, 16%, 7%, 0.15) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.15) 0, transparent 50%);
+        }
+        .site-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #ffffff; border-bottom: 1px solid #f0f0f0; transition: all 0.3s ease; }
+        .header-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1e3a8a; font-weight: 700; font-size: 1.25rem; }
+        .header-nav { display: flex; align-items: center; gap: 30px; font-size: 0.95rem; }
+        .nav-link { text-decoration: none; color: #4b5563; transition: color 0.2s; }
+        .nav-link:hover { color: #2563eb; }
+        body.dark .site-header { background: #111827; border-bottom: 1px solid #374151; }
+        body.dark .header-logo { color: #60a5fa; }
+        body.dark .nav-link { color: #d1d5db; }
+        body.dark .nav-link:hover { color: #60a5fa; }
+        @media (max-width: 768px) {
+            .site-header { flex-direction: column; gap: 12px; padding: 15px 20px; }
+            .header-nav { gap: 15px; width: 100%; justify-content: center; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col transition-colors duration-300">
+
+    <header class="site-header sticky top-0 z-50">
+        <a href="/" class="header-logo">
+            <img src="favicon-32x32.png" alt="HyperCompressor logo" style="width: 28px; height: 28px;">
+            <span>Hyper<span style="color: #2563eb;">Compressor</span></span>
+        </a>
+        <nav class="header-nav">
+            <a href="/#how-it-works" class="nav-link">How it Works</a>
+            <a href="/#faq" class="nav-link">FAQ</a>
+            <a href="/#tools-grid" class="nav-link font-bold text-blue-600 dark:text-blue-400">More Tools</a>
+            <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
+                <svg id="themeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+        </nav>
+    </header>
+
+    <main class="flex-grow max-w-4xl mx-auto px-6 pt-12 pb-20 w-full">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Exact Pixel Resizer</h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Force your photos and signatures into strict pixel dimensions (e.g., 200x230) for rigid exam and government portals.</p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 p-6 md:p-10 mb-12 relative overflow-hidden transition-colors">
+            
+            <div id="dropZone" class="border-2 border-dashed border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/20 hover:bg-blue-50 dark:hover:bg-blue-900/40 rounded-2xl p-10 text-center transition-all cursor-pointer relative group">
+                <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept="image/jpeg, image/jpg, image/png, image/webp">
+                <div class="flex flex-col items-center justify-center pointer-events-none">
+                    <div class="w-16 h-16 bg-white dark:bg-gray-700 rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 transition-transform text-blue-600 dark:text-blue-400">
+                        <i class="ph ph-bounding-box text-3xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-1">Drag & drop your image here</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Supports JPG, PNG, and WebP</p>
+                    <button class="mt-6 px-6 py-2.5 bg-blue-600 text-white font-medium rounded-full shadow-sm hover:bg-blue-700 transition-colors relative z-20 pointer-events-none" tabindex="-1">Select File</button>
+                </div>
+            </div>
+
+            <div id="editorZone" class="hidden flex flex-col md:flex-row gap-8">
+                
+                <!-- Controls Side -->
+                <div class="flex-1 flex flex-col gap-6">
+                    <div class="flex items-center justify-between border-b border-gray-100 dark:border-gray-700 pb-3">
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200">Dimension Settings</h3>
+                        <button id="btnBack" class="text-xs text-blue-600 dark:text-blue-400 font-medium hover:underline">Change Image</button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Width (px)</label>
+                            <input type="number" id="inputWidth" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Height (px)</label>
+                            <input type="number" id="inputHeight" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 transition-shadow">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 px-1">
+                        <input type="checkbox" id="lockAspect" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600 cursor-pointer">
+                        <label for="lockAspect" class="text-sm text-gray-600 dark:text-gray-400 cursor-pointer select-none">Lock Aspect Ratio (Uncheck to force exact fit)</label>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-xl border border-blue-100 dark:border-blue-800 mt-2">
+                        <p class="text-xs text-blue-800 dark:text-blue-300">
+                            <strong>Portal Tip:</strong> If an exam application specifically asks for "3.5cm x 4.5cm", uncheck the lock box above and enter <strong>132</strong> for Width and <strong>170</strong> for Height.
+                        </p>
+                    </div>
+
+                    <button id="btnDownload" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md flex justify-center items-center gap-2 mt-auto">
+                        <i class="ph ph-download-simple text-xl"></i> Download Resized Image
+                    </button>
+                </div>
+
+                <!-- Preview Side -->
+                <div class="flex-1 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 min-h-[300px] p-4 relative">
+                    <p class="absolute top-3 left-4 text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Live Preview</p>
+                    <p id="sizeIndicator" class="absolute top-3 right-4 text-xs font-bold bg-white dark:bg-gray-800 px-2 py-1 rounded text-gray-600 dark:text-gray-300 shadow-sm border border-gray-100 dark:border-gray-700"></p>
+                    <img id="previewImage" class="max-w-full max-h-full object-contain drop-shadow-sm mt-6">
+                </div>
+            </div>
+        </div>
+
+        <article class="prose dark:prose-invert max-w-none">
+            <h2 class="text-2xl font-bold mb-4">Why Do Portals Require Exact Pixels?</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">Government agencies, banking portals (IBPS), and academic boards (NTA, SSC, UPSC) rely on automated software to print millions of admit cards. If your uploaded photo or signature does not perfectly match the exact pixel grid built into their ID cards, the automated system will reject your application instantly. Common requirements are exactly 200 x 230 pixels for photos, or 140 x 60 pixels for signatures.</p>
+
+            <h2 class="text-2xl font-bold mb-6 mt-8">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <h3 class="font-bold text-gray-900 dark:text-white mb-2">My image looks slightly stretched. Is this okay?</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Yes. When you uncheck the "Lock Aspect Ratio" box and force an image into rigid dimensions, it will stretch slightly. Portals accept this minor stretching as long as the pixel count perfectly matches their system requirements.</p>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <script>
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Bulletproof Dark Mode Toggle
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                themeIcon.innerHTML = '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l-1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>';
+                body.classList.add('bg-gray-900'); body.classList.remove('bg-gray-50');
+            } else {
+                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+                body.classList.add('bg-gray-50'); body.classList.remove('bg-gray-900');
+            }
+        });
+
+        // App Logic
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const editorZone = document.getElementById('editorZone');
+        const btnBack = document.getElementById('btnBack');
+        
+        const inputWidth = document.getElementById('inputWidth');
+        const inputHeight = document.getElementById('inputHeight');
+        const lockAspect = document.getElementById('lockAspect');
+        
+        const previewImage = document.getElementById('previewImage');
+        const btnDownload = document.getElementById('btnDownload');
+        const sizeIndicator = document.getElementById('sizeIndicator');
+
+        let originalImage = new Image();
+        let originalRatio = 1;
+        let currentFile = null;
+        let finalDataUrl = '';
+
+        // Drag and Drop
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); });
+        ['dragleave', 'drop'].forEach(evt => dropZone.addEventListener(evt, (e) => e.preventDefault()));
+        
+        fileInput.addEventListener('change', function(e) {
+            if (this.files[0]) processFile(this.files[0]);
+        });
+        
+        dropZone.addEventListener('drop', (e) => {
+            if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]);
+        });
+
+        function processFile(file) {
+            currentFile = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalImage.src = e.target.result;
+                originalImage.onload = () => {
+                    dropZone.classList.add('hidden');
+                    editorZone.classList.remove('hidden');
+                    editorZone.classList.add('flex');
+                    
+                    originalRatio = originalImage.width / originalImage.height;
+                    
+                    // Set initial inputs
+                    inputWidth.value = originalImage.width;
+                    inputHeight.value = originalImage.height;
+                    
+                    drawResized();
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Input Listeners
+        inputWidth.addEventListener('input', () => {
+            if(lockAspect.checked && inputWidth.value > 0) {
+                inputHeight.value = Math.round(inputWidth.value / originalRatio);
+            }
+            drawResized();
+        });
+
+        inputHeight.addEventListener('input', () => {
+            if(lockAspect.checked && inputHeight.value > 0) {
+                inputWidth.value = Math.round(inputHeight.value * originalRatio);
+            }
+            drawResized();
+        });
+
+        function drawResized() {
+            const w = parseInt(inputWidth.value);
+            const h = parseInt(inputHeight.value);
+            
+            if(!w || !h || w <= 0 || h <= 0) return;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = w;
+            canvas.height = h;
+
+            // Fill white background for transparent PNGs
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, w, h);
+            
+            ctx.drawImage(originalImage, 0, 0, w, h);
+            
+            // Output as high quality JPEG
+            finalDataUrl = canvas.toDataURL('image/jpeg', 0.95);
+            previewImage.src = finalDataUrl;
+            
+            sizeIndicator.innerText = `${w} × ${h} px`;
+        }
+
+        btnBack.addEventListener('click', () => {
+            fileInput.value = '';
+            editorZone.classList.add('hidden');
+            editorZone.classList.remove('flex');
+            dropZone.classList.remove('hidden');
+        });
+
+        btnDownload.addEventListener('click', () => {
+            if(!finalDataUrl) return;
+            const link = document.createElement('a');
+            const originalName = currentFile.name.split('.')[0];
+            link.download = `${originalName}-${inputWidth.value}x${inputHeight.value}.jpg`;
+            link.href = finalDataUrl;
+            link.click();
+        });
+
+    </script>
+</body>
+</html>
