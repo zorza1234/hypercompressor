@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
-  <!-- Homepage -->
   <url>
     <loc>https://www.hypercompressor.online/</loc>
     <lastmod>2026-06-19</lastmod>
@@ -9,7 +8,6 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- NTA Document Compressor -->
   <url>
     <loc>https://www.hypercompressor.online/nta-document-compressor</loc>
     <lastmod>2026-06-19</lastmod>
@@ -17,7 +15,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- 20KB Compressor -->
   <url>
     <loc>https://www.hypercompressor.online/compress-to-20kb</loc>
     <lastmod>2026-06-19</lastmod>
@@ -25,7 +22,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- 50KB Compressor -->
   <url>
     <loc>https://www.hypercompressor.online/compress-to-50kb</loc>
     <lastmod>2026-06-19</lastmod>
@@ -33,7 +29,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- 100KB Compressor -->
   <url>
     <loc>https://www.hypercompressor.online/compress-to-100kb</loc>
     <lastmod>2026-06-19</lastmod>
@@ -41,7 +36,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- 200KB Compressor -->
   <url>
     <loc>https://www.hypercompressor.online/compress-to-200kb</loc>
     <lastmod>2026-06-19</lastmod>
@@ -49,7 +43,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Compress JPEG Online -->
   <url>
     <loc>https://www.hypercompressor.online/compress-jpeg</loc>
     <lastmod>2026-06-19</lastmod>
@@ -57,9 +50,15 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- PNG to JPG Converter -->
   <url>
     <loc>https://www.hypercompressor.online/png-to-jpg</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.hypercompressor.online/exact-pixel-resizer</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
