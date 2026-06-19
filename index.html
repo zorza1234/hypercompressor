@@ -16,7 +16,6 @@
     
     <title>Hyper Compressor | Fast, Free Client-Side Image Compressor</title>
     <meta name="description" content="Instantly compress, resize, and convert JPEG, PNG, and WebP images directly in your browser. Fast, free, secure, and zero-upload image optimization.">
-    <meta name="keywords" content="image compressor, reduce image size, compress jpeg, convert to webp, client-side compression, free image shrinker, image resizer, browser image tool">
     <meta name="author" content="Hyper Compressor">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://hypercompressor.online/">
@@ -40,29 +39,51 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
 
+    <!-- Combined WebApplication & FAQ Rich Snippet Schema for Perfect On-Page SEO -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Hyper Compressor",
-      "url": "https://hypercompressor.online/",
-      "description": "A free, client-side web application to compress, resize, and convert images securely in your browser without uploading to a server.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript",
-      "softwareVersion": "1.0",
-      "offers": {
-        "@type": "Offer",
-        "price": "0.00",
-        "priceCurrency": "USD"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Hyper Compressor",
+        "url": "https://hypercompressor.online/",
+        "description": "A free, client-side web application to compress, resize, and convert images securely in your browser without uploading to a server.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Client-side image compression",
+          "Image resizing capabilities",
+          "Format conversion (JPEG, PNG, WebP)",
+          "100% Private, no server uploads"
+        ]
       },
-      "featureList": [
-        "Client-side image compression",
-        "Image resizing capabilities",
-        "Format conversion (JPEG, PNG, WebP)",
-        "100% Private, no server uploads"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "How does client-side compression work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hyper Compressor utilizes the modern HTML5 Canvas API built directly into your web browser. When you drop an image, your browser analyzes and redraws the image at a smaller file size locally, without ever needing to communicate with an external server."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Which image formats are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently, we support the most common web formats: JPG (JPEG), PNG, and WebP. Compressing a PNG usually converts it to a high-efficiency JPEG or WebP internally to achieve maximum space savings."
+          }
+        }]
+      }
+    ]
     </script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,15 +226,14 @@
   <header class="site-header sticky top-0 z-50">
     
     <a href="/" class="header-logo">
-        <img src="favicon-32x32.png" alt="Logo" class="logo-img">
+        <!-- FIXED: Added descriptive alt text for search engine accessibility -->
+        <img src="favicon-32x32.png" alt="HyperCompressor logo" class="logo-img">
         <span>Hyper<span style="color: #2563eb;">Compressor</span></span>
     </a>
 
     <nav class="header-nav">
         <a href="#how-it-works" class="nav-link">How it Works</a>
         <a href="#faq" class="nav-link">FAQ</a>
-        
-        <!-- Updated Anchor Link pointing to the Hub Grid -->
         <a href="#tools-grid" class="nav-link font-bold text-blue-600 dark:text-blue-400">More Tools</a>
 
         <button id="themeToggle" aria-label="Toggle Dark Mode" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
@@ -226,9 +246,10 @@
 
     <main class="flex-grow flex flex-col items-center pt-12 pb-20 px-6">
         
-        <div class="text-center max-w-2xl mb-10">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white">
-                Shrink, Resize & Convert. <span class="text-transparent bg-clip-text bg-gradient-to-r from-hyper-500 to-indigo-600">Keep Quality.</span>
+        <div class="text-center max-w-3xl mb-10">
+            <!-- FIXED: Optimized H1 to feature dominant, hyper-targeted structural keywords -->
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white">
+                Free Image Compressor — <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Compress JPEG, PNG & WebP Online</span>
             </h1>
             <p class="text-lg text-gray-500 dark:text-gray-400 mb-2">
                 Fast, private, and 100% free client-side image optimization. 
@@ -328,7 +349,6 @@
             </div>
         </div>
 
-        <!-- 🚀 FULLY UPDATED: Popular Tools Hub Grid 🚀 -->
         <section id="tools-grid" class="w-full max-w-4xl mt-24 mb-6 scroll-mt-24 text-left">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Popular Image Compressors</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
