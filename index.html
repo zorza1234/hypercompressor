@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="yswC-E3GcPUpu1y9fNiLdzMwr4WK5usVCPIXgtw7zIk" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQHRL04M0S"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SQHRL04M0S"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -173,58 +172,12 @@
             transition: color 0.2s;
         }
         .nav-link:hover { color: #2563eb; }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-btn {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: none;
-            border: none;
-            color: #4b5563;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 5px 0;
-            transition: color 0.2s;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background-color: #ffffff;
-            min-width: 240px;
-            box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
-            border: 1px solid #f0f0f0;
-            border-radius: 12px;
-            padding: 8px;
-            z-index: 1000;
-            margin-top: 8px;
-        }
-        .dropdown-item {
-            display: block;
-            padding: 10px 14px;
-            text-decoration: none;
-            color: #1f2937;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block !important;
-            animation: fadeIn 0.15s ease-out;
-        }
 
         /* Custom Dark Mode Overrides */
         body.dark .site-header { background: #111827; border-bottom: 1px solid #374151; }
         body.dark .header-logo { color: #60a5fa; }
-        body.dark .nav-link, body.dark .dropdown-btn { color: #d1d5db; }
-        body.dark .nav-link:hover, body.dark .dropdown-btn:hover { color: #60a5fa; }
-        body.dark .dropdown-content { background-color: #1f2937; border-color: #374151; box-shadow: 0px 8px 24px rgba(0,0,0,0.5); }
-        body.dark .dropdown-item { color: #f3f4f6; }
-        body.dark .dropdown-item:hover { background-color: #374151 !important; }
+        body.dark .nav-link { color: #d1d5db; }
+        body.dark .nav-link:hover { color: #60a5fa; }
         body.dark #themeToggle { background-color: #374151; color: #f3f4f6; }
         body.dark #themeToggle svg { color: #f3f4f6; }
 
@@ -243,22 +196,12 @@
                 justify-content: center;
                 flex-wrap: wrap; 
             }
-            .dropdown-content {
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%); 
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:text-gray-100 font-sans min-h-screen flex flex-col">
 
-  <header class="site-header">
+  <header class="site-header sticky top-0 z-50">
     
     <a href="/" class="header-logo">
         <img src="favicon-32x32.png" alt="Logo" class="logo-img">
@@ -269,24 +212,7 @@
         <a href="#how-it-works" class="nav-link">How it Works</a>
         <a href="#faq" class="nav-link">FAQ</a>
         
-        <div class="dropdown">
-            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
-                More Tools 
-                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            
-            <div class="dropdown-content">
-                <a href="/" class="dropdown-item" onmouseover="if(!document.body.classList.contains('dark')) this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div style="font-weight: 600; font-size: 0.9rem;">Image Compressor</div>
-                    <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Fast, client-side WebP/PNG/JPG shrinker</div>
-                </a>
-                
-                <a href="/nta-document-compressor" class="dropdown-item" onmouseover="if(!document.body.classList.contains('dark')) this.style.backgroundColor='#f3f4f6'" onmouseout="this.style.backgroundColor='transparent'">
-                    <div style="font-weight: 600; font-size: 0.9rem; color: #059669;">NTA Document Compressor</div>
-                    <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Auto-target rules for NEET, JEE, & CUET</div>
-                </a>
-            </div>
-        </div>
+        <a href="#tools-grid" class="nav-link font-bold text-blue-600 dark:text-blue-400">More Tools</a>
 
         <button id="themeToggle" aria-label="Toggle Dark Mode" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center">
             <svg id="themeIcon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600">
@@ -400,7 +326,69 @@
             </div>
         </div>
 
-        <section id="how-it-works" class="w-full max-w-4xl mt-24 mb-12">
+        <section id="tools-grid" class="w-full max-w-4xl mt-24 mb-6 scroll-mt-24 text-left">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">Popular Image Compressors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <a href="/compress-to-20kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-file-image text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100">Compress to 20KB</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">For signatures & SSC portals</p>
+                    </div>
+                    <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
+                </a>
+
+                <a href="/compress-to-50kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-file-image text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100">Compress to 50KB</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">For UPSC & academic forms</p>
+                    </div>
+                    <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
+                </a>
+
+                <a href="/compress-to-100kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-file-image text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100">Compress to 100KB</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">For passports & HR portals</p>
+                    </div>
+                    <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
+                </a>
+
+                <a href="/compress-to-200kb" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-blue-50 dark:bg-gray-700 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-file-image text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100">Compress to 200KB</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">For blogs & e-commerce</p>
+                    </div>
+                    <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-blue-500"></i>
+                </a>
+                
+                <a href="/nta-document-compressor" class="flex items-center gap-4 p-5 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md transition-all group">
+                    <div class="w-12 h-12 bg-emerald-50 dark:bg-gray-700 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-student text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-100">NTA Document Compressor</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Auto-target for NEET/JEE</p>
+                    </div>
+                    <i class="ph ph-caret-right ml-auto text-gray-400 dark:text-gray-500 group-hover:text-emerald-500"></i>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="how-it-works" class="w-full max-w-4xl mt-12 mb-12">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-10">Why use Hyper Compressor?</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
