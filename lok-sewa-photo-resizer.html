@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Localized SEO Meta Tags for Nepal -->
+    <title>Lok Sewa Aayog Photo & Signature Resizer Online | Hyper Compressor</title>
+    <meta name="description" content="Fast, free online image resizer and compressor for Nepal Lok Sewa Aayog and MEC CEE registration. Perfectly adjust passport photos, signatures, citizenship certificates, and thumbprints to exact pixel and KB requirements.">
+    <link rel="canonical" href="https://hypercompressor.online/lok-sewa-photo-resizer.html">
+
+    <!-- Error-Free Favicon Link -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: { extend: {} }
+      }
+    </script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Dark Mode State Handler -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <i class="ph-fill ph-aperture text-3xl text-blue-600 dark:text-blue-400"></i>
+                <span class="text-xl font-bold tracking-tight">Hyper Compressor</span>
+            </a>
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <i id="theme-toggle-dark-icon" class="ph ph-moon text-xl hidden"></i>
+                <i id="theme-toggle-light-icon" class="ph ph-sun text-xl hidden"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-6">
+        
+        <!-- Header targeting Nepalese Candidates -->
+        <div class="text-center mb-8">
+            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-blue-900 dark:text-blue-300">Nepal Portal Helper</span>
+            <h1 class="text-3xl font-extrabold mt-3 mb-2">Nepal Lok Sewa & MEC Document Resizer</h1>
+            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Automatically crop, resize, and compress your images to meet the strict digital upload standards of government applications.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Left Side: Portal Preset Selector Buttons -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Select Document Type</h3>
+                
+                <button onclick="setPreset('photo')" id="btn-photo" class="w-full flex items-center justify-between p-4 rounded-xl border border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 text-left transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-user-square text-2xl text-blue-600 dark:text-blue-400"></i>
+                        <div>
+                            <p class="font-bold text-sm">Passport Size Photo</p>
+                            <p class="text-xs text-gray-400">350x450px | Under 50KB</p>
+                        </div>
+                    </div>
+                    <i class="ph ph-check-circle text-xl text-blue-600 dark:text-blue-400"></i>
+                </button>
+
+                <button onclick="setPreset('signature')" id="btn-signature" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-signature text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">Signature Scan</p>
+                            <p class="text-xs text-gray-400">300x80px | Under 20KB</p>
+                        </div>
+                    </div>
+                </button>
+
+                <button onclick="setPreset('citizenship')" id="btn-citizenship" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-identification-card text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">Citizenship Card</p>
+                            <p class="text-xs text-gray-400">Max 1000px width | Under 100KB</p>
+                        </div>
+                    </div>
+                </button>
+
+                <button onclick="setPreset('thumbprint')" id="btn-thumbprint" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-fingerprint text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">MEC Left/Right Thumb</p>
+                            <p class="text-xs text-gray-400">Auto Scale | Under 50KB</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Right Side: Interaction Container -->
+            <div class="md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700">
+                <!-- Dropzone Input Box -->
+                <div class="flex items-center justify-center w-full mb-4">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-56 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i class="ph ph-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
+                            <p class="mb-1 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Upload your document</span></p>
+                            <p class="text-xs text-gray-400">Supports JPEG, PNG, WebP format</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
+                    </label>
+                </div>
+
+                <!-- Processing Target Indicators -->
+                <div class="bg-gray-50 dark:bg-gray-950 p-4 rounded-xl flex justify-between text-xs font-mono text-gray-500 mb-4">
+                    <div>Target Width: <span id="lbl-width" class="text-blue-600 font-bold">350px</span></div>
+                    <div>Target Height: <span id="lbl-height" class="text-blue-600 font-bold">450px</span></div>
+                    <div>Max File Size: <span id="lbl-size" class="text-red-500 font-bold">50KB</span></div>
+                </div>
+
+                <!-- Action Download Button Trigger -->
+                <button id="process-btn" class="w-full text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-xl text-md px-5 py-3.5 transition-colors shadow-lg shadow-blue-500/10">
+                    Apply Rules & Download
+                </button>
+            </div>
+        </div>
+
+        <!-- Heavy SEO Text Block Supporting Page Indexing and Rank Signals -->
+        <article class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white">How to Prepare Photos for PSC Nepal Registration Portals</h2>
+            <p>When applying for government positions through the <strong>Lok Sewa Aayog online application system</strong> or attempting professional academic validation via the Medical Education Commission (MEC CEE), candidates frequently encounter system errors due to unoptimized file uploads. This system operates localized client-side routines designed to process and modify your media data instantly, without routing assets over external networks.</p>
+            <p>Our processing presets align precisely with official mandates: normal identity formats lock onto 350x450 pixels with file weights mapped tightly below 50 kilobytes, signature layouts instantly trim paths down to clean 300x80 pixel strips capping out at 20 kilobytes, while formal identity validations like Nepalese Citizenship Certificates expand cleanly up to 1000px relative width scaling safely under 100 kilobytes.</p>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-800 mt-12">
+        &copy; 2026 Hyper Compressor. Secured and executed entirely in-browser.
+    </footer>
+
+    <!-- Scripts: Dark Mode & Preset Logic Control Toggle Engines -->
+    <script>
+        // Dark Mode State Mechanics
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (document.documentElement.classList.contains('dark')) {
+            lightIcon.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Config Data Structure for Presets
+        const presets = {
+            photo: { w: '350px', h: '450px', size: '50KB', id: 'btn-photo' },
+            signature: { w: '300px', h: '80px', size: '20KB', id: 'btn-signature' },
+            citizenship: { w: '1000px', h: 'Auto', size: '100KB', id: 'btn-citizenship' },
+            thumbprint: { w: 'Auto', h: 'Auto', size: '50KB', id: 'btn-thumbprint' }
+        };
+
+        // UI Toggle Selection Routine Logic
+        function setPreset(type) {
+            Object.values(presets).forEach(p => {
+                const el = document.getElementById(p.id);
+                el.classList.remove('border-blue-500', 'bg-blue-50/50', 'dark:bg-blue-900/20');
+                el.querySelector('i.ph-check-circle')?.remove();
+            });
+
+            const active = presets[type];
+            const activeEl = document.getElementById(active.id);
+            activeEl.classList.add('border-blue-500', 'bg-blue-50/50', 'dark:bg-blue-900/20');
+            
+            // Add Check Icon visually
+            const check = document.createElement('i');
+            check.className = "ph ph-check-circle text-xl text-blue-600 dark:text-blue-400";
+            activeEl.appendChild(check);
+
+            // Update Label Readouts
+            document.getElementById('lbl-width').innerText = active.w;
+            document.getElementById('lbl-height').innerText = active.h;
+            document.getElementById('lbl-size').innerText = active.size;
+        }
+    </script>
+</body>
+</html>
