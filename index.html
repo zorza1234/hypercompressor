@@ -169,8 +169,11 @@
         body.dark #themeToggle svg { color: #f3f4f6; }
 
         @media (max-width: 768px) {
-            .site-header { flex-direction: column; gap: 12px; padding: 15px 20px; text-align: center; }
-            .header-nav { gap: 15px; font-size: 0.85rem; width: 100%; justify-content: center; flex-wrap: wrap; }
+    .site-header { padding: 12px 15px; }
+    .header-logo span { display: none; /* Hides 'HyperCompressor' text, leaves just the logo icon to save space */ }
+    .header-nav { gap: 12px; font-size: 0.85rem; }
+    .nav-link { font-size: 0.8rem; }
+}
         }
     </style>
 </head>
