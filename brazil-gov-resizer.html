@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bilingual SEO Meta Tags targeted at Brazil -->
+    <title>Redimensionador de Fotos gov.br e ENEM | Brazil Exam Photo Resizer</title>
+    <meta name="description" content="Comprima e redimensione fotos 3x4 para o gov.br, ENEM e SISU. Fast, free online image resizer for Brazil government portals. Compress photos to 354x472 pixels and exact KB limits.">
+    <link rel="canonical" href="https://hypercompressor.online/brazil-gov-resizer.html">
+
+    <!-- Error-Free Favicon Link -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: { extend: {} }
+      }
+    </script>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Dark Mode State Handler -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <i class="ph-fill ph-aperture text-3xl text-yellow-500 dark:text-yellow-400"></i>
+                <span class="text-xl font-bold tracking-tight">Hyper Compressor</span>
+            </a>
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <i id="theme-toggle-dark-icon" class="ph ph-moon text-xl hidden"></i>
+                <i id="theme-toggle-light-icon" class="ph ph-sun text-xl hidden"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-6">
+        
+        <!-- Bilingual Header -->
+        <div class="text-center mb-8">
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Brasil Portal Helper</span>
+            <h1 class="text-3xl font-extrabold mt-3 mb-2">Redimensionador de Fotos gov.br e ENEM</h1>
+            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto font-medium">Bilingual Tool: Ajuste automaticamente suas fotos para os padrões rígidos do governo brasileiro.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Left Side: Portal Preset Selector Buttons -->
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Selecione o Documento / Select Type</h3>
+                
+                <button onclick="setPreset('photo3x4')" id="btn-photo3x4" class="w-full flex items-center justify-between p-4 rounded-xl border border-yellow-500 bg-yellow-50/50 dark:bg-yellow-900/20 text-left transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-user-square text-2xl text-yellow-600 dark:text-yellow-400"></i>
+                        <div>
+                            <p class="font-bold text-sm">Foto 3x4 (ENEM/SISU)</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">354x472px | 15KB - 150KB</p>
+                        </div>
+                    </div>
+                    <i class="ph ph-check-circle text-xl text-yellow-600 dark:text-yellow-400"></i>
+                </button>
+
+                <button onclick="setPreset('rg')" id="btn-rg" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-identification-card text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">RG / CNH (Identity)</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Auto Scale | Max 200KB</p>
+                        </div>
+                    </div>
+                </button>
+
+                <button onclick="setPreset('signature')" id="btn-signature" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-signature text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">Assinatura (Signature)</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Auto Scale | Max 50KB</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Right Side: Interaction Container -->
+            <div class="md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700">
+                <div class="flex items-center justify-center w-full mb-4">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-56 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i class="ph ph-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
+                            <p class="mb-1 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Envie seu documento (Upload)</span></p>
+                            <p class="text-xs text-gray-400">Suporta JPEG, JPG, PNG</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
+                    </label>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-950 p-4 rounded-xl flex justify-between text-xs font-mono text-gray-500 mb-4">
+                    <div>Resolução (Target): <span id="lbl-ratio" class="text-yellow-600 font-bold">354x472px</span></div>
+                    <div>Tamanho Máx (Size): <span id="lbl-size" class="text-red-500 font-bold">150KB</span></div>
+                </div>
+
+                <button id="process-btn" class="w-full text-white bg-yellow-600 hover:bg-yellow-700 font-medium rounded-xl text-md px-5 py-3.5 transition-colors shadow-lg shadow-yellow-500/10">
+                    Aplicar Regras e Baixar (Download)
+                </button>
+            </div>
+        </div>
+
+        <!-- Bilingual SEO Text Block -->
+        <article class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white">Como Redimensionar Fotos para gov.br e Inscrição no ENEM</h2>
+            <p>O sistema do governo brasileiro (gov.br) e os portais acadêmicos como o SISU e o Exame Nacional do Ensino Médio (ENEM) possuem regras rígidas para o envio de imagens. Uma foto em formato 3x4 recente deve ter aproximadamente 354 x 472 pixels. Além disso, o arquivo da imagem deve, na maioria dos formulários, ter entre 15 KB e 150 KB para ser aceito sem erros pelo servidor.</p>
+            <p><strong>English Guide:</strong> Applying for Brazilian federal portals requires strict adherence to image dimensions. By selecting the "Foto 3x4" preset above, our client-side compressor automatically resizes your image to the mandated 354x472 pixel ratio while heavily compressing the internal data payload down safely beneath the 150KB rejection ceiling. Your data remains entirely on your device, securely bypassing network uploads.</p>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-800 mt-12">
+        &copy; 2026 Hyper Compressor. Processado localmente no seu navegador. Executed entirely in-browser.
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (document.documentElement.classList.contains('dark')) {
+            lightIcon.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        const presets = {
+            photo3x4: { ratio: '354x472px', size: '150KB', id: 'btn-photo3x4' },
+            rg: { ratio: 'Auto Scale', size: '200KB', id: 'btn-rg' },
+            signature: { ratio: 'Auto Scale', size: '50KB', id: 'btn-signature' }
+        };
+
+        function setPreset(type) {
+            Object.values(presets).forEach(p => {
+                const el = document.getElementById(p.id);
+                el.classList.remove('border-yellow-500', 'bg-yellow-50/50', 'dark:bg-yellow-900/20');
+                el.querySelector('i.ph-check-circle')?.remove();
+            });
+
+            const active = presets[type];
+            const activeEl = document.getElementById(active.id);
+            activeEl.classList.add('border-yellow-500', 'bg-yellow-50/50', 'dark:bg-yellow-900/20');
+            
+            const check = document.createElement('i');
+            check.className = "ph ph-check-circle text-xl text-yellow-600 dark:text-yellow-400";
+            activeEl.appendChild(check);
+
+            document.getElementById('lbl-ratio').innerText = active.ratio;
+            document.getElementById('lbl-size').innerText = active.size;
+        }
+    </script>
+</body>
+</html>
