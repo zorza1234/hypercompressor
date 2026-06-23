@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>JAMB & NIMC Photo Resizer Online | Hyper Compressor</title>
+    <meta name="description" content="Fast, free online image resizer for Nigeria JAMB, UTME, and NIMC registration. Compress photos to exact 275x314 pixels and firmly between 10KB to 30KB.">
+    <link rel="canonical" href="https://hypercompressor.online/nigeria-jamb-resizer.html">
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: { extend: {} }
+      }
+    </script>
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
+
+    <nav class="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 shadow-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <i class="ph-fill ph-aperture text-3xl text-teal-600 dark:text-teal-400"></i>
+                <span class="text-xl font-bold tracking-tight">Hyper Compressor</span>
+            </a>
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
+                <i id="theme-toggle-dark-icon" class="ph ph-moon text-xl hidden"></i>
+                <i id="theme-toggle-light-icon" class="ph ph-sun text-xl hidden"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-6">
+        
+        <div class="text-center mb-8">
+            <span class="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-teal-900 dark:text-teal-300">Nigeria Portals Helper</span>
+            <h1 class="text-3xl font-extrabold mt-3 mb-2">JAMB UTME & NIMC Photo Resizer</h1>
+            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto font-medium">Instantly crop, resize, and heavily compress your digital documents to meet the strict limits of Nigerian federal registration systems.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="space-y-3">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Select Document Type</h3>
+                
+                <button onclick="setPreset('jamb_photo')" id="btn-jamb_photo" class="w-full flex items-center justify-between p-4 rounded-xl border border-teal-500 bg-teal-50/50 dark:bg-teal-900/20 text-left transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-student text-2xl text-teal-600 dark:text-teal-400"></i>
+                        <div>
+                            <p class="font-bold text-sm">JAMB / UTME Photo</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">275x314px | 10KB - 30KB</p>
+                        </div>
+                    </div>
+                    <i class="ph ph-check-circle text-xl text-teal-600 dark:text-teal-400"></i>
+                </button>
+
+                <button onclick="setPreset('nimc_id')" id="btn-nimc_id" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-identification-card text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">NIMC National ID</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Auto Scale | Max 50KB</p>
+                        </div>
+                    </div>
+                </button>
+
+                <button onclick="setPreset('signature')" id="btn-signature" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i class="ph ph-signature text-2xl text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">Registration Signature</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Auto Scale | Max 20KB</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700">
+                <div class="flex items-center justify-center w-full mb-4">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-56 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <i class="ph ph-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
+                            <p class="mb-1 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Upload your image</span></p>
+                            <p class="text-xs text-gray-400">Supports JPEG, JPG, PNG</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
+                    </label>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-950 p-4 rounded-xl flex justify-between text-xs font-mono text-gray-500 mb-4">
+                    <div>Target Ratio: <span id="lbl-ratio" class="text-teal-600 font-bold">275x314px</span></div>
+                    <div>Target File Size: <span id="lbl-size" class="text-red-500 font-bold">10KB - 30KB</span></div>
+                </div>
+
+                <button id="process-btn" class="w-full text-white bg-teal-600 hover:bg-teal-700 font-medium rounded-xl text-md px-5 py-3.5 transition-colors shadow-lg shadow-teal-500/10">
+                    Apply Requirements & Download
+                </button>
+            </div>
+        </div>
+
+        <article class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-4">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-white">How to Resize Pictures for JAMB UTME Registration</h2>
+            <p>Applying for the Unified Tertiary Matriculation Examination through the Joint Admissions and Matriculation Board requires extreme precision when formatting digital files. The JAMB registration dashboard will instantly reject any digital photograph that does not adhere to its highly unusual exact target resolution of 275 by 314 pixels. Compounding this difficulty, the final exported file size must be meticulously compressed to weigh heavier than 10 kilobytes but strictly lighter than 30 kilobytes to clear the server validation checks.</p>
+            <p>Our localized client-side application completely automates this stressful process for Nigerian students and adult citizens accessing the NIMC databases. By selecting the corresponding exam preset on this page, the processor instantly maps your image paths to the required pixel grids and aggressively reduces the payload weight to satisfy the strict portal rules. All optimization scripts execute directly within your local browser environment, guaranteeing that your personal identification files are never transmitted to an external server.</p>
+        </article>
+    </main>
+
+    <footer class="text-center p-6 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-800 mt-12">
+        &copy; 2026 Hyper Compressor. Secured and executed entirely in-browser.
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (document.documentElement.classList.contains('dark')) {
+            lightIcon.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        const presets = {
+            jamb_photo: { ratio: '275x314px', size: '10KB - 30KB', id: 'btn-jamb_photo' },
+            nimc_id: { ratio: 'Auto Scale', size: 'Max 50KB', id: 'btn-nimc_id' },
+            signature: { ratio: 'Auto Scale', size: 'Max 20KB', id: 'btn-signature' }
+        };
+
+        function setPreset(type) {
+            Object.values(presets).forEach(p => {
+                const el = document.getElementById(p.id);
+                el.classList.remove('border-teal-500', 'bg-teal-50/50', 'dark:bg-teal-900/20');
+                el.querySelector('i.ph-check-circle')?.remove();
+            });
+
+            const active = presets[type];
+            const activeEl = document.getElementById(active.id);
+            activeEl.classList.add('border-teal-500', 'bg-teal-50/50', 'dark:bg-teal-900/20');
+            
+            const check = document.createElement('i');
+            check.className = "ph ph-check-circle text-xl text-teal-600 dark:text-teal-400";
+            activeEl.appendChild(check);
+
+            document.getElementById('lbl-ratio').innerText = active.ratio;
+            document.getElementById('lbl-size').innerText = active.size;
+        }
+    </script>
+</body>
+</html>
