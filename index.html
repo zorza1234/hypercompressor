@@ -195,36 +195,38 @@
     </nav>
 </header>
 
-    <main class="flex-grow flex flex-col items-center pt-12 pb-20 px-6">
+    <main class="flex-grow flex flex-col items-center pt-6 md:pt-12 pb-10 md:pb-20 px-4 md:px-6">
         
-        <!-- Brand Authority Hero Section -->
-        <div class="text-center max-w-4xl mb-10">
-            <span class="bg-hyper-100 text-hyper-800 text-xs font-bold px-3 py-1 rounded-full dark:bg-hyper-900 dark:text-hyper-300 uppercase tracking-wider mb-4 inline-block">The #1 Academic Compliance Tool</span>
-            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-gray-900 dark:text-white">
-                Global Exam Photo Resizer &mdash; <br class="hidden md:block" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-hyper-600 to-indigo-600 dark:from-hyper-400 dark:to-indigo-400">Strict Dimension Formatting</span>
+        <div class="text-center max-w-4xl mb-6 md:mb-10">
+            <span class="hidden md:inline-block bg-hyper-100 text-hyper-800 text-xs font-bold px-3 py-1 rounded-full dark:bg-hyper-900 dark:text-hyper-300 uppercase tracking-wider mb-4">The #1 Academic Compliance Tool</span>
+            
+            <h1 class="text-2xl md:text-5xl font-extrabold tracking-tight mb-2 md:mb-4 text-gray-900 dark:text-white leading-tight">
+                Global Exam Photo Resizer <br class="hidden md:block" /><span class="text-transparent bg-clip-text bg-gradient-to-r from-hyper-600 to-indigo-600 dark:from-hyper-400 dark:to-indigo-400">&mdash; Strict Dimension Formatting</span>
             </h1>
-            <p class="text-lg text-gray-500 dark:text-gray-400 mb-2 max-w-2xl mx-auto">
+            
+            <p class="hidden md:block text-lg text-gray-500 dark:text-gray-400 mb-2 max-w-2xl mx-auto">
                 Instantly fix portal rejection errors. Crop, resize, and compress your application photos securely to perfectly match rigid government specifications.
             </p>
-            <p class="text-sm font-medium text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1 mt-4">
-                <i class="ph-fill ph-lock-key text-hyper-500" aria-hidden="true"></i> Handled 100% in-browser. Zero server uploads.
+            
+            <p class="text-xs md:text-sm font-medium text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1 mt-2">
+                <i class="ph-fill ph-lock-key text-hyper-500" aria-hidden="true"></i> 100% In-Browser. Zero Uploads.
             </p>
         </div>
 
-        <!-- Main Compressor Engine -->
         <div class="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden transition-colors">
-            <div class="p-8 md:p-12">
-                <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex flex-col items-center justify-center py-16 px-4 cursor-pointer relative">
+            <div class="p-5 md:p-12">
+                
+                <div id="dropZone" class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 flex flex-col items-center justify-center py-8 md:py-16 px-4 cursor-pointer relative">
                     <input type="file" id="fileInput" aria-label="Upload Image File" accept="image/jpeg, image/png, image/webp" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     
-                    <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full shadow-sm flex items-center justify-center mb-4 text-hyper-500 group-hover:scale-110 transition-transform">
-                        <i class="ph ph-upload-simple text-3xl" aria-hidden="true"></i>
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-white dark:bg-gray-800 rounded-full shadow-sm flex items-center justify-center mb-3 md:mb-4 text-hyper-500 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-upload-simple text-2xl md:text-3xl" aria-hidden="true"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">Drop your raw image here</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 text-center max-w-xs">
-                        Prepare JPG or PNG for compression
+                    <h3 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-200 mb-1 md:mb-2">Drop image here</h3>
+                    <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 text-center max-w-xs">
+                        Supports JPG, PNG, WebP
                     </p>
-                    <button class="mt-6 px-6 py-2.5 bg-hyper-600 hover:bg-hyper-700 text-white font-medium rounded-full transition-colors relative z-20 pointer-events-none" aria-hidden="true">
+                    <button class="w-full md:w-auto mt-5 md:mt-6 px-6 py-3 bg-hyper-600 hover:bg-hyper-700 text-white font-medium rounded-xl md:rounded-full transition-colors relative z-20 pointer-events-none" aria-hidden="true">
                         Browse Files
                     </button>
                 </div>
