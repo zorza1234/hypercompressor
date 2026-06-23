@@ -1,113 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
+  <!-- Main Hub -->
   <url>
-    <loc>https://hypercompressor.online/</loc>
+    <loc>https://www.hypercompressor.online/</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
+  <!-- International Exam & Portal Pages (New SEO Silo) -->
   <url>
-    <loc>https://hypercompressor.online/indian-exams-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/indian-exams-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/nigeria-jamb-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/nigeria-jamb-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/brazil-gov-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/brazil-gov-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/unam-photo-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/unam-photo-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/sat-mexico-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/sat-mexico-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/bpsc-photo-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/bpsc-photo-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/lok-sewa-photo-resizer.html</loc>
+    <loc>https://www.hypercompressor.online/lok-sewa-photo-resizer.html</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
+  <!-- Legacy & Utility Pages -->
   <url>
-    <loc>https://hypercompressor.online/nta-document-compressor</loc>
+    <loc>https://www.hypercompressor.online/nta-document-compressor</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/compress-to-20kb</loc>
+    <loc>https://www.hypercompressor.online/compress-to-20kb</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/compress-to-50kb</loc>
+    <loc>https://www.hypercompressor.online/compress-to-50kb</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/compress-to-100kb</loc>
+    <loc>https://www.hypercompressor.online/compress-to-100kb</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/compress-to-200kb</loc>
+    <loc>https://www.hypercompressor.online/compress-to-200kb</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/compress-jpeg</loc>
+    <loc>https://www.hypercompressor.online/compress-jpeg</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/png-to-jpg</loc>
+    <loc>https://www.hypercompressor.online/png-to-jpg</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hypercompressor.online/exact-pixel-resizer</loc>
+    <loc>https://www.hypercompressor.online/exact-pixel-resizer</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
