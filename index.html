@@ -41,6 +41,12 @@ gtag('js',new Date());gtag('config','G-SQHRL04M0S');
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+  tailwind = window.tailwind || {};
+  tailwind.config = {
+    darkMode: 'class'
+  };
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 
@@ -92,6 +98,33 @@ body.dark{--paper:#0b1118;--card:#141d28;--ink:#f4f0e8;--ink-soft:#cbd3dc;--line
 .trust{display:flex;align-items:center;gap:7px;margin-top:14px;color:var(--success);font-size:.77rem;font-weight:600}
 .tool-card{background:var(--card);border:1px solid var(--line);border-radius:9px;box-shadow:0 5px 18px rgba(27,42,74,.05);overflow:hidden}
 .dark .tool-card{box-shadow:none}.tool-body{padding:18px}
+/* Editor: keep light mode readable even when the OS/browser prefers dark mode */
+.tool-body #editorZone .text-gray-700{color:#40506a!important}
+.tool-body #editorZone .text-gray-500{color:#6d6a64!important}
+.tool-body #editorZone .text-gray-400{color:#7b8490!important}
+.tool-body #editorZone .bg-gray-50{background:#fdfcf8!important}
+.tool-body #editorZone .bg-gray-200{background:#d8d3ca!important}
+.tool-body #editorZone .border-gray-100{border-color:#e5dfd5!important}
+.tool-body #editorZone .border-gray-200{border-color:#ddd5c8!important}
+.tool-body #editorZone .bg-blue-50{background:#f4e8e4!important}
+.tool-body #editorZone .border-blue-100{border-color:#e7c9c1!important}
+.tool-body #editorZone .text-blue-600,.tool-body #editorZone .text-blue-700{color:#b74736!important}
+.tool-body #editorZone .text-green-600{color:#526b58!important}
+.tool-body #editorZone .bg-gray-900{background:#1b2a4a!important;color:#fff!important}
+.tool-body #editorZone .bg-gray-900:hover{background:#14213b!important}
+.dark .tool-body #editorZone .text-gray-700{color:#d8e0e8!important}
+.dark .tool-body #editorZone .text-gray-500{color:#aeb9c6!important}
+.dark .tool-body #editorZone .text-gray-400{color:#8f9dab!important}
+.dark .tool-body #editorZone .bg-gray-50{background:#101821!important}
+.dark .tool-body #editorZone .bg-gray-200{background:#2b3948!important}
+.dark .tool-body #editorZone .border-gray-100,.dark .tool-body #editorZone .border-gray-200{border-color:#2b3948!important}
+.dark .tool-body #editorZone .bg-blue-50{background:#182733!important}
+.dark .tool-body #editorZone .border-blue-100{border-color:#2b3948!important}
+.dark .tool-body #editorZone .text-blue-600,.dark .tool-body #editorZone .text-blue-700{color:#d06450!important}
+.dark .tool-body #editorZone .text-green-600{color:#9ab29e!important}
+.dark .tool-body #editorZone .bg-gray-900{background:#d06450!important;color:#fff!important}
+.dark .tool-body #editorZone .bg-gray-900:hover{background:#df715b!important}
+
 .tool-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.75rem;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em}
 #dropZone{min-height:270px;border:1.5px dashed #bcb5a9;border-radius:7px;background:#fdfcf8;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 18px;text-align:center;cursor:pointer;position:relative;transition:.18s}
 .dark #dropZone{background:#131b24;border-color:#566170}
