@@ -386,49 +386,189 @@ h1{
 </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded',()=>{
-  const themeToggle=document.getElementById('themeToggle');
-  const themeIcon=document.getElementById('themeIcon');
-  const body=document.body;
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const fileInput = document.getElementById('dropzone-file');
+  const processBtn = document.getElementById('process-btn');
+  const dropzone = document.querySelector('.dropzone');
+  const dropContent = document.querySelector('.drop-content');
+  const body = document.body;
 
   function setThemeIcon(){
-    const dark=body.classList.contains('dark');
-    themeIcon.innerHTML=dark
+    const dark = body.classList.contains('dark');
+    themeIcon.innerHTML = dark
       ? '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>'
       : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
   }
 
-  if(localStorage.getItem('color-theme')==='dark') body.classList.add('dark');
+  const savedTheme = localStorage.getItem('color-theme');
+  if(savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    body.classList.add('dark');
+  }
   setThemeIcon();
 
-  themeToggle.addEventListener('click',()=>{
+  themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark');
-    localStorage.setItem('color-theme',body.classList.contains('dark')?'dark':'light');
+    localStorage.setItem('color-theme', body.classList.contains('dark') ? 'dark' : 'light');
     setThemeIcon();
   });
 
-  const presets={
-    photo:{w:'300px',h:'300px',size:'100KB',id:'btn-photo'},
-    signature:{w:'300px',h:'80px',size:'60KB',id:'btn-signature'}
+  const presets = {
+    photo: { w:300, h:300, size:100, id:'btn-photo', label:'BCS Photo' },
+    signature: { w:300, h:80, size:60, id:'btn-signature', label:'BCS Signature' }
   };
+  let currentPreset = 'photo';
+  let selectedFile = null;
 
-  window.setPreset=function(type){
-    Object.values(presets).forEach(p=>{
-      const el=document.getElementById(p.id);
+  window.setPreset = function(type){
+    currentPreset = type;
+    Object.values(presets).forEach(p => {
+      const el = document.getElementById(p.id);
       el.classList.remove('active');
       el.querySelector('.preset-check')?.remove();
     });
-    const active=presets[type];
-    const activeEl=document.getElementById(active.id);
+    const active = presets[type];
+    const activeEl = document.getElementById(active.id);
     activeEl.classList.add('active');
-    const check=document.createElement('i');
-    check.className='ph ph-check-circle preset-check';
+    const check = document.createElement('i');
+    check.className = 'ph ph-check-circle preset-check';
     activeEl.appendChild(check);
-    document.getElementById('lbl-width').textContent=active.w;
-    document.getElementById('lbl-height').textContent=active.h;
-    document.getElementById('lbl-size').textContent=active.size;
+    document.getElementById('lbl-width').textContent = active.w + 'px';
+    document.getElementById('lbl-height').textContent = active.h + 'px';
+    document.getElementById('lbl-size').textContent = active.size + 'KB';
   };
+
+  fileInput.addEventListener('change', () => {
+    selectedFile = fileInput.files?.[0] || null;
+    if (!selectedFile) return;
+    dropContent.querySelector('h2').textContent = selectedFile.name;
+    dropContent.querySelector('p').textContent = `${(selectedFile.size / 1024).toFixed(1)} KB selected · Click to change`;
+  });
+
+  // Also support drag-and-drop.
+  ['dragenter','dragover'].forEach(eventName => {
+    dropzone.addEventListener(eventName, e => {
+      e.preventDefault();
+      dropzone.classList.add('dragging');
+    });
+  });
+  ['dragleave','drop'].forEach(eventName => {
+    dropzone.addEventListener(eventName, e => {
+      e.preventDefault();
+      dropzone.classList.remove('dragging');
+    });
+  });
+  dropzone.addEventListener('drop', e => {
+    const file = e.dataTransfer.files?.[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    selectedFile = file;
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    fileInput.files = dt.files;
+    dropContent.querySelector('h2').textContent = file.name;
+    dropContent.querySelector('p').textContent = `${(file.size / 1024).toFixed(1)} KB selected · Click to change`;
+  });
+
+  function loadImage(file){
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Could not read the image.')); };
+      img.src = url;
+    });
+  }
+
+  function canvasFromImage(img, width, height){
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, width, height);
+
+    // Center-crop to the exact target aspect ratio, then resize.
+    const sourceRatio = img.naturalWidth / img.naturalHeight;
+    const targetRatio = width / height;
+    let sx = 0, sy = 0, sw = img.naturalWidth, sh = img.naturalHeight;
+    if (sourceRatio > targetRatio) {
+      sw = Math.round(img.naturalHeight * targetRatio);
+      sx = Math.round((img.naturalWidth - sw) / 2);
+    } else if (sourceRatio < targetRatio) {
+      sh = Math.round(img.naturalWidth / targetRatio);
+      sy = Math.round((img.naturalHeight - sh) / 2);
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, width, height);
+    return canvas;
+  }
+
+  function canvasBlob(canvas, quality){
+    return new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+  }
+
+  async function makeUnderLimit(canvas, limitKB){
+    const limitBytes = limitKB * 1024;
+    let low = 0.05, high = 0.95, best = null;
+
+    // Binary-search JPEG quality for the largest quality that fits.
+    for(let i=0; i<10; i++){
+      const quality = (low + high) / 2;
+      const blob = await canvasBlob(canvas, quality);
+      if(!blob) throw new Error('Your browser could not create the output image.');
+      if(blob.size <= limitBytes){
+        best = blob;
+        low = quality;
+      } else {
+        high = quality;
+      }
+    }
+
+    if(best) return best;
+
+    // Very small target files can require the lowest JPEG quality.
+    const minimum = await canvasBlob(canvas, 0.05);
+    if(minimum && minimum.size <= limitBytes) return minimum;
+    throw new Error(`This image cannot be compressed below ${limitKB}KB at the required ${canvas.width}×${canvas.height}px dimensions.`);
+  }
+
+  processBtn.addEventListener('click', async () => {
+    if(!selectedFile){
+      fileInput.click();
+      return;
+    }
+
+    const preset = presets[currentPreset];
+    const originalText = processBtn.textContent;
+    processBtn.disabled = true;
+    processBtn.textContent = 'Processing…';
+
+    try {
+      const img = await loadImage(selectedFile);
+      const canvas = canvasFromImage(img, preset.w, preset.h);
+      const blob = await makeUnderLimit(canvas, preset.size);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `hypercompressor-${currentPreset}-${preset.w}x${preset.h}.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+      processBtn.textContent = `Downloaded · ${(blob.size / 1024).toFixed(1)}KB`;
+      setTimeout(() => { processBtn.textContent = originalText; }, 2200);
+    } catch(error) {
+      alert(error.message || 'Something went wrong while processing the image.');
+      processBtn.textContent = originalText;
+    } finally {
+      processBtn.disabled = false;
+    }
+  });
+
+  setPreset('photo');
 });
+</script>
 </script>
 </body>
 </html>
