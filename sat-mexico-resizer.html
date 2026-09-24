@@ -1,198 +1,544 @@
 <!DOCTYPE html>
 <html lang="es-MX" class="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-2732959369585690">
-    <!-- Laser-Targeted SEO Meta Tags for SAT / e.firma -->
-    <title>Redimensionar Foto para SAT y e.firma | Hyper Compressor</title>
-    <meta name="description" content="Comprimir foto para SAT. Herramienta online gratuita para ajustar y reducir fotos de credencial a 420x540 píxeles y menos de 50 KB para trámites de e.firma y RFC.">
-    <link rel="canonical" href="https://www.hypercompressor.online/sat-mexico-resizer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-2732959369585690">
 
-    <!-- Error-Free Favicon Link -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+<title>SAT Photo Resizer Mexico — 420x540 & 50KB | HyperCompressor</title>
+<meta name="description" content="Resize and compress photos for SAT and e.firma requirements. Prepare credential photos at 420x540 pixels and under 50KB, or compress INE and proof-of-address files in your browser.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="HyperCompressor">
+<link rel="canonical" href="https://www.hypercompressor.online/sat-mexico-resizer">
+<meta name="theme-color" content="#E9E2D6">
 
-    <!-- Tailwind CSS Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: { extend: {} }
-      }
-    </script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.hypercompressor.online/sat-mexico-resizer">
+<meta property="og:title" content="SAT Photo Resizer Mexico — 420x540 & 50KB | HyperCompressor">
+<meta property="og:description" content="Resize and compress SAT/e.firma images to the required pixel and file-size limits. Processed entirely in your browser.">
+<meta property="og:image" content="https://www.hypercompressor.online/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SAT Photo Resizer Mexico | HyperCompressor">
+<meta name="twitter:description" content="Prepare SAT and e.firma images to the required size and file limits in your browser.">
+<meta name="twitter:image" content="https://www.hypercompressor.online/og-image.jpg">
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="icon" type="image/png" href="/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 
-    <!-- Dark Mode State Handler -->
-    <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"SAT Photo Resizer Mexico",
+  "url":"https://www.hypercompressor.online/sat-mexico-resizer",
+  "description":"Browser-based image resizer and compressor for SAT and e.firma document preparation.",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"HyperCompressor","item":"https://www.hypercompressor.online/"},
+    {"@type":"ListItem","position":2,"name":"SAT Mexico Resizer","item":"https://www.hypercompressor.online/sat-mexico-resizer"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"What size is the SAT credential photo preset?",
+      "acceptedAnswer":{"@type":"Answer","text":"The SAT credential photo preset is configured for 420x540 pixels with a maximum file size of 50KB."}
+    },
+    {
+      "@type":"Question",
+      "name":"Are my SAT documents uploaded to a server?",
+      "acceptedAnswer":{"@type":"Answer","text":"The image processing is performed in your browser. The page does not need to upload the selected image to a processing server."}
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script>
+(function(){
+  const saved = localStorage.getItem('color-theme');
+  if(saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+    document.documentElement.classList.add('dark');
+  }
+})();
+</script>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#1b2a4a;--ink-soft:#40506a;--paper:#f8f7f3;--card:#fffdf9;
+  --line:#ddd5c8;--muted:#6d6a64;--accent:#c65340;--accent-dark:#b74736;
+  --accent-soft:#f4e3de;--success:#526b58;--cream:#e9e2d6;
+}
+html.dark{
+  --paper:#0b1118;--card:#141d28;--ink:#f4f0e8;--ink-soft:#cbd3dc;
+  --line:#2b3948;--muted:#aeb9c6;--accent:#d06450;--accent-dark:#df715b;
+  --accent-soft:#34231f;--success:#9ab29e;--cream:#111923;
+}
+body{
+  margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;
+  transition:background-color .2s,color .2s;min-height:100vh;
+}
+.site-header{
+  position:sticky;top:0;z-index:50;background:rgba(233,226,214,.97);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+html.dark .site-header{background:rgba(17,25,35,.97);border-bottom-color:#293645}
+.header-inner{
+  max-width:1120px;margin:auto;min-height:62px;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.header-logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink);font-weight:700}
+.logo-img{width:29px;height:29px;object-fit:contain}
+.header-nav{display:flex;align-items:center;gap:4px}
+.nav-link{padding:9px 11px;border-radius:6px;color:var(--ink-soft);text-decoration:none;font-size:.84rem;font-weight:500}
+.nav-link:hover{background:#e5ded3;color:var(--ink)}
+html.dark .nav-link{color:#d5dce4}
+html.dark .nav-link:hover{background:#1b2632;color:#fff}
+#themeToggle{
+  width:36px;height:36px;border:1px solid var(--line);border-radius:6px;
+  background:var(--card);color:var(--ink-soft);cursor:pointer;
+}
+html.dark #themeToggle{background:#17212d;border-color:#354454;color:#e7e1d7}
+.page{max-width:1120px;margin:auto;padding:34px 20px 60px}
+.hero{display:grid;grid-template-columns:1fr 1.12fr;gap:34px;align-items:center;margin-bottom:34px}
+.hero-copy{padding:8px 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-size:.74rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;
+}
+.hero h1{margin:0 0 13px;font-size:clamp(1.9rem,4vw,2.7rem);line-height:1.12;letter-spacing:-.025em}
+.hero p{margin:0;max-width:600px;color:var(--ink-soft);line-height:1.7}
+html.dark .hero p{color:#cbd3dc}
+.trust{margin-top:18px;color:var(--success);font-size:.84rem;font-weight:600;display:flex;align-items:center;gap:7px}
+.tool-card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:20px;box-shadow:0 8px 24px rgba(27,42,74,.06);
+}
+html.dark .tool-card{box-shadow:none}
+.tool-layout{display:grid;grid-template-columns:210px 1fr;gap:18px}
+.preset-title{
+  margin:0 0 10px;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);font-weight:700;
+}
+.preset{
+  width:100%;display:flex;align-items:center;gap:11px;padding:13px;text-align:left;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);
+  border-radius:8px;margin-bottom:9px;cursor:pointer;transition:.15s;
+}
+.preset:hover{background:#f5f0e8;border-color:#cfc5b7}
+html.dark .preset:hover{background:#192432;border-color:#3a4a5b}
+.preset.active{border-color:var(--accent);background:var(--accent-soft)}
+.preset-icon{
+  width:35px;height:35px;display:grid;place-items:center;border-radius:6px;
+  background:var(--accent-soft);color:var(--accent);flex:none;
+}
+.preset strong{font-size:.82rem;display:block;margin-bottom:3px}
+.preset small{font-size:.68rem;color:var(--muted)}
+.preset-check{margin-left:auto;color:var(--accent)}
+.dropzone{
+  min-height:240px;border:1.5px dashed #cfc7ba;border-radius:9px;
+  background:#fbfaf7;display:flex;align-items:center;justify-content:center;
+  text-align:center;cursor:pointer;transition:.15s;padding:20px;
+}
+.dropzone:hover{border-color:var(--accent);background:#f7f1eb}
+html.dark .dropzone{background:#101821;border-color:#354555}
+html.dark .dropzone:hover{background:#151f2a;border-color:var(--accent)}
+.upload-icon{
+  width:48px;height:48px;display:grid;place-items:center;border-radius:8px;
+  margin:0 auto 10px;background:var(--accent-soft);color:var(--accent);font-size:25px;
+}
+.dropzone strong{display:block;font-size:.9rem}
+.dropzone span{display:block;color:var(--muted);font-size:.74rem;margin-top:5px}
+input[type=file]{display:none}
+.spec-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;
+}
+.spec{
+  border:1px solid var(--line);background:#f5f1ea;border-radius:7px;padding:11px;
+}
+html.dark .spec{background:#111923;border-color:#2b3948}
+.spec-label{display:block;color:var(--muted);font-size:.67rem;text-transform:uppercase;letter-spacing:.06em}
+.spec-value{
+  display:block;font-family:"Roboto Mono",monospace;color:var(--ink);font-size:.82rem;margin-top:3px;
+}
+.spec-value.accent{color:var(--accent);font-weight:700}
+.file-status{min-height:20px;color:var(--muted);font-size:.75rem;margin:3px 0 10px}
+.preview{
+  display:none;margin-top:12px;border:1px solid var(--line);border-radius:8px;
+  overflow:hidden;background:#f1eee7;
+}
+html.dark .preview{background:#0e151d}
+.preview img{display:block;max-width:100%;max-height:180px;margin:auto}
+.process-btn{
+  width:100%;border:0;border-radius:7px;background:var(--accent);color:white;
+  padding:13px 16px;font:600 .88rem Inter;cursor:pointer;transition:.15s;
+}
+.process-btn:hover{background:var(--accent-dark)}
+.process-btn:disabled{opacity:.55;cursor:not-allowed}
+.result{
+  display:none;margin-top:12px;padding:12px;border:1px solid var(--line);
+  border-radius:8px;background:var(--card);
+}
+.result-row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.result-title{font-size:.78rem;font-weight:700}
+.result-meta{font-family:"Roboto Mono",monospace;color:var(--muted);font-size:.7rem}
+.download-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:9px;text-decoration:none;
+  color:white;background:var(--ink);padding:8px 11px;border-radius:6px;font-size:.76rem;font-weight:600;
+}
+html.dark .download-link{background:#e7e1d7;color:#101821}
+.info{
+  margin-top:30px;padding:22px;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;
+}
+.info h2{margin:0 0 10px;font-size:1.1rem}
+.info p{color:var(--ink-soft);line-height:1.75;font-size:.86rem;margin:8px 0}
+html.dark .info p{color:#cbd3dc}
+.faq{margin-top:18px}
+.faq details{border-top:1px solid var(--line);padding:13px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:.85rem}
+.faq p{margin-bottom:0}
+.site-footer{border-top:1px solid var(--line);color:var(--muted);font-size:.72rem;padding:22px 20px;text-align:center}
+@media(max-width:800px){
+  .hero{grid-template-columns:1fr;gap:22px}
+  .tool-layout{grid-template-columns:1fr}
+  .page{padding-top:25px}
+}
+@media(max-width:560px){
+  .header-inner{padding:0 14px}
+  .header-logo span{font-size:.92rem}
+  .nav-link{font-size:.76rem;padding:8px 7px}
+  .hero h1{font-size:1.8rem}
+  .tool-card{padding:14px}
+  .spec-row{grid-template-columns:1fr}
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
 
-    <!-- Navbar -->
-    <nav class="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 shadow-sm">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <a href="/" class="flex items-center space-x-2">
-                <i class="ph-fill ph-aperture text-3xl text-emerald-600 dark:text-emerald-500"></i>
-                <span class="text-xl font-bold tracking-tight">Hyper Compressor</span>
-            </a>
-            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
-                <i id="theme-toggle-dark-icon" class="ph ph-moon text-xl hidden"></i>
-                <i id="theme-toggle-light-icon" class="ph ph-sun text-xl hidden"></i>
-            </button>
-        </div>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="header-logo" aria-label="HyperCompressor home">
+      <img src="/favicon-96x96.png" class="logo-img" alt="HyperCompressor">
+      <span>HyperCompressor</span>
+    </a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a class="nav-link" href="/#tools">Tools</a>
+      <a class="nav-link" href="/blog">Blog</a>
+      <a class="nav-link" href="/#how-it-works">How it works</a>
+      <button id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <i id="moonIcon" class="ph ph-moon"></i>
+        <i id="sunIcon" class="ph ph-sun" style="display:none"></i>
+      </button>
     </nav>
+  </div>
+</header>
 
-    <!-- Main Section -->
-    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-6">
-        
-        <!-- Bilingual Header Targeted at Tax/Adult Demographics -->
-        <div class="text-center mb-8">
-            <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-emerald-900 dark:text-emerald-300">Trámites SAT y RFC Helper</span>
-            <h1 class="text-3xl font-extrabold mt-3 mb-2">Redimensionador de Fotos para SAT</h1>
-            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto font-medium">Bilingual Tool: Comprima y ajuste sus documentos oficiales para los requisitos del portal del SAT y trámites de e.firma.</p>
-        </div>
+<main class="page">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><i class="ph ph-identification-card"></i> SAT / RFC / e.firma</div>
+      <h1>SAT Photo Resizer for Mexico</h1>
+      <p>Resize and compress credential photos and supporting documents to the target dimensions and file-size limits configured for SAT and e.firma workflows. Processing happens directly in your browser.</p>
+      <div class="trust"><i class="ph ph-shield-check"></i> 100% in-browser · No image upload required</div>
+    </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- Left Side: Portal Preset Selector Buttons -->
-            <div class="space-y-3">
-                <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Tipo de Documento / Select Type</h3>
-                
-                <button onclick="setPreset('sat_photo')" id="btn-sat_photo" class="w-full flex items-center justify-between p-4 rounded-xl border border-emerald-500 bg-emerald-50/50 dark:bg-emerald-900/20 text-left transition-all">
-                    <div class="flex items-center space-x-3">
-                        <i class="ph ph-user-focus text-2xl text-emerald-600 dark:text-emerald-400"></i>
-                        <div>
-                            <p class="font-bold text-sm">Foto Credencial (SAT)</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">420x540px | Max 50KB</p>
-                        </div>
-                    </div>
-                    <i class="ph ph-check-circle text-xl text-emerald-600 dark:text-emerald-400"></i>
-                </button>
+    <section class="tool-card" aria-label="SAT image resizer">
+      <div class="tool-layout">
+        <aside>
+          <p class="preset-title">Select document type</p>
 
-                <button onclick="setPreset('ine')" id="btn-ine" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-                    <div class="flex items-center space-x-3">
-                        <i class="ph ph-identification-card text-2xl text-gray-500"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">Identificación (INE)</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">Auto Scale | Max 300KB</p>
-                        </div>
-                    </div>
-                </button>
+          <button class="preset active" id="btn-sat_photo" type="button" onclick="setPreset('sat_photo')">
+            <span class="preset-icon"><i class="ph ph-user-focus"></i></span>
+            <span><strong>Foto Credencial (SAT)</strong><small>420×540 px · max 50KB</small></span>
+            <i class="ph ph-check-circle preset-check"></i>
+          </button>
 
-                <button onclick="setPreset('domicilio')" id="btn-domicilio" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-                    <div class="flex items-center space-x-3">
-                        <i class="ph ph-map-pin-line text-2xl text-gray-500"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">Comp. de Domicilio</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">Auto Scale | Max 500KB</p>
-                        </div>
-                    </div>
-                </button>
+          <button class="preset" id="btn-ine" type="button" onclick="setPreset('ine')">
+            <span class="preset-icon"><i class="ph ph-identification-card"></i></span>
+            <span><strong>Identificación (INE)</strong><small>Auto scale · max 300KB</small></span>
+          </button>
+
+          <button class="preset" id="btn-domicilio" type="button" onclick="setPreset('domicilio')">
+            <span class="preset-icon"><i class="ph ph-map-pin-line"></i></span>
+            <span><strong>Comp. de Domicilio</strong><small>Auto scale · max 500KB</small></span>
+          </button>
+        </aside>
+
+        <div>
+          <label class="dropzone" id="dropZone" for="dropzone-file">
+            <div>
+              <div class="upload-icon"><i class="ph ph-upload-simple"></i></div>
+              <strong>Choose an image or drop it here</strong>
+              <span>JPEG, JPG, PNG or WebP</span>
+              <span id="fileName">No file selected</span>
             </div>
+          </label>
+          <input id="dropzone-file" type="file" accept="image/jpeg,image/png,image/webp">
 
-            <!-- Right Side: Interaction Container -->
-            <div class="md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700">
-                <div class="flex items-center justify-center w-full mb-4">
-                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-56 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <i class="ph ph-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
-                            <p class="mb-1 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Subir archivo (Upload)</span></p>
-                            <p class="text-xs text-gray-400">Suporta JPEG, JPG, PNG</p>
-                        </div>
-                        <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
-                    </label>
-                </div>
+          <div class="spec-row">
+            <div class="spec"><span class="spec-label">Target</span><span id="lbl-ratio" class="spec-value accent">420×540 px</span></div>
+            <div class="spec"><span class="spec-label">Maximum file size</span><span id="lbl-size" class="spec-value accent">50KB</span></div>
+          </div>
 
-                <div class="bg-gray-50 dark:bg-gray-950 p-4 rounded-xl flex justify-between text-xs font-mono text-gray-500 mb-4">
-                    <div>Resolución (Target): <span id="lbl-ratio" class="text-emerald-600 font-bold">420x540px</span></div>
-                    <div>Tamanho Máximo (Size): <span id="lbl-size" class="text-red-500 font-bold">50KB</span></div>
-                </div>
+          <div id="fileStatus" class="file-status" role="status" aria-live="polite"></div>
 
-                <button id="process-btn" class="w-full text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-xl text-md px-5 py-3.5 transition-colors shadow-lg shadow-emerald-500/10">
-                    Comprimir y Descargar (Download)
-                </button>
+          <div id="preview" class="preview"><img id="previewImg" alt="Selected image preview"></div>
+
+          <button id="process-btn" class="process-btn" type="button" disabled>
+            <i class="ph ph-download-simple"></i> Resize & Download
+          </button>
+
+          <div id="result" class="result" aria-live="polite">
+            <div class="result-row">
+              <span class="result-title">Processed image</span>
+              <span id="resultMeta" class="result-meta"></span>
             </div>
+            <a id="downloadLink" class="download-link" download>
+              <i class="ph ph-download-simple"></i> Download file
+            </a>
+          </div>
         </div>
+      </div>
+    </section>
+  </section>
 
-        <!-- Heavy SEO Text Block Supporting Page Indexing -->
-        <article class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-4">
-            <h2 class="text-lg font-bold text-gray-900 dark:text-white">Requisitos de Fotografía para e.firma y RFC (SAT)</h2>
-            <p>Al realizar trámites fiscales ante el Servicio de Administración Tributaria (SAT), como la renovación de la e.firma o la actualización del RFC, el sistema exige que los documentos digitales cumplan con estándares de validación estrictos. La fotografía tamaño credencial debe ajustarse a una resolución de 420x540 píxeles y estar fuertemente comprimida por debajo del límite máximo de 50 KB. Las identificaciones oficiales (INE) y los comprobantes de domicilio también deben reducirse para evitar rechazos en el portal.</p>
-            <p><strong>English Guide:</strong> Interacting with Mexico's SAT (Tax Authority) portal requires aggressive image compression. Digital credential photos must be exactly 420x540 pixels and severely optimized to weigh less than 50KB to pass the automated validation for e.firma and tax ID procedures. Our client-side application securely processes these files entirely in your browser, ensuring your sensitive tax documentation is never uploaded to a third-party server.</p>
-        </article>
-    </main>
+  <article class="info">
+    <h2>SAT and e.firma image requirements</h2>
+    <p>For the SAT credential-photo preset on this page, the configured target is <strong>420×540 pixels</strong> with a maximum file size of <strong>50KB</strong>. The other presets are configured for browser-side compression with maximum sizes of 300KB for an INE document and 500KB for a proof-of-address document.</p>
+    <p>The image is read and processed locally by your browser. The page does not need to upload the selected image to a processing server.</p>
 
-    <!-- Footer -->
-    <footer class="text-center p-6 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-800 mt-12">
-        &copy; 2026 Hyper Compressor. Procesado localmente en su navegador. Executed entirely in-browser.
-    </footer>
+    <div class="faq">
+      <details>
+        <summary>How do I resize a SAT photo to 420×540 pixels?</summary>
+        <p>Select “Foto Credencial (SAT)”, choose your image, then click “Resize & Download”. The tool crops the image to the 420×540 target and compresses the output toward the 50KB limit.</p>
+      </details>
+      <details>
+        <summary>Can I use the tool for INE or proof-of-address files?</summary>
+        <p>Yes. Select the relevant preset. The tool keeps the document's aspect ratio and compresses it toward the configured maximum file size.</p>
+      </details>
+    </div>
+  </article>
+</main>
 
-    <!-- Scripts -->
-    <script>
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
+<footer class="site-footer">
+  © 2026 HyperCompressor · Processed entirely in your browser.
+</footer>
 
-        if (document.documentElement.classList.contains('dark')) {
-            lightIcon.classList.remove('hidden');
-        } else {
-            darkIcon.classList.remove('hidden');
-        }
+<script>
+const themeToggle = document.getElementById('themeToggle');
+const moonIcon = document.getElementById('moonIcon');
+const sunIcon = document.getElementById('sunIcon');
 
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
+function updateThemeIcon(){
+  const dark = document.documentElement.classList.contains('dark');
+  moonIcon.style.display = dark ? 'none' : 'inline-block';
+  sunIcon.style.display = dark ? 'inline-block' : 'none';
+}
+updateThemeIcon();
 
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            }
-        });
+themeToggle.addEventListener('click', () => {
+  const dark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('color-theme', dark ? 'dark' : 'light');
+  updateThemeIcon();
+});
 
-        const presets = {
-            sat_photo: { ratio: '420x540px', size: '50KB', id: 'btn-sat_photo' },
-            ine: { ratio: 'Auto Scale', size: '300KB', id: 'btn-ine' },
-            domicilio: { ratio: 'Auto Scale', size: '500KB', id: 'btn-domicilio' }
-        };
+const presets = {
+  sat_photo: { ratio:'420×540 px', sizeKB:50, id:'btn-sat_photo', crop:true, label:'SAT credential photo' },
+  ine: { ratio:'Auto scale', sizeKB:300, id:'btn-ine', crop:false, label:'INE document' },
+  domicilio: { ratio:'Auto scale', sizeKB:500, id:'btn-domicilio', crop:false, label:'Proof of address' }
+};
+let currentPreset = 'sat_photo';
+let selectedFile = null;
+let objectUrl = null;
+let resultUrl = null;
 
-        function setPreset(type) {
-            Object.values(presets).forEach(p => {
-                const el = document.getElementById(p.id);
-                el.classList.remove('border-emerald-500', 'bg-emerald-50/50', 'dark:bg-emerald-900/20');
-                el.querySelector('i.ph-check-circle')?.remove();
-            });
+function setPreset(type){
+  currentPreset = type;
+  Object.entries(presets).forEach(([key,p]) => {
+    const el = document.getElementById(p.id);
+    el.classList.toggle('active', key === type);
+    const oldCheck = el.querySelector('.preset-check');
+    if(oldCheck) oldCheck.remove();
+    if(key === type){
+      const check = document.createElement('i');
+      check.className = 'ph ph-check-circle preset-check';
+      el.appendChild(check);
+    }
+  });
+  const p = presets[type];
+  document.getElementById('lbl-ratio').textContent = p.ratio;
+  document.getElementById('lbl-size').textContent = p.sizeKB + 'KB';
+  document.getElementById('result').style.display = 'none';
+  if(resultUrl){ URL.revokeObjectURL(resultUrl); resultUrl=null; }
+  if(selectedFile){
+    document.getElementById('fileStatus').textContent = selectedFile.name + ' · ready to process';
+  }
+}
 
-            const active = presets[type];
-            const activeEl = document.getElementById(active.id);
-            activeEl.classList.add('border-emerald-500', 'bg-emerald-50/50', 'dark:bg-emerald-900/20');
-            
-            const check = document.createElement('i');
-            check.className = "ph ph-check-circle text-xl text-emerald-600 dark:text-emerald-400";
-            activeEl.appendChild(check);
+const input = document.getElementById('dropzone-file');
+const dropZone = document.getElementById('dropZone');
+const processBtn = document.getElementById('process-btn');
 
-            document.getElementById('lbl-ratio').innerText = active.ratio;
-            document.getElementById('lbl-size').innerText = active.size;
-        }
-    </script>
+input.addEventListener('change', e => {
+  const file = e.target.files && e.target.files[0];
+  if(file) loadFile(file);
+});
+
+['dragenter','dragover'].forEach(evt => dropZone.addEventListener(evt, e => {
+  e.preventDefault(); e.stopPropagation();
+  dropZone.style.borderColor = 'var(--accent)';
+}));
+['dragleave','drop'].forEach(evt => dropZone.addEventListener(evt, e => {
+  e.preventDefault(); e.stopPropagation();
+  dropZone.style.borderColor = '';
+}));
+dropZone.addEventListener('drop', e => {
+  const file = e.dataTransfer.files && e.dataTransfer.files[0];
+  if(file) loadFile(file);
+});
+
+function loadFile(file){
+  if(!file.type.startsWith('image/')){
+    document.getElementById('fileStatus').textContent = 'Please select an image file.';
+    return;
+  }
+  selectedFile = file;
+  if(objectUrl) URL.revokeObjectURL(objectUrl);
+  objectUrl = URL.createObjectURL(file);
+  const img = document.getElementById('previewImg');
+  img.src = objectUrl;
+  document.getElementById('preview').style.display = 'block';
+  document.getElementById('fileName').textContent = file.name;
+  document.getElementById('fileStatus').textContent = `${(file.size/1024).toFixed(1)}KB · ready to process`;
+  processBtn.disabled = false;
+  document.getElementById('result').style.display = 'none';
+}
+
+processBtn.addEventListener('click', async () => {
+  if(!selectedFile) return;
+  processBtn.disabled = true;
+  processBtn.innerHTML = '<i class="ph ph-spinner"></i> Processing…';
+  document.getElementById('fileStatus').textContent = 'Processing locally in your browser…';
+
+  try{
+    const blob = await processImage(selectedFile, presets[currentPreset]);
+    const kb = blob.size / 1024;
+    if(resultUrl) URL.revokeObjectURL(resultUrl);
+    resultUrl = URL.createObjectURL(blob);
+
+    const link = document.getElementById('downloadLink');
+    link.href = resultUrl;
+    link.download = buildFilename(selectedFile.name, currentPreset);
+    document.getElementById('resultMeta').textContent = `${kb.toFixed(1)}KB`;
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('fileStatus').textContent =
+      kb <= presets[currentPreset].sizeKB ? 'Done — file is within the configured size limit.' :
+      'Done — browser compression reached its practical limit; file may still exceed the target.';
+  }catch(err){
+    console.error(err);
+    document.getElementById('fileStatus').textContent = 'Could not process this image. Please try another file.';
+  }finally{
+    processBtn.disabled = false;
+    processBtn.innerHTML = '<i class="ph ph-download-simple"></i> Resize & Download';
+  }
+});
+
+function buildFilename(name,type){
+  const base = name.replace(/\.[^.]+$/,'').replace(/[^a-z0-9_-]+/gi,'-').replace(/^-+|-+$/g,'') || 'image';
+  return `${base}-${type}.jpg`;
+}
+
+function loadImage(file){
+  return new Promise((resolve,reject)=>{
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Image could not be read')); };
+    img.src = url;
+  });
+}
+
+function canvasBlob(canvas, quality){
+  return new Promise((resolve,reject)=>{
+    canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Encoding failed')), 'image/jpeg', quality);
+  });
+}
+
+async function processImage(file, preset){
+  const img = await loadImage(file);
+  if(preset.crop){
+    return await makeSatPhoto(img, preset.sizeKB * 1024);
+  }
+  return await makeAutoScale(img, preset.sizeKB * 1024);
+}
+
+async function makeSatPhoto(img, maxBytes){
+  const targetW=420, targetH=540;
+  const canvas=document.createElement('canvas');
+  canvas.width=targetW; canvas.height=targetH;
+  const ctx=canvas.getContext('2d');
+  const scale=Math.max(targetW/img.width,targetH/img.height);
+  const sw=targetW/scale, sh=targetH/scale;
+  const sx=(img.width-sw)/2, sy=(img.height-sh)/2;
+  ctx.drawImage(img,sx,sy,sw,sh,0,0,targetW,targetH);
+  return await compressCanvas(canvas,maxBytes);
+}
+
+async function makeAutoScale(img,maxBytes){
+  let maxDimension = Math.min(Math.max(img.width,img.height), 2400);
+  for(let attempt=0; attempt<8; attempt++){
+    const scale=Math.min(1,maxDimension/Math.max(img.width,img.height));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(img.width*scale));
+    canvas.height=Math.max(1,Math.round(img.height*scale));
+    canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+    const blob=await compressCanvas(canvas,maxBytes);
+    if(blob.size<=maxBytes || maxDimension<=700) return blob;
+    maxDimension*=0.78;
+  }
+  const canvas=document.createElement('canvas');
+  canvas.width=Math.max(1,Math.round(img.width*0.55));
+  canvas.height=Math.max(1,Math.round(img.height*0.55));
+  canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+  return await compressCanvas(canvas,maxBytes);
+}
+
+async function compressCanvas(canvas,maxBytes){
+  let low=0.08, high=0.95, best=null;
+  for(let i=0;i<9;i++){
+    const q=(low+high)/2;
+    const blob=await canvasBlob(canvas,q);
+    if(blob.size<=maxBytes){
+      best=blob; low=q;
+    }else{
+      high=q;
+    }
+  }
+  if(best) return best;
+  return await canvasBlob(canvas,0.08);
+}
+</script>
 </body>
 </html>
