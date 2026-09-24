@@ -1,198 +1,434 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-adsense-account" content="ca-pub-2732959369585690">
-    
-    <!-- Localized SEO Meta Tags for Bangladesh -->
-    <title>BPSC & BCS Photo and Signature Resizer Online | Hyper Compressor</title>
-    <meta name="description" content="Fast, free online image resizer for Bangladesh Public Service Commission (BPSC) and BCS exams. Easily crop and resize photos to 300x300px and signatures to 300x80px.">
-    <link rel="canonical" href="https://www.hypercompressor.online/bpsc-photo-resizer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-2732959369585690">
 
-    <!-- Error-Free Favicon Link -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png">
+<title>BPSC & BCS Photo & Signature Resizer Online | HyperCompressor</title>
+<meta name="description" content="Resize BPSC and BCS application photos and signatures to 300×300px or 300×80px and the required file-size limits. Free, private and processed in your browser.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="HyperCompressor">
+<link rel="canonical" href="https://www.hypercompressor.online/bpsc-photo-resizer">
 
-    <!-- Tailwind CSS Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: { extend: {} }
-      }
-    </script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.hypercompressor.online/bpsc-photo-resizer">
+<meta property="og:title" content="BPSC & BCS Photo & Signature Resizer | HyperCompressor">
+<meta property="og:description" content="Prepare BPSC and BCS photos and signatures to the specified dimensions and file-size limits. Processed in your browser.">
+<meta property="og:image" content="https://www.hypercompressor.online/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BPSC & BCS Photo & Signature Resizer | HyperCompressor">
+<meta name="twitter:description" content="Resize and prepare BPSC and BCS application images in your browser.">
+<meta name="twitter:image" content="https://www.hypercompressor.online/og-image.jpg">
 
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<!-- Same favicon set as the homepage -->
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#E9E2D6">
 
-    <!-- Dark Mode State Handler -->
-    <script>
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"BPSC & BCS Photo & Signature Resizer",
+  "url":"https://www.hypercompressor.online/bpsc-photo-resizer",
+  "description":"Browser-based image resizer for preparing BPSC and BCS application photos and signatures.",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Any",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"HyperCompressor","item":"https://www.hypercompressor.online/"},
+    {"@type":"ListItem","position":2,"name":"BPSC & BCS Photo Resizer","item":"https://www.hypercompressor.online/bpsc-photo-resizer"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"What photo size does this BPSC & BCS tool prepare?",
+      "acceptedAnswer":{"@type":"Answer","text":"The photo preset shown by this tool is 300×300 pixels with a maximum file size of 100 KB."}
+    },
+    {
+      "@type":"Question",
+      "name":"What signature size does this BPSC & BCS tool prepare?",
+      "acceptedAnswer":{"@type":"Answer","text":"The signature preset shown by this tool is 300×80 pixels with a maximum file size of 60 KB."}
+    },
+    {
+      "@type":"Question",
+      "name":"Are my images uploaded to a server?",
+      "acceptedAnswer":{"@type":"Answer","text":"The page is designed to process images in the browser rather than sending them to a HyperCompressor upload server."}
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#1b2a4a;
+  --ink-soft:#40506a;
+  --paper:#f8f7f3;
+  --card:#fffdf9;
+  --line:#ddd5c8;
+  --muted:#6d6a64;
+  --accent:#c65340;
+  --accent-dark:#b74736;
+  --accent-soft:#f4e3de;
+  --success:#526b58;
+}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .2s,color .2s;
+}
+body.dark{
+  --paper:#0b1118;
+  --card:#141d28;
+  --ink:#f4f0e8;
+  --ink-soft:#cbd3dc;
+  --line:#2b3948;
+  --muted:#aeb9c6;
+  --accent:#d06450;
+  --accent-dark:#df715b;
+  --accent-soft:#34231f;
+  --success:#9ab29e;
+}
+a{color:inherit}
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(233,226,214,.97);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.dark .site-header{background:rgba(17,25,35,.97);border-bottom-color:#293645}
+.header-inner{
+  max-width:1100px;margin:auto;padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.header-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;font-weight:700;font-size:20px;letter-spacing:-.02em;
+}
+.logo-img{width:36px;height:36px;object-fit:contain;border-radius:6px}
+.header-nav{display:flex;align-items:center;gap:6px}
+.nav-link{
+  text-decoration:none;color:var(--ink-soft);font-size:15px;font-weight:600;
+  padding:9px 11px;border-radius:7px;transition:.2s;
+}
+.nav-link:hover{background:#f3eee6;color:var(--ink)}
+.dark .nav-link{color:#d5dce4}
+.dark .nav-link:hover{background:#1b2632;color:#fff}
+#themeToggle{
+  width:42px;height:42px;border:1px solid var(--line);background:transparent;
+  border-radius:9px;color:var(--ink-soft);cursor:pointer;margin-left:4px;
+}
+#themeToggle:hover{background:#f3eee6;color:var(--ink)}
+.dark #themeToggle{background:#17212d;border-color:#354454;color:#e7e1d7}
+.dark #themeToggle:hover{background:#202d3b}
+
+.page{max-width:1100px;width:100%;margin:0 auto;padding:54px 24px 70px}
+.hero{text-align:center;max-width:800px;margin:0 auto 38px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--line);background:var(--card);color:var(--accent);
+  padding:7px 11px;border-radius:7px;font-size:12px;font-weight:700;
+  letter-spacing:.02em;
+}
+h1{
+  font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.035em;
+  margin:16px 0 13px;color:var(--ink);
+}
+.hero p{
+  max-width:690px;margin:0 auto;color:var(--ink-soft);
+  font-size:16px;line-height:1.75;
+}
+.dark .hero p{color:#b7c1cc}
+
+.workspace{
+  display:grid;grid-template-columns:300px minmax(0,1fr);
+  gap:20px;align-items:start;
+}
+.panel,.tool-card,.copy,.faq{
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+}
+.panel{padding:20px}
+.panel-title{
+  margin:0 0 13px;font-size:12px;text-transform:uppercase;
+  letter-spacing:.11em;color:var(--muted);font-weight:700;
+}
+.preset{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;text-align:left;padding:15px;margin-bottom:10px;
+  border:1px solid var(--line);border-radius:9px;background:var(--card);
+  color:var(--ink);cursor:pointer;transition:.2s;
+}
+.preset:hover{background:#f5f0e8;border-color:#cfc5b5}
+.dark .preset:hover{background:#192432;border-color:#3a4a5b}
+.preset.active{
+  border-color:var(--accent);background:var(--accent-soft);
+}
+.preset-main{display:flex;align-items:center;gap:12px;min-width:0}
+.preset-icon{
+  width:38px;height:38px;border-radius:7px;display:grid;place-items:center;
+  background:#f4e3de;color:var(--accent);font-size:20px;flex:none;
+}
+.dark .preset-icon{background:#34231f}
+.preset strong{display:block;font-size:14px;color:var(--ink)}
+.preset small{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+.preset-check{color:var(--accent);font-size:20px;flex:none}
+
+.tool-card{padding:22px}
+.tool-label{
+  display:flex;justify-content:space-between;gap:15px;margin-bottom:10px;
+  color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.dropzone{
+  min-height:250px;border:1.5px dashed #cfc5b5;border-radius:9px;
+  background:#faf8f3;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;cursor:pointer;transition:.2s;
+}
+.dropzone:hover{border-color:var(--accent);background:#f6f0e8}
+.dark .dropzone{background:#101821;border-color:#354555}
+.dark .dropzone:hover{background:#151f2a;border-color:var(--accent)}
+.drop-content{padding:30px}
+.upload-icon{
+  width:52px;height:52px;margin:0 auto 12px;border-radius:9px;
+  display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);
+  font-size:25px;
+}
+.dropzone h2{font-size:17px;margin:0 0 5px;color:var(--ink)}
+.dropzone p{font-size:13px;color:var(--muted);margin:0}
+.file-input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:2}
+.target-bar{
+  margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:8px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  background:#f4f0e8;font-family:"Roboto Slab",serif;font-size:12px;color:var(--muted);
+}
+.dark .target-bar{background:#101821}
+.target-bar span{display:block;color:var(--accent);font-weight:700;margin-top:4px}
+.process-btn{
+  width:100%;margin-top:14px;border:0;border-radius:8px;padding:14px 18px;
+  background:var(--accent);color:#fff;font:700 15px Inter,sans-serif;cursor:pointer;
+  transition:.2s;
+}
+.process-btn:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.tool-note{
+  margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;
+  color:var(--success);font-size:12px;font-weight:600;
+}
+
+.copy,.faq{margin-top:34px;padding:26px}
+.copy h2,.faq h2{margin:0 0 12px;font-size:21px;letter-spacing:-.02em}
+.copy p,.faq p{margin:0 0 12px;color:var(--ink-soft);line-height:1.75;font-size:14px}
+.copy p:last-child,.faq p:last-child{margin-bottom:0}
+.faq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.faq-item{padding:17px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.faq-item h3{font-size:14px;line-height:1.4;margin:0 0 7px}
+.faq-item p{font-size:13px;margin:0;line-height:1.6}
+
+.footer{
+  border-top:1px solid var(--line);padding:22px 24px;
+  color:var(--muted);font-size:12px;
+}
+.footer-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:20px}
+.footer a{text-decoration:none}.footer a:hover{color:var(--ink)}
+
+@media(max-width:760px){
+  .header-inner{padding:10px 16px}
+  .header-logo{font-size:17px}
+  .logo-img{width:32px;height:32px}
+  .header-nav{gap:1px}
+  .nav-link{font-size:13px;padding:8px 7px}
+  .nav-link:nth-child(3){display:none}
+  #themeToggle{width:38px;height:38px}
+  .page{padding:38px 16px 55px}
+  .workspace{grid-template-columns:1fr}
+  .hero{margin-bottom:28px}
+  h1{font-size:32px}
+  .target-bar{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+}
+</style>
+
+<script>
+(function(){
+  const saved=localStorage.getItem('color-theme');
+  if(saved==='dark') document.documentElement.classList.add('dark');
+})();
+</script>
 </head>
-<body class="bg-gray-50 text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-white min-h-screen flex flex-col">
 
-    <!-- Navbar -->
-    <nav class="w-full bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4 shadow-sm">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <a href="/" class="flex items-center space-x-2">
-                <i class="ph-fill ph-aperture text-3xl text-blue-600 dark:text-blue-400"></i>
-                <span class="text-xl font-bold tracking-tight">Hyper Compressor</span>
-            </a>
-            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-2.5">
-                <i id="theme-toggle-dark-icon" class="ph ph-moon text-xl hidden"></i>
-                <i id="theme-toggle-light-icon" class="ph ph-sun text-xl hidden"></i>
-            </button>
-        </div>
+<body class="min-h-screen flex flex-col">
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="header-logo" aria-label="HyperCompressor home">
+      <img src="/favicon-96x96.png" alt="HyperCompressor" class="logo-img">
+      <span>HyperCompressor</span>
+    </a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Tools</a>
+      <a href="/blog.html" class="nav-link">Blog</a>
+      <a href="/#how-it-works" class="nav-link">How it works</a>
+      <button id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg id="themeIcon" aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
     </nav>
+  </div>
+</header>
 
-    <!-- Main Section -->
-    <main class="flex-grow max-w-4xl mx-auto w-full p-6 mt-6">
-        
-        <!-- Header targeting Bangladesh Candidates -->
-        <div class="text-center mb-8">
-            <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-green-900 dark:text-green-300">Bangladesh Portal Helper</span>
-            <h1 class="text-3xl font-extrabold mt-3 mb-2">BPSC & BCS Document Resizer</h1>
-            <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto">Automatically crop, resize, and compress your images to perfectly match the strict 300x300 and 300x80 requirements for Bangladesh government applications.</p>
+<main class="page flex-grow">
+  <section class="hero">
+    <div class="eyebrow"><i class="ph ph-identification-card"></i> Bangladesh application photo tools</div>
+    <h1>BPSC &amp; BCS Photo &amp; Signature Resizer</h1>
+    <p>Prepare application photos and signatures to the dimensions and file-size limits shown below. Choose a preset, select your image, and use the browser-based tool without sending your image to a HyperCompressor upload server.</p>
+  </section>
+
+  <section class="workspace" aria-label="BPSC and BCS image resizer">
+    <aside class="panel">
+      <h2 class="panel-title">Select document type</h2>
+
+      <button onclick="setPreset('photo')" id="btn-photo" class="preset active" type="button">
+        <span class="preset-main">
+          <span class="preset-icon"><i class="ph ph-user-square"></i></span>
+          <span><strong>BCS Photo</strong><small>300×300px · Under 100KB</small></span>
+        </span>
+        <i class="ph ph-check-circle preset-check"></i>
+      </button>
+
+      <button onclick="setPreset('signature')" id="btn-signature" class="preset" type="button">
+        <span class="preset-main">
+          <span class="preset-icon"><i class="ph ph-signature"></i></span>
+          <span><strong>BCS Signature</strong><small>300×80px · Under 60KB</small></span>
+        </span>
+      </button>
+    </aside>
+
+    <section class="tool-card">
+      <div class="tool-label">
+        <span>Upload your document</span>
+        <span>JPG · PNG · WebP</span>
+      </div>
+
+      <label for="dropzone-file" class="dropzone">
+        <input id="dropzone-file" class="file-input" type="file" accept="image/*">
+        <div class="drop-content">
+          <div class="upload-icon"><i class="ph ph-frame-corners"></i></div>
+          <h2>Choose an image</h2>
+          <p>Upload a photo or signature to prepare it for your application.</p>
         </div>
+      </label>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- Left Side: Portal Preset Selector Buttons -->
-            <div class="space-y-3">
-                <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400">Select Document Type</h3>
-                
-                <button onclick="setPreset('photo')" id="btn-photo" class="w-full flex items-center justify-between p-4 rounded-xl border border-green-500 bg-green-50/50 dark:bg-green-900/20 text-left transition-all">
-                    <div class="flex items-center space-x-3">
-                        <i class="ph ph-user-square text-2xl text-green-600 dark:text-green-400"></i>
-                        <div>
-                            <p class="font-bold text-sm">BCS Photo</p>
-                            <p class="text-xs text-gray-400">300x300px | Under 100KB</p>
-                        </div>
-                    </div>
-                    <i class="ph ph-check-circle text-xl text-green-600 dark:text-green-400"></i>
-                </button>
+      <div class="target-bar" aria-live="polite">
+        <div>Target width<span id="lbl-width">300px</span></div>
+        <div>Target height<span id="lbl-height">300px</span></div>
+        <div>Maximum file size<span id="lbl-size">100KB</span></div>
+      </div>
 
-                <button onclick="setPreset('signature')" id="btn-signature" class="w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
-                    <div class="flex items-center space-x-3">
-                        <i class="ph ph-signature text-2xl text-gray-500"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-700 dark:text-gray-300">BCS Signature</p>
-                            <p class="text-xs text-gray-400">300x80px | Under 60KB</p>
-                        </div>
-                    </div>
-                </button>
-            </div>
+      <button id="process-btn" class="process-btn" type="button">
+        Apply BPSC Rules &amp; Download
+      </button>
+      <div class="tool-note"><i class="ph ph-shield-check"></i> 100% in-browser · Zero uploads</div>
+    </section>
+  </section>
 
-            <!-- Right Side: Interaction Container -->
-            <div class="md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700">
-                <!-- Dropzone Input Box -->
-                <div class="flex items-center justify-center w-full mb-4">
-                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-56 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <i class="ph ph-cloud-arrow-up text-4xl text-gray-400 mb-2"></i>
-                            <p class="mb-1 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Upload your document</span></p>
-                            <p class="text-xs text-gray-400">Supports JPEG, PNG, WebP format</p>
-                        </div>
-                        <input id="dropzone-file" type="file" class="hidden" accept="image/*" />
-                    </label>
-                </div>
+  <article class="copy">
+    <h2>How to resize photos and signatures for a BCS application</h2>
+    <p>For the BCS photo preset on this page, the target is 300×300 pixels with a maximum file size of 100 KB. The signature preset targets 300×80 pixels with a maximum file size of 60 KB.</p>
+    <p>Select the document type, upload your image, and use the tool to prepare the file. Processing is intended to happen in your browser, helping keep the image on your device instead of sending it to a HyperCompressor upload server.</p>
+  </article>
 
-                <!-- Processing Target Indicators -->
-                <div class="bg-gray-50 dark:bg-gray-950 p-4 rounded-xl flex justify-between text-xs font-mono text-gray-500 mb-4">
-                    <div>Target Width: <span id="lbl-width" class="text-green-600 font-bold">300px</span></div>
-                    <div>Target Height: <span id="lbl-height" class="text-green-600 font-bold">300px</span></div>
-                    <div>Max File Size: <span id="lbl-size" class="text-red-500 font-bold">100KB</span></div>
-                </div>
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>What size is the BCS photo preset?</h3>
+        <p>The preset shown here targets 300×300 pixels and under 100KB.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What size is the BCS signature preset?</h3>
+        <p>The preset shown here targets 300×80 pixels and under 60KB.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are images uploaded?</h3>
+        <p>The tool is designed for browser-based processing rather than sending images to a HyperCompressor upload server.</p>
+      </div>
+    </div>
+  </section>
+</main>
 
-                <!-- Action Download Button Trigger -->
-                <button id="process-btn" class="w-full text-white bg-green-600 hover:bg-green-700 font-medium rounded-xl text-md px-5 py-3.5 transition-colors shadow-lg shadow-green-500/10">
-                    Apply BPSC Rules & Download
-                </button>
-            </div>
-        </div>
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 HyperCompressor · Processed in your browser</span>
+    <span><a href="/">Tools</a> · <a href="/blog.html">Blog</a></span>
+  </div>
+</footer>
 
-        <!-- SEO Text Block -->
-        <article class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-4">
-            <h2 class="text-lg font-bold text-gray-900 dark:text-white">How to Resize Photos and Signatures for BCS Application</h2>
-            <p>Applying for the Bangladesh Civil Service (BCS) through the BPSC portal requires strict adherence to image guidelines. The system will automatically reject any upload that does not meet the exact dimensions and file size limits. Our client-side tool allows you to format your documents instantly without sending your private information to external servers.</p>
-            <p>For a standard BCS applicant photo, the image must be perfectly square at 300x300 pixels with a maximum file size of 100 KB. For the applicant signature, the image must be cropped to 300x80 pixels and kept under 60 KB. Select the corresponding preset above, upload your raw image, and download the perfectly optimized file ready for your BPSC application.</p>
-        </article>
-    </main>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const themeToggle=document.getElementById('themeToggle');
+  const themeIcon=document.getElementById('themeIcon');
+  const body=document.body;
 
-    <!-- Footer -->
-    <footer class="text-center p-6 text-xs text-gray-400 border-t border-gray-100 dark:border-gray-800 mt-12">
-        &copy; 2026 Hyper Compressor. Secured and executed entirely in-browser.
-    </footer>
+  function setThemeIcon(){
+    const dark=body.classList.contains('dark');
+    themeIcon.innerHTML=dark
+      ? '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M17.66 6.34l1.41-1.41"></path><circle cx="12" cy="12" r="5"></circle>'
+      : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+  }
 
-    <!-- Scripts -->
-    <script>
-        // Dark Mode State Mechanics
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
+  if(localStorage.getItem('color-theme')==='dark') body.classList.add('dark');
+  setThemeIcon();
 
-        if (document.documentElement.classList.contains('dark')) {
-            lightIcon.classList.remove('hidden');
-        } else {
-            darkIcon.classList.remove('hidden');
-        }
+  themeToggle.addEventListener('click',()=>{
+    body.classList.toggle('dark');
+    localStorage.setItem('color-theme',body.classList.contains('dark')?'dark':'light');
+    setThemeIcon();
+  });
 
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
+  const presets={
+    photo:{w:'300px',h:'300px',size:'100KB',id:'btn-photo'},
+    signature:{w:'300px',h:'80px',size:'60KB',id:'btn-signature'}
+  };
 
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
-            }
-        });
-
-        // Config Data Structure for Presets
-        const presets = {
-            photo: { w: '300px', h: '300px', size: '100KB', id: 'btn-photo' },
-            signature: { w: '300px', h: '80px', size: '60KB', id: 'btn-signature' }
-        };
-
-        // UI Toggle Selection Routine Logic
-        function setPreset(type) {
-            Object.values(presets).forEach(p => {
-                const el = document.getElementById(p.id);
-                el.classList.remove('border-green-500', 'bg-green-50/50', 'dark:bg-green-900/20');
-                el.querySelector('i.ph-check-circle')?.remove();
-            });
-
-            const active = presets[type];
-            const activeEl = document.getElementById(active.id);
-            activeEl.classList.add('border-green-500', 'bg-green-50/50', 'dark:bg-green-900/20');
-            
-            // Add Check Icon visually
-            const check = document.createElement('i');
-            check.className = "ph ph-check-circle text-xl text-green-600 dark:text-green-400";
-            activeEl.appendChild(check);
-
-            // Update Label Readouts
-            document.getElementById('lbl-width').innerText = active.w;
-            document.getElementById('lbl-height').innerText = active.h;
-            document.getElementById('lbl-size').innerText = active.size;
-        }
-    </script>
+  window.setPreset=function(type){
+    Object.values(presets).forEach(p=>{
+      const el=document.getElementById(p.id);
+      el.classList.remove('active');
+      el.querySelector('.preset-check')?.remove();
+    });
+    const active=presets[type];
+    const activeEl=document.getElementById(active.id);
+    activeEl.classList.add('active');
+    const check=document.createElement('i');
+    check.className='ph ph-check-circle preset-check';
+    activeEl.appendChild(check);
+    document.getElementById('lbl-width').textContent=active.w;
+    document.getElementById('lbl-height').textContent=active.h;
+    document.getElementById('lbl-size').textContent=active.size;
+  };
+});
+</script>
 </body>
 </html>
